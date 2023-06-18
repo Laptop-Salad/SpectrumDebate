@@ -1,0 +1,11 @@
+{
+    "require": {
+        "pug-php/pug": "^3.0",
+        "phroute/phroute": "^2.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "nodejs-php-fallback/nodejs-php-fallback": true
+        }
+    }
+}

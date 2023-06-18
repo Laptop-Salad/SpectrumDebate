@@ -1,0 +1,248 @@
+:root {
+    --soft-black: #0B2027;
+    --blue-green: #40798C;
+    --yellow: #E9C46A;
+    --orange: #E76F51;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Dosis', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+header {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    height: 50px;
+    background-color: var(--soft-black);
+    color: white;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    margin: 0 80px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+header .logo img {
+    width: 20px;
+    height: auto;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+    margin: 0 20px 0 0;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+    margin: 0 80px;
+    height: 100%;
+}
+
+.shortcuts {
+    justify-content: center;
+}
+
+header nav ul li {
+    list-style-type: none;
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+header .logout {
+    color: red;
+}
+
+/* Statements */
+
+.statements {
+    padding: 0 80px;
+}
+
+.statement {
+    display: flex;
+    flex-flow: column;
+    border-radius: 20px;
+    background-color: #F6F6F6;
+    margin: 40px 0 0 0;
+    width: 60%;
+}
+
+.content {
+   height: auto;
+   flex-grow: 1; 
+   margin: 20px;
+}
+
+.content .inline {
+    margin: 0 0 10px 0;
+}
+
+.percentages {
+    display: grid;
+    grid-template: 1fr / 0fr;
+    height: 25px;
+    background-color: #0B2027;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+}
+
+.disagree {
+    background-color: var(--blue-green);
+}
+
+.neutral {
+    background-color: var(--yellow);
+}
+
+.agree {
+    background-color: var(--orange);
+}
+
+.username {
+    color: blue;
+    margin: 0 5px 0 0;
+}
+
+input {
+    display: block;
+}
+
+.inline > * {
+    display: inline;
+}
+
+.inline .margin-right {
+    margin: 0 10px;
+}
+
+/* Button */
+.button {
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px 20px;
+    font-weight: bold;
+}
+
+.button a {
+    color: var(--soft-black);
+}
+
+.link {
+    font-weight: bold;
+}
+
+/* Login */
+::placeholder {
+    color: black;
+    font-size: larger;
+}
+
+.account-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-grow: 1;
+    background-image: url("../../assets/logo-square.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #E7E7E7;
+    width: 40%;
+    height: 60vh;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.account-form h1 {
+    font-size: 40px;
+    font-weight: 400;
+    margin: 0 0 40px 0;
+}
+
+.account-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.account-form form input {
+    margin: 10px 0;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 60%;
+    box-sizing: border-box;
+}
+
+.account-form form input:user-invalid {
+    color: red;
+}
+
+.account-form form input[type="submit"] {
+    width: 20%;
+    color: black;
+    font-size: larger;
+}
+
+.account-form form input[type="submit"]:hover {
+    background-color: #0B2027;
+    color: white
+}
+
+/* Dashboard */
+#dashboard {
+    margin: 20px 80px;
+}
+#dashboard h1 {
+    font-size: 64px;
+    font-weight: 400;
+}
+#nsBtn {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: dodgerblue;
+    cursor: pointer;
+}
+
+/* Error */
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    flex-grow: 1;
+}

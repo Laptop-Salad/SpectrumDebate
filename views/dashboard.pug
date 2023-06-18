@@ -1,0 +1,33 @@
+main(id="dashboard")
+    h1 = "Dashboard"
+    button(id="nsBtn") = "Write a new statement..."
+
+    dialog(id="nsModal")
+        h2 = "Write a new statement"
+        button(id="nsCloseBtn") = "Close"
+        form(method="POST" action="new-statement")
+            input(type="text" name="ns-title" id="nsTitle" placeholder="Title", required)
+            input(type="text" name="ns-text" id="nsText" placeholder="Write a description", required)
+            input(type="submit")
+    
+    div(class="statements")
+        each $statement in $statements
+            div(class="statement") 
+                div(class="percentages")
+                    div(class="disagree")
+                    div(class="neutral")
+                    div(class="agree")
+
+                div(class="content")
+                    div(class="inline")
+                        h2 = $statement[2]
+                        p(class="margin-right")
+                            span(class="username") = $statement[1]
+                            span = "stated at "
+                            span = $statement[4]
+
+                                                            
+                    p = $statement[3]
+
+
+    script(src="../scripts/dashboard.js");

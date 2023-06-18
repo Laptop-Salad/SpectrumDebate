@@ -1,0 +1,16 @@
+main(class="statements") 
+    each $statement in $statements
+        div(class="statement") 
+            div(class="percentages")
+                div(class="disagree")
+                div(class="neutral")
+                div(class="agree")
+
+            div(class="content")
+
+                div(class="inline")
+                    h2 = $statement[2]
+                    p(class="margin-right")
+                        span(class="username") = $statement[1]
+                        span = "stated at "
+                        span = $statement[4]
