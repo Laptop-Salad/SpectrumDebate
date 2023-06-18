@@ -23,7 +23,7 @@ class BaseController
         /**
          * connects to database via config.php script
          */
-        return dirname(__DIR__, 1) . "/config.php";
+        return dirname(__DIR__, 1) . "/config/config.php";
     }
 }
 ?>
