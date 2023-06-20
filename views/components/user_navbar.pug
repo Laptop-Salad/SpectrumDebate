@@ -1,16 +1,16 @@
 header 
     div(class="logo") 
         img(src="../../assets/logo.svg")
-        a(href="") = "Spectrum Debate"
+        a(href="//localhost/") = "Spectrum Debate"
     nav(class="shortcuts")
         ul
             li(class="link")
-                a(href="home") = "Home"
+                a(href="//localhost/home") = "Home"
             li(class="link")
-                a(href="dashboard") = "Dashboard"
+                a(href="//localhost/dashboard") = "Dashboard"
     nav
         ul
             li
-                a(href="/dashboard") = "{$username}"
+                a(href="//localhost/dashboard") = "{$username}"
             li
-                a(href="/logout" id="navLogout" class="logout") = "Logout"
+                a(href="//localhost/logout" id="navLogout" class="logout") = "Logout"
