@@ -24,7 +24,7 @@ class Statement extends BaseModel
 
         $username = $this->sanitizeInput($username);
         $title = $this->sanitizeInput($title);
-        $text - $this->sanitizeInput($text);
+        $text = $this->sanitizeInput($text);
 
         $account = new Account;
         $userid = $account->findUser($this->conn, $username);

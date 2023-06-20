@@ -12,8 +12,8 @@ class BaseController
         /**
          * if user isn't logged in, sends user to home
          */
-        if (!$_SESSION["username"]) {
-            header("Location:" . "");
+        if (!isset($_SESSION["username"])) {
+            echo "<script type='text/javascript'>window.location.href='//localhost/'</script>";
             die();
         }
     }

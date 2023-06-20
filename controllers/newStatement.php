@@ -11,9 +11,7 @@ class NewStatement extends BaseController
             die();
         }
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->doCreateStatement();
-        }
+        $this->doCreateStatement();
     }
 
     function doCreateStatement()

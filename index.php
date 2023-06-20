@@ -42,6 +42,10 @@
         $newStatement = new NewStatement;
     });
 
+    $router->any("/new-statement", function() {
+        echo "<script type='text/javascript'>window.location.href='//localhost/'</script>";
+    });
+
     $router->any("favicon.html", function () {
         require __DIR__ . "/views/components/favicon.html";
     });
