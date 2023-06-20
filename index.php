@@ -42,10 +42,6 @@
         $newStatement = new NewStatement;
     });
 
-    $router->any("/new-statement", function() {
-        echo "<script type='text/javascript'>window.location.href='//localhost/'</script>";
-    });
-
     $router->any("favicon.html", function () {
         require __DIR__ . "/views/components/favicon.html";
     });
@@ -59,6 +55,6 @@
         require __DIR__ . "/controllers/notFound.php";
         $notFound = new NotFound;
     } catch (Phroute\Phroute\Exception\HttpMethodNotAllowedException $error) {
-        header("Location: ");
+        echo "<script type='text/javascript'>window.location.href='//localhost/'</script>";
     }
 ?>
