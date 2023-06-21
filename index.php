@@ -42,8 +42,9 @@
         $newStatement = new NewStatement;
     });
 
-    $router->any("favicon.html", function () {
-        require __DIR__ . "/views/components/favicon.html";
+    $router->get("/statement/{id}", function($id) {
+        require __DIR__ . "/controllers/fullStatement.php";
+        $fullStatement = new fullStatement($id);
     });
 
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
