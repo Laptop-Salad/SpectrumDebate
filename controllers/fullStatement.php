@@ -6,7 +6,18 @@
             require $this->connectDB();
             $statement = new Statement($conn);
             $data = $statement->getStatementById($id);
-            echo implode($data);
+
+            $headerVariables = [
+                "title" => "Dashboard",
+            ];
+    
+            $contentVariables = [
+                "statement" => $data,
+            ];    
+            // Display views
+            Phug::displayFile(dirname(__DIR__, 1) . "/views/components/header.pug", $headerVariables);
+            Phug::displayFile(dirname(__DIR__, 1) . "/views/components/navbar.pug");
+            Phug::displayFile(dirname(__DIR__, 1) . "/views/full_statement.pug", $contentVariables);    
         }
     }
 ?>

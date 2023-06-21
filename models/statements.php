@@ -114,8 +114,8 @@ class Statement extends BaseModel
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $account = new Account;
-                $username = $account->findUser($this->conn, $row["author_id"]);
-        
+                $username = $account->findUserById($this->conn, $row["author_id"]);
+                        
                 array_push($data,
                     $row["id"],
                     $username,

@@ -90,6 +90,12 @@ header .logout {
     width: 60%;
 }
 
+.statement-title {
+    font-size: 32px;
+    text-decoration: none;
+    color: var(--soft-black);
+}
+
 .content {
    height: auto;
    flex-grow: 1; 
@@ -245,4 +251,18 @@ input {
     justify-content: center;
     height: auto;
     flex-grow: 1;
+}   
+
+/* Full Statement */
+#full-statement {
+    margin: 20px 80px 0 80px;
+}
+
+#full-statement h1 {
+    font-size: 64px;
+    font-weight: 400;
+}
+
+.post-info {
+    margin: 0 0 20px 0;
 }
