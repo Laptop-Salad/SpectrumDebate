@@ -104,5 +104,29 @@ class Statement extends BaseModel
 
         return $data;
     }
+
+    function getStatementById($id) {
+        $sql = "SELECT * FROM statements WHERE id = '$id'";
+        $result = $this->conn->query($sql);
+
+        $data = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $account = new Account;
+                $username = $account->findUser($this->conn, $row["author_id"]);
+        
+                array_push($data,
+                    $row["id"],
+                    $username,
+                    $row["title"],
+                    $row["text"],
+                    $row["timestamp"],
+                );
+            }
+        }
+
+        return $data;
+    }
 }
 ?>

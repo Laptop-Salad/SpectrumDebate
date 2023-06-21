@@ -5,14 +5,6 @@ class Logout extends BaseController
     {
         $this->baseConstruct();
         session_destroy();
-
-        $this->redirectUser();
-    }
-
-    function redirectUser()
-    {
-        header("Location:" . "/");
-        die();
     }
 }
 ?>
