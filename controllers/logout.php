@@ -12,7 +12,8 @@ class Logout extends BaseController
 
     function redirectUser()
     {
-        header("Location:" . "/");
+        $base = new BaseController;
+        echo $base->getRedirect("");
         die();
     }
 }

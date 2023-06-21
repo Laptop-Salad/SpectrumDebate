@@ -55,6 +55,7 @@
         require __DIR__ . "/controllers/notFound.php";
         $notFound = new NotFound;
     } catch (Phroute\Phroute\Exception\HttpMethodNotAllowedException $error) {
-        echo "<script type='text/javascript'>window.location.href='//localhost/'</script>";
+        $base = new BaseController;
+        echo $base->getRedirect("");
     }
 ?>

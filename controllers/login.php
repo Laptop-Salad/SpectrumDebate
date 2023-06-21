@@ -23,7 +23,8 @@ class Login extends BaseController
 
         if ($account->checkCredentials($conn, $username, $userpass)) {
             $_SESSION["username"] = $username;
-            header("Location:" . "dashboard");
+            $base = new BaseController;
+            echo $base->getRedirect("dashboard");
         } else {
             echo "User not found";
         }

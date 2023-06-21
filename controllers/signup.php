@@ -31,8 +31,8 @@ class Signup extends BaseController
 
         // Create new user
         if ($account->createUser($conn, $username, $userpass)) {
-            header("Location:" . "login");
-            die();
+            $base = new BaseController;
+            echo $base->getRedirect("login");
         }
     }
     function displayViews()

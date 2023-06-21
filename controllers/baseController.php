@@ -25,5 +25,9 @@ class BaseController
          */
         return dirname(__DIR__, 1) . "/config/config.php";
     }
+
+    function getRedirect($location) {
+        return "<script type='text/javascript'>window.location.href='//localhost/$location'</script>";
+    }
 }
 ?>

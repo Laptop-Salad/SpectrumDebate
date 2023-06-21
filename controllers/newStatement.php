@@ -4,13 +4,6 @@ class NewStatement extends BaseController
     function __construct()
     {
         $this->baseConstruct();
-
-        // If request method was not POST direct user to landing page
-        if (!$_SESSION["username"]) {
-            header("Location:" . "");
-            die();
-        }
-
         $this->doCreateStatement();
     }
 
@@ -24,11 +17,12 @@ class NewStatement extends BaseController
         $username = $_SESSION["username"];
 
         $statement = new Statement($conn);
+        $base = new BaseController;
 
         if ($statement->createStatement($username, $title, $text)) {
-            header("Location:" . "dashboard");
+            echo $base->getRedirect("dashboard");
         } else {
-            header("Location:" . "dashboard");
+            echo $base->getRedirect("dashboard");
             die();
         }
     }
