@@ -38,25 +38,8 @@ class Home extends BaseController
             "statements" => $statements,
         ];
 
-        $headVariables = [
-            "title" => "Home",
-        ];
-
-        // Display header
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/header.pug", $headVariables);
-
-        // If user is logged in display user_navbar
-        if (isset($_SESSION["username"])) {
-            $username = $_SESSION["username"];
-            $navbarVariables = [
-                "username" => $username,
-            ];
-
-            Phug::displayFile(dirname(__DIR__, 1) . "/views/components/user_navbar.pug", $navbarVariables);
-            // Otherwise display default navbar   
-        } else {
-            Phug::displayFile(dirname(__DIR__, 1) . "/views/components/navbar.pug");
-        }
+        $this->displayHeader("Home");
+        $this->displayNavbar();
 
         // Display content
         Phug::displayFile(dirname(__DIR__, 1) . "/views/home.pug", $contentVariables);

@@ -34,16 +34,6 @@ class Dashboard extends BaseController
          * 
          * @param array $statements array of statements
          */
-        // Set up variables required for views
-        $username = $_SESSION["username"];
-
-        $headerVariables = [
-            "title" => "Dashboard"
-        ];
-
-        $navVariables = [
-            "username" => $username
-        ];
 
         $contentVariables = [
             "logo" => dirname(__DIR__, 1) . "/views/assets/logo.png",
@@ -51,8 +41,8 @@ class Dashboard extends BaseController
         ];
 
         // Display views
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/header.pug", $headerVariables);
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/user_navbar.pug", $navVariables);
+        $this->displayHeader("Dashboard");
+        $this->displayNavbar();
         Phug::displayFile(dirname(__DIR__, 1) . "/views/dashboard.pug", $contentVariables);
     }
 }

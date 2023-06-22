@@ -1,7 +1,0 @@
-# Disable directory browsing
-#Options -Indexes
-
-RewriteCond %{REQUEST_FILENAME} !-f
-
-RewriteEngine on
-RewriteRule (.*) index.php

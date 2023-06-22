@@ -29,5 +29,18 @@ class BaseController
     function getRedirect($location) {
         return "<script type='text/javascript'>window.location.href='//localhost/$location'</script>";
     }
+
+    function displayHeader($pageTitle) {
+        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/header.pug", ["title" => $pageTitle]);
+    }
+
+    function displayNavbar() {        
+        if (isset($_SESSION["username"])) {
+            Phug::displayFile(dirname(__DIR__, 1) . "/views/components/user_navbar.pug", ["username" => $_SESSION["username"]]);
+            return;
+        } 
+
+        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/navbar.pug");
+    }
 }
 ?>

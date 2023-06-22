@@ -37,13 +37,8 @@ class Signup extends BaseController
     }
     function displayViews()
     {
-        $headerVariables = [
-            "title" => "Sign Up",
-            "containerClass" => "",
-        ];
-
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/header.pug", $headerVariables);
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/navbar.pug");
+        $this->displayHeader("Signup");
+        $this->displayNavbar();
         Phug::displayFile(dirname(__DIR__, 1) . "/views/signup.pug");
     }
 }

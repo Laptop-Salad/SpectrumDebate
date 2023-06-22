@@ -39,13 +39,9 @@ class Login extends BaseController
          * - default navbar
          * - content
          */
-        $headerVariables = [
-            "title" => "Login",
-            "containerClass" => "",
-        ];
 
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/header.pug", $headerVariables);
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/components/navbar.pug");
+        $this->displayHeader("Login");
+        $this->displayNavbar();
         Phug::displayFile(dirname(__DIR__, 1) . "/views/login.pug");
     }
 }

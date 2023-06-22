@@ -6,7 +6,7 @@ class Logout extends BaseController
         $this->baseConstruct();
         $this->ensureUserLoggedIn();
         session_destroy();
-        $this->getRedirect("");
+        echo $this->getRedirect("");
     }
 }
 ?>
