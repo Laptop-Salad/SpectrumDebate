@@ -4,7 +4,6 @@ class BaseController
     function baseConstruct()
     {
         session_start();
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/favicon.html");
     }
 
     function ensureUserLoggedIn($redirect = "")

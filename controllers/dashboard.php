@@ -41,7 +41,7 @@ class Dashboard extends BaseController
         ];
 
         // Display view
-        $this->displayContent("dashboard.pug", "Dasboard", $contentVariables);
+        $this->displayContent("dashboard.pug", "Dashboard", $contentVariables);
     }
 }
 ?>
