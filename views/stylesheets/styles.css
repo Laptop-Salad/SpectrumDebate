@@ -88,6 +88,9 @@ header .logout {
     background-color: #F6F6F6;
     margin: 40px 0 0 0;
     width: 60%;
+    /* On hovering a statement, the black border causes the statements
+    to move, this prevents that */
+    border: 1px solid transparent;
 }
 
 .statement:hover {
