@@ -4,7 +4,7 @@ class Dashboard extends BaseController
     function __construct()
     {
         $this->baseConstruct();
-        $this->ensureUserLoggedIn();
+        $this->ensureUserLoggedIn("login");
         $statements = $this->doGetStatements();
         $this->displayViews($statements);
     }
@@ -40,10 +40,8 @@ class Dashboard extends BaseController
             "statements" => $statements
         ];
 
-        // Display views
-        $this->displayHeader("Dashboard");
-        $this->displayNavbar();
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/dashboard.pug", $contentVariables);
+        // Display view
+        $this->displayContent("dashboard.pug", "Dasboard", $contentVariables);
     }
 }
 ?>

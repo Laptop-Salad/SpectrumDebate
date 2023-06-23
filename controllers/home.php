@@ -38,11 +38,7 @@ class Home extends BaseController
             "statements" => $statements,
         ];
 
-        $this->displayHeader("Home");
-        $this->displayNavbar();
-
-        // Display content
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/home.pug", $contentVariables);
+        $this->displayContent("home.pug", "Home", $contentVariables);
     }
 }
 ?>

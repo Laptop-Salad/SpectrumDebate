@@ -40,9 +40,7 @@ class Login extends BaseController
          * - content
          */
 
-        $this->displayHeader("Login");
-        $this->displayNavbar();
-        Phug::displayFile(dirname(__DIR__, 1) . "/views/login.pug");
+         $this->displayContent("login.pug", "Login", []);
     }
 }
 ?>

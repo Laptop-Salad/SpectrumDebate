@@ -11,10 +11,8 @@
                 "statement" => $data,
             ];    
 
-            // Display views
-            $this->displayHeader($data[2]);
-            $this->displayNavbar();
-            Phug::displayFile(dirname(__DIR__, 1) . "/views/full_statement.pug", $contentVariables);    
+            // Display view
+            $this->displayContent("full_statement.pug", $data[2], $contentVariables);
         }
     }
 ?>

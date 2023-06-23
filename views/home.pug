@@ -1,16 +1,19 @@
-main(class="statements") 
-    each $statement in $statements
-        div(class="statement" role="link" tabindex="0" onclick="window.location.href='//localhost/statement/{$statement[0]}'") 
-            div(class="percentages")
-                div(class="disagree")
-                div(class="neutral")
-                div(class="agree")
+extends base.pug
 
-            div(class="content")
+block content
+    main(class="statements") 
+        each $statement in $statements
+            div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement[0]}'") 
+                div(class="percentages")
+                    div(class="disagree")
+                    div(class="neutral")
+                    div(class="agree")
 
-                div(class="inline")
-                    h2(class="statement-title") = $statement[2] 
-                    p(class="margin-right")
-                        span(class="username") = $statement[1]
-                        span = "stated at "
-                        span = $statement[4]
+                div(class="content")
+
+                    div(class="inline")
+                        h2(class="statement-title") = $statement[2] 
+                        p(class="margin-right")
+                            span(class="username") = $statement[1]
+                            span = "stated at "
+                            span = $statement[4]

@@ -5,9 +5,7 @@
         }
 
         function displayViews() {
-            $this->displayHeader("404 Not Found");
-            $this->displayNavbar();
-            Phug::displayFile(dirname(__DIR__, 1) . "/views/error.pug");
+            $this->displayContent("error.pug", "404 Not Found", []);
         }
     }
 ?>
