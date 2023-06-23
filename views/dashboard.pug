@@ -10,24 +10,22 @@ main(id="dashboard")
             input(type="text" name="ns-text" id="nsText" placeholder="Write a description", required)
             input(type="submit")
     
-    div(class="statements")
+    div(class="statements") 
         each $statement in $statements
-            div(class="statement") 
+            div(class="statement" role="link" tabindex="0" onclick="window.location.href='//localhost/statement/{$statement[0]}'") 
                 div(class="percentages")
                     div(class="disagree")
                     div(class="neutral")
                     div(class="agree")
 
                 div(class="content")
+
                     div(class="inline")
-                        h2 = $statement[2]
+                        h2(class="statement-title") = $statement[2] 
                         p(class="margin-right")
                             span(class="username") = $statement[1]
                             span = "stated at "
                             span = $statement[4]
-
-                                                            
-                    p = $statement[3]
 
 
     script(src="../scripts/dashboard.js");

@@ -90,9 +90,14 @@ header .logout {
     width: 60%;
 }
 
+.statement:hover {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 .statement-title {
     font-size: 32px;
-    text-decoration: none;
+    font-weight: 400;
     color: var(--soft-black);
 }
 
