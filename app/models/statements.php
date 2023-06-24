@@ -21,26 +21,27 @@ class Statement extends BaseModel
          * @param string $text
          * @return bool if statement was successfully uploaded
          */
-
         $username = $this->sanitizeInput($username);
         $title = $this->sanitizeInput($title);
         $text = $this->sanitizeInput($text);
 
+        // Get user's user id
         $account = new Account;
         $userid = $account->findUser($this->conn, $username);
         if (!$userid) {
             return False;
         }
+        
+        // Prepare and bind statement
+        $stmt = $this->conn->prepare("INSERT INTO statements (author_id, title, text)
+            VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $userid, $title, $text);
 
-        $sql = "INSERT INTO statements (author_id, title, text)
-            VALUES ('$userid', '$title', '$text')";
-        $result = $this->conn->query($sql);
-
-        if ($result) {
+        if ($stmt->execute()) {
             return True;
-        } else {
-            return False;
-        }
+        } 
+
+        return False;
     }
 
     function getAllStatements()
@@ -52,13 +53,16 @@ class Statement extends BaseModel
          */
         $sql = "SELECT * FROM statements";
         $result = $this->conn->query($sql);
+
+        // Create array to hold results
         $data = array();
-        $account = new Account;
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-
+                // Look up user's username by id
+                $account = new Account;
                 $username = $account->findUserById($this->conn, $row["author_id"]);
+                
                 array_push($data, array(
                     $row["id"],
                     $username,
@@ -81,38 +85,57 @@ class Statement extends BaseModel
          * @param string $username
          * @return array of statements
          */
+
+        // Get user's user id
         $account = new Account;
         $user_id = $account->findUser($this->conn, $username);
-        $sql = "SELECT * FROM statements WHERE author_id = '$user_id'";
-        $result = $this->conn->query($sql);
 
+        // Prepare and bin statement
+        $stmt = $this->conn->prepare("SELECT * FROM statements WHERE author_id = ?");
+        $stmt->bind_param("s", $user_id);
+
+        // Execute statement
+        $result = $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Create array to save result to
         $data = array();
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $username = $account->findUserById($this->conn, $row["author_id"]);
-                array_push($data, array(
-                    $row["id"],
-                    $username,
-                    $row["title"],
-                    $row["text"],
-                    $row["timestamp"],
-                )
-                );
-            }
+        while ($row = $result->fetch_assoc()) {
+            $username = $account->findUserById($this->conn, $row["author_id"]);
+            array_push($data, array(
+                $row["id"],
+                $username, // We already have the username
+                $row["title"],
+                $row["text"],
+                $row["timestamp"],
+            )
+            );
         }
 
         return $data;
     }
 
     function getStatementById($id) {
-        $sql = "SELECT * FROM statements WHERE id = '$id'";
-        $result = $this->conn->query($sql);
+        /**
+         * get statements by id of statement
+         * @param string $id of statement
+         */
 
+        // Prepare and bind statement
+        $stmt = $this->conn->prepare("SELECT * FROM statements WHERE id = ?");
+        $stmt->bind_param("s", $id);
+
+        // Execute statement
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Create data to hold result
         $data = array();
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                // Lookup users username by user id
                 $account = new Account;
                 $username = $account->findUserById($this->conn, $row["author_id"]);
                         

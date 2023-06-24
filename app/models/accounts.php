@@ -17,13 +17,15 @@ class Account extends BaseModel
         $username = $this->sanitizeInput($username);
         $userpass = $this->sanitizeInput($userpass);
 
-        $sql = "INSERT INTO users (username, password) 
-            VALUES ('$username', '$userpass')";
+        // Prepare and bind statement
+        $sqlStmt = $conn->prepare("INSERT INTO users (username, password) 
+        VALUES (?, ?)");
+        $sqlStmt->bind_param("ss", $username, $userpass);
     
-        if ($conn->query($sql)) {
+        // Execute statement
+        if ($sqlStmt->execute()) {
             return True;
         } else {
-            echo "Error: " . mysqli_error($conn);
             return False;
         }
     }
@@ -38,8 +40,14 @@ class Account extends BaseModel
          * @param string $password
          * @return bool True = if username and password exists
          */
-        $sql = "SELECT id FROM users WHERE username = '$username' AND password = '$userpass'";
-        $result = $conn->query($sql);
+
+        // Bind and prepare statement
+        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
+        $stmt->bind_param("ss", $username, $userpass);
+
+        // Execute statement
+        $stmt->execute();
+        $result = $stmt->get_result();
     
         if ($result->num_rows > 0) {
             return True;
@@ -57,29 +65,43 @@ class Account extends BaseModel
          * @param string $username
          * @return bool|int integer is found userid
          */
-        $sql = "SELECT id FROM users WHERE username = '$username'";
-        $result = $conn->query($sql);
-    
+
+        // Prepare and bind statement
+        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+
+        // Execute and bind result
+        $stmt->execute();
+        $result = $stmt->get_result();
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 return $row["id"];
             }
-        } else {
-            return False;
         }
     }
     
     function findUserById($conn, $userid)
     {
-        $sql = "SELECT username FROM users WHERE id = '$userid'";
-        $result = $conn->query($sql);
+        /**
+         * gets a username from a userid
+         * @param mysqli $conn
+         * @param string $userid
+         * @return string|bool string if username is found
+         */
+
+        // Prepare and bind statement
+        $stmt = $conn->prepare("SELECT username FROM users WHERE id = ?");
+        $stmt->bind_param("s", $userid);
+        
+        // Execute and bind result
+        $stmt->execute();
+        $result = $stmt->get_result();
     
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 return $row["username"];
             }
-        } else {
-            return False;
         }
     }
 }
