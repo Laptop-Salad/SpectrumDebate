@@ -180,7 +180,7 @@ input {
     align-items: center;
     height: auto;
     flex-grow: 1;
-    background-image: url("../../assets/logo-square.svg");
+    background-image: url("/app/assets/logo-square.svg");
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.9;

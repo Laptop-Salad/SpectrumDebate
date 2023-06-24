@@ -1,3 +1,8 @@
 vendor/
 config/
 .htaccess
+cypress/downloads
+cypress/fixtures
+cypress/support
+node_modules/
+cypress.config.js

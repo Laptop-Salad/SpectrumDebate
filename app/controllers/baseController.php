@@ -22,7 +22,7 @@ class BaseController
         /**
          * connects to database via config.php script
          */
-        return dirname(__DIR__, 1) . "/config/config.php";
+        return dirname(__DIR__, 2) . "/config/config.php";
     }
 
     function getRedirect($location) {
