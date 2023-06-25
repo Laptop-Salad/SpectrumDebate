@@ -18,13 +18,13 @@ block content
         
         p(id="opinionFormsTitle") = "What do you think?"
         div(id="opinionForms")
-            form(id="formDisagree" method="POST" action="http:{$domain}/vote/{$statement[0]}/disagree")
+            form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement[0]}/disagree")
                 input(type="submit" value="Disagree")
 
-            form(id="formNeutral" method="POST" action="http:{$domain}/vote/{$statement[0]}/neutral")
+            form(id="formNeutral" method="POST" action="{$domain}/vote/{$statement[0]}/neutral")
                 input(type="submit" value="Neutral")
 
-            form(id="formAgree" method="POST" action="http:{$domain}/vote/{$statement[0]}/agree")
+            form(id="formAgree" method="POST" action="{$domain}/vote/{$statement[0]}/agree")
                 input(type="submit" value="Agree")
 
         p = "{$statement[3]}"
