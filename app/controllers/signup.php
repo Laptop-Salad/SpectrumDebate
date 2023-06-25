@@ -1,4 +1,5 @@
 <?php
+
 class Signup extends BaseController
 {
     function __construct()
@@ -25,7 +26,8 @@ class Signup extends BaseController
 
         // Check is user already exists
         if ($account->findUser($conn, $username)) {
-            echo "Username already exists";
+            $this->displayViews();
+            $this->displayNotif("error", "This username has already been taken, please choose another.");
             die();
         }
 

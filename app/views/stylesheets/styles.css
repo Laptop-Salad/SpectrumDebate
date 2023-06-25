@@ -3,6 +3,8 @@
     --blue-green: #40798C;
     --yellow: #E9C46A;
     --orange: #E76F51;
+    --success: #bfe3b4;
+    --error: #ec644b;
     --votes-ratio: 0fr 0fr 0fr;
 }
 
@@ -74,6 +76,51 @@ header nav ul li a {
 
 header .logout {
     color: red;
+}
+
+/* Notification dialog */
+#notif {
+    position: absolute;
+    margin: 20px auto;
+    width: 25%;
+    height: 20%;
+    border-radius: 5px;
+    z-index: 5;
+}
+
+.notif-success {
+    border: 1px solid var(--success);
+    box-shadow: #bfe3b4ad 0px 5px 15px;
+}
+
+.notif-error {
+    border: 1px solid var(--error);
+    box-shadow: #ec644bad 0px 5px 15px;
+  
+}
+
+.notif-neutral {
+    border: 1px solid var(--error);
+    box-shadow: #0B2027ad 0px 5px 15px;
+}
+
+#notif p {
+    font-size: 24px;
+    margin: 5px;
+}
+
+#notif button {
+    border: none;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    color: var(--soft-black)
+}
+
+#notif button:hover {
+    background-color: var(--soft-black);
+    color: white;
+    cursor: pointer;
 }
 
 /* Statements */

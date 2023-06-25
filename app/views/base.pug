@@ -38,4 +38,9 @@ body
                     li(class="button") 
                         a(href="{$domain}/signup" id="navSignUp") = "Sign Up Now" 
     
+    dialog(id="notif")
+        p(id="notifMessage") = ""
+        form(method="dialog")
+            button = "Close"
+        
     block content

@@ -26,7 +26,9 @@ class Login extends BaseController
             $base = new BaseController;
             echo $base->getRedirect("dashboard");
         } else {
-            echo "User not found";
+            $this->displayViews();
+            $this->displayNotif("error", "Your username or password is invalid");
+            die();
         }
     }
 
