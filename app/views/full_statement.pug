@@ -2,10 +2,29 @@ extends base.pug
 
 block content
     main(id="full-statement") 
+        div(class="percentages" style="--votes-ratio: {$votesCount['disagree']}fr {$votesCount['neutral']}fr {$votesCount['agree']}fr;")
+            div(class="disagree")
+            div(class="neutral")
+            div(class="agree")
+
         h1 = "{$statement[2]}"
         p(class="post-info")
             span
                 b = "{$statement[1]}"
             span = " stated at "
             span = "{$statement[4]}"
+
+        p = "{$votesCount['total']} people voted, {$votesCount['disagree']} people disagree, {$votesCount['neutral']} are neutral and {$votesCount['agree']} agree."
+        
+        p(id="opinionFormsTitle") = "What do you think?"
+        div(id="opinionForms")
+            form(id="formDisagree" method="POST" action="http:{$domain}/vote/{$statement[0]}/disagree")
+                input(type="submit" value="Disagree")
+
+            form(id="formNeutral" method="POST" action="http:{$domain}/vote/{$statement[0]}/neutral")
+                input(type="submit" value="Neutral")
+
+            form(id="formAgree" method="POST" action="http:{$domain}/vote/{$statement[0]}/agree")
+                input(type="submit" value="Agree")
+
         p = "{$statement[3]}"

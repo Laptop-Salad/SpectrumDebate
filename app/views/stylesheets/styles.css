@@ -3,6 +3,7 @@
     --blue-green: #40798C;
     --yellow: #E9C46A;
     --orange: #E76F51;
+    --votes-ratio: 0fr 0fr 0fr;
 }
 
 * {
@@ -116,7 +117,7 @@ header .logout {
 
 .percentages {
     display: grid;
-    grid-template: 1fr / 0fr;
+    grid-template: 1fr / var(--votes-ratio);
     height: 25px;
     background-color: #0B2027;
     border-radius: 20px 20px 0 0;
@@ -273,4 +274,47 @@ input {
 
 .post-info {
     margin: 0 0 20px 0;
+}
+
+#opinionFormsTitle {
+    font-size: 24px;
+    margin: 20px 0 0 0;
+}
+
+#opinionForms {
+    width: 20%;
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    margin: 20px 0;
+}
+
+#opinionForms p {
+    font-size: 24px;
+}
+
+#opinionForms form input {
+    width: 100%;
+    font-size: 24px;
+    padding: 5px;
+}
+
+#opinionForms form input:hover {
+    cursor: pointer;
+}
+
+#formDisagree input {
+    background-color: var(--blue-green);
+    border: none;
+    border-radius: 25px 0 0 25px;
+}
+
+#formNeutral input {
+    background-color: var(--yellow);
+    border: none;
+}
+
+#formAgree input {
+    background-color: var(--orange);
+    border: none;
+    border-radius: 0 25px 25px 0;
 }

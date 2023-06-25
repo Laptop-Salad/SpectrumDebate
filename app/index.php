@@ -47,6 +47,11 @@
         $fullStatement = new fullStatement($id);
     });
 
+    $router->post("/vote/{statement_id}/{vote}", function($statement_id, $vote) {
+        require __DIR__ . "/controllers/vote.php";
+        $vote = new VoteController($statement_id, $vote);
+    });
+
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 
     try {

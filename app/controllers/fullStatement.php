@@ -6,12 +6,18 @@
             require $this->connectDB();
             $statement = new Statement($conn);
             $data = $statement->getStatementById($id);
-    
-            $contentVariables = [
-                "statement" => $data,
-            ];    
+
+            // Get votes
+            require dirname(__DIR__, 1) . "/models/votes.php";
+            $vote = new Vote($conn);
+            $votesCount = $vote->getStatementVotesCount($data[0]);
 
             // Display view
+            $contentVariables = [
+                "statement" => $data,
+                "votesCount" => $votesCount,
+            ];    
+
             $this->displayContent("full_statement.pug", $data[2], $contentVariables);
         }
     }

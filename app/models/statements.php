@@ -105,7 +105,7 @@ class Statement extends BaseModel
             $username = $account->findUserById($this->conn, $row["author_id"]);
             array_push($data, array(
                 $row["id"],
-                $username, // We already have the username
+                $username,
                 $row["title"],
                 $row["text"],
                 $row["timestamp"],
