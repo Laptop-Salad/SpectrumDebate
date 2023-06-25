@@ -62,13 +62,16 @@ class Statement extends BaseModel
                 // Look up user's username by id
                 $account = new Account;
                 $username = $account->findUserById($this->conn, $row["author_id"]);
+
+                // Format time 
+                $formattedTime = $this->formatTime($row["timestamp"]);
                 
                 array_push($data, array(
                     $row["id"],
                     $username,
                     $row["title"],
                     $row["text"],
-                    $row["timestamp"],
+                    $formattedTime,
                 )
                 );
             }
@@ -102,13 +105,18 @@ class Statement extends BaseModel
         $data = array();
 
         while ($row = $result->fetch_assoc()) {
+            // Get username
             $username = $account->findUserById($this->conn, $row["author_id"]);
+
+            // Format time 
+            $formattedTime = $this->formatTime($row["timestamp"]);
+
             array_push($data, array(
                 $row["id"],
                 $username,
                 $row["title"],
                 $row["text"],
-                $row["timestamp"],
+                $formattedTime,
             )
             );
         }
@@ -138,18 +146,39 @@ class Statement extends BaseModel
                 // Lookup users username by user id
                 $account = new Account;
                 $username = $account->findUserById($this->conn, $row["author_id"]);
+
+                // Format time
+                $formattedTime = $this->formatTime($row["timestamp"]);
                         
                 array_push($data,
                     $row["id"],
                     $username,
                     $row["title"],
                     $row["text"],
-                    $row["timestamp"],
+                    $formattedTime,
                 );
             }
         }
 
         return $data;
+    }
+
+    function formatTime($timestamp) {
+        /**
+         * returns a formatted string of a time string
+         * 
+         * @param string $timestamp
+         * @return string
+         */
+        
+        $datetime = strtotime($timestamp);
+        
+        $time = date("H", $datetime) . ":" . date("s", $datetime);
+        $dayOfMonth = date("j", $datetime) . date("S", $datetime);
+        $month = date("F");
+        $year = date("Y");
+
+        return "at " . $time . " on the " . $dayOfMonth . " of " . $month . ", " . $year;
     }
 }
 ?>
