@@ -12,7 +12,7 @@ class BaseController
          * if user isn't logged in, sends user to home
          */
         if (!isset($_SESSION["username"])) {
-            echo "<script type='text/javascript'>window.location.href='//localhost/$redirect'</script>";
+            echo $this->getRedirect("login");
             die();
         }
     }
