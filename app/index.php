@@ -52,6 +52,11 @@
         $vote = new VoteController($statement_id, $vote);
     });
 
+    $router->post("/comment/{statement_id}/", function($statement_id) {
+        require __DIR__ . "/controllers/comment.php";
+        $comment = new CommentController($statement_id);
+    });
+
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 
     try {

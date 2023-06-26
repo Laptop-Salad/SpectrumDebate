@@ -42,7 +42,7 @@ class BaseController
         Phug::displayFile(dirname(__DIR__, 1) . "/views/components/navbar.pug");
     }
 
-    function displayContent($filename, $pageTitle, $variables) {
+    function displayContent($filename, $pageTitle, $variables, $stylesheet = null) {
         $variables["domain"] = "//localhost";
         $variables["title"] = $pageTitle;
 

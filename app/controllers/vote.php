@@ -1,4 +1,5 @@
 <?php
+
     class VoteController extends BaseController {
         public $conn;
         public $statement_id;

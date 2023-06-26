@@ -74,8 +74,7 @@ class Statement extends BaseModel
                     $row["title"],
                     $row["text"],
                     $formattedTime,
-                )
-                );
+                ));
             }
         }
 

@@ -2,11 +2,13 @@ extends base.pug
 
 block content
     main(id="full-statement") 
+        //- Ratio of votes
         div(class="percentages" style="--votes-ratio: {$votesCount['disagree']}fr {$votesCount['neutral']}fr {$votesCount['agree']}fr;")
             div(class="disagree")
             div(class="neutral")
             div(class="agree")
 
+        //- Statement info
         h1 = "{$statement[2]}"
         p(class="post-info")
             span
@@ -16,6 +18,7 @@ block content
 
         p = "{$votesCount['total']} people voted, {$votesCount['disagree']} people disagree, {$votesCount['neutral']} are neutral and {$votesCount['agree']} agree."
         
+        //- Voting form
         p(id="opinionFormsTitle") = "What do you think?"
         div(id="opinionForms")
             form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement[0]}/disagree")
@@ -27,4 +30,19 @@ block content
             form(id="formAgree" method="POST" action="{$domain}/vote/{$statement[0]}/agree")
                 input(type="submit" value="Agree")
 
+        //- Statement text
         p = "{$statement[3]}"
+
+        hr
+
+        //- Commenting Form
+        form(method="POST" action="{$domain}/comment/{$statement[0]}")
+            input(name="comment" type="text" minlength="3" maxlength="100" required)
+            input(type="submit" value="Comment")
+
+        //- Comments
+        section(id="comments")
+            each $comment in $comments
+                p 
+                    span = "{$comment[3]}"
+                    span = " - {$comment[2]}"

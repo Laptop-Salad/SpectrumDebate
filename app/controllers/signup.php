@@ -39,7 +39,7 @@ class Signup extends BaseController
     }
     function displayViews()
     {
-        $this->displayContent("signup.pug", "Signup", []);
+        $this->displayContent("signup.pug", "Signup", [], "signup.css");
     }
 }
 ?>

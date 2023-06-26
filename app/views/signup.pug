@@ -5,6 +5,9 @@ block content
         div(class="account-form")
             h1 = "Sign Up"
             form(method="POST" action="signup")
-                input(id="username" name="username" type="text" placeholder="Username", required)
-                input(id="userpass" name="userpass" type="password" placeholder="Password", required)
+                input(id="username" name="username" type="text" placeholder="Username" minlength="3" maxlength="10" required)
+                input(id="userpass" name="userpass" type="password" placeholder="Password" minlength="8" maxlength="20" required)
+                p(id="usernameHint") = "• Usernames should be between 3 and 10 characters long"
+                p(id="passwordHint") = "• Passwords should be between 8 and 20 characters long"
                 input(type="submit" value="Submit")
+    

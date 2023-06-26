@@ -264,13 +264,13 @@ input {
     outline: none;
     padding: 10px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid transparent;
     width: 60%;
     box-sizing: border-box;
 }
 
-.account-form form input:user-invalid {
-    color: red;
+.account-form form input:invalid {
+    border: 1px solid red;
 }
 
 .account-form form input[type="submit"] {
@@ -282,6 +282,19 @@ input {
 .account-form form input[type="submit"]:hover {
     background-color: #0B2027;
     color: white
+}
+
+/* Sign up */
+#usernameHint {
+    display: block;
+}
+
+#passwordHint {
+    display: block;
+}
+
+.noHint {
+    display: none;
 }
 
 /* Dashboard */
