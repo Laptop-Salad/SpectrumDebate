@@ -2,17 +2,15 @@
     require_once "baseModel.php";
 
     class Comment extends BaseModel {
-        private $conn;
         private $account;
-        function __construct($conn) {
-            $this->conn = $conn;
-            
+        function __construct() {            
             require_once "accounts.php";
             $this->account = New Account;
+            $this->connectDB();
         }
 
         function createNewComment($statement_id, $comment, $username) {
-            $userid = $this->account->findUser($this->conn, $username);
+            $userid = $this->account->findUser($username);
 
             $stmt = $this->conn->prepare("INSERT INTO comments (statement_id, author_id, text)
             VALUES (?, ?, ?)");
@@ -34,7 +32,7 @@
             $data = array();
 
             while ($row = $result->fetch_assoc()) {
-                $username = $this->account->findUserById($this->conn, $row["author_id"]);
+                $username = $this->account->findUserById($row["author_id"]);
                 array_push($data, array(
                     $row["id"],
                     $row["statement_id"],
@@ -55,7 +53,7 @@
             $data = array();
 
             while ($row = $result->fetch_assoc()) {
-                $username = $this->account->findUserById($this->conn, $row["author_id"]);
+                $username = $this->account->findUserById($row["author_id"]);
                 array_push($data, array(
                     $row["id"],
                     $row["statement_id"],

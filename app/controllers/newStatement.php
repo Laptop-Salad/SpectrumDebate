@@ -9,14 +9,13 @@ class NewStatement extends BaseController
 
     function doCreateStatement()
     {
-        require $this->connectDB();
         require dirname(__DIR__, 1) . "/models/statements.php";
 
         $title = $_POST["ns-title"];
         $text = $_POST["ns-text"];
         $username = $_SESSION["username"];
 
-        $statement = new Statement($conn);
+        $statement = new Statement;
         $base = new BaseController;
 
         if ($statement->createStatement($username, $title, $text)) {

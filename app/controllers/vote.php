@@ -1,15 +1,11 @@
 <?php
 
     class VoteController extends BaseController {
-        public $conn;
         public $statement_id;
         public $opinion;
         function __construct($statement_id, $opinion) {
             $this->baseConstruct();
             $this->ensureUserLoggedIn();
-
-            require $this->connectDB();
-            $this->conn = $conn;
 
             $this->statement_id = $statement_id;
             $this->opinion = $opinion;
@@ -25,7 +21,7 @@
         function doCreateVote() {
             require dirname(__DIR__, 1) . "/models/votes.php";
 
-            $vote = New Vote($this->conn);
+            $vote = New Vote;
             $findVote = $vote->findVote($this->statement_id, $_SESSION["username"]);
 
             if ($findVote) {
@@ -45,7 +41,7 @@
         function checkVoteValid() {
             // Person cannot vote on their own post
             require dirname(__DIR__, 1) . "/models/statements.php";
-            $statement = new Statement($this->conn);
+            $statement = new Statement;
             
             $currStatement = $statement->getStatementById($this->statement_id);
 

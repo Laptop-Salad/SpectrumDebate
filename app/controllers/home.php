@@ -15,10 +15,9 @@ class Home extends BaseController
          * 
          * @return array of statements
          */
-        require $this->connectDB();
         include dirname(__DIR__, 1) . "/models/statements.php";
 
-        $statement = new Statement($conn);
+        $statement = new Statement;
         $statements = $statement->getAllStatements();
 
         return $statements;

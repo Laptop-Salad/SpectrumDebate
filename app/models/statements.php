@@ -3,13 +3,11 @@ require_once "baseModel.php";
 
 class Statement extends BaseModel
 {
-    public $conn;
     public $account;
 
-    function __construct($conn)
+    function __construct()
     {
-        $this->conn = $conn;
-
+        $this->connectDB();
         require_once "accounts.php";
         $account = new Account;
         $this->account = $account;
@@ -30,7 +28,7 @@ class Statement extends BaseModel
         $text = $this->sanitizeInput($text);
 
         // Get user's user id
-        $userid = $this->account->findUser($this->conn, $username);
+        $userid = $this->account->findUser($username);
         if (!$userid) {
             return False;
         }
@@ -63,7 +61,7 @@ class Statement extends BaseModel
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 // Look up user's username by id
-                $username = $this->account->findUserById($this->conn, $row["author_id"]);
+                $username = $this->account->findUserById($row["author_id"]);
 
                 // Format time 
                 $formattedTime = $this->formatTime($row["timestamp"]);
@@ -91,7 +89,7 @@ class Statement extends BaseModel
          */
 
         // Get user's user id
-        $user_id = $this->account->findUser($this->conn, $username);
+        $user_id = $this->account->findUser($username);
 
         // Prepare and bin statement
         $stmt = $this->conn->prepare("SELECT * FROM statements WHERE author_id = ?");
@@ -106,7 +104,7 @@ class Statement extends BaseModel
 
         while ($row = $result->fetch_assoc()) {
             // Get username
-            $username = $this->account->findUserById($this->conn, $row["author_id"]);
+            $username = $this->account->findUserById($row["author_id"]);
 
             // Format time 
             $formattedTime = $this->formatTime($row["timestamp"]);
@@ -144,7 +142,7 @@ class Statement extends BaseModel
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 // Lookup users username by user id
-                $username = $this->account->findUserById($this->conn, $row["author_id"]);
+                $username = $this->account->findUserById($row["author_id"]);
 
                 // Format time
                 $formattedTime = $this->formatTime($row["timestamp"]);

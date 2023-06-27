@@ -15,7 +15,6 @@ class Signup extends BaseController
 
     function doCreateUser()
     {
-        require $this->connectDB();
         include dirname(__DIR__, 1) . "/models/accounts.php";
 
         // Get user input
@@ -25,14 +24,14 @@ class Signup extends BaseController
         $account = new Account;
 
         // Check is user already exists
-        if ($account->findUser($conn, $username)) {
+        if ($account->findUser($username)) {
             $this->displayViews();
             $this->displayNotif("error", "This username has already been taken, please choose another.");
             die();
         }
 
         // Create new user
-        if ($account->createUser($conn, $username, $userpass)) {
+        if ($account->createUser($username, $userpass)) {
             $base = new BaseController;
             echo $base->getRedirect("login");
         }

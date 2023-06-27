@@ -13,7 +13,6 @@ class Login extends BaseController
 
     function doCheckCredentials()
     {
-        require $this->connectDB();
         include dirname(__DIR__, 1) . "/models/accounts.php";
 
         $username = $_POST["username"];
@@ -21,7 +20,7 @@ class Login extends BaseController
 
         $account = new Account;
 
-        if ($account->checkCredentials($conn, $username, $userpass)) {
+        if ($account->checkCredentials($username, $userpass)) {
             $_SESSION["username"] = $username;
             $base = new BaseController;
             echo $base->getRedirect("dashboard");

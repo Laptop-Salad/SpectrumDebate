@@ -3,18 +3,17 @@
         function __construct($id) {
             $this->baseConstruct();
             require dirname(__DIR__, 1) . "/models/statements.php";
-            require $this->connectDB();
-            $statement = new Statement($conn);
+            $statement = new Statement;
             $data = $statement->getStatementById($id);
 
             // Get votes
             require dirname(__DIR__, 1) . "/models/votes.php";
-            $vote = new Vote($conn);
+            $vote = new Vote;
             $votesCount = $vote->getStatementVotesCount($data[0]);
 
             // Get comments
             require dirname(__DIR__, 1) . "/models/comments.php";
-            $comment = new Comment($conn);
+            $comment = new Comment;
             $comments = $comment->getStatementComments($id);
 
             // Display view

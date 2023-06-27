@@ -1,12 +1,11 @@
 <?php
-    class Vote {    
-        public $conn;
+    require_once "baseModel.php";
+    class Vote extends BaseModel {    
         public $account;
 
-        function __construct($conn)
+        function __construct()
         {
-            $this->conn = $conn;
-
+            $this->connectDB();
             require_once "accounts.php";
             $account = new Account;
             $this->account = $account;
@@ -21,7 +20,7 @@
              * @param string $vote
              * @return bool
              */
-            $userid = $this->account->findUser($this->conn, $username);
+            $userid = $this->account->findUser($username);
 
             $stmt = $this->conn->prepare("INSERT INTO votes (statement_id, opinion, author_id)
             VALUES (?, ?, ?)");
@@ -71,7 +70,7 @@
              * @param string $statement_id
              * @param string $username
              */
-            $userid = $this->account->findUser($this->conn, $username);
+            $userid = $this->account->findUser($username);
 
             $stmt = $this->conn->prepare("SELECT * FROM votes WHERE statement_id = ? and author_id = ?");
             $stmt->bind_param("ss", $statement_id, $userid);
