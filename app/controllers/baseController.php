@@ -52,6 +52,7 @@ class BaseController
             $variables["username"] = null;
         };
 
+        Phug::displayFile(dirname(__DIR__, 1) . "/views/favicon.html");
         Phug::displayFile(dirname(__DIR__, 1) . "/views/$filename", $variables);
     }
 

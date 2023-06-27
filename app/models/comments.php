@@ -45,5 +45,26 @@
 
             return $data;
         }
+
+        function getUserComments($userId) {
+            $stmt = $this->conn->prepare("SELECT * FROM comments WHERE author_id = ?");
+            $stmt->bind_param("s", $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $data = array();
+
+            while ($row = $result->fetch_assoc()) {
+                $username = $this->account->findUserById($this->conn, $row["author_id"]);
+                array_push($data, array(
+                    $row["id"],
+                    $row["statement_id"],
+                    $username,
+                    $row["text"]
+                ));
+            }
+
+            return $data;
+        }
     }
 ?>
