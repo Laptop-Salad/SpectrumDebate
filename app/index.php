@@ -47,6 +47,11 @@
         $fullStatement = new fullStatement($id);
     });
 
+    $router->any("/edit-statement/{statementId}", function($statementId) {
+        require __DIR__ . "/controllers/editStatement.php";
+        $editStatement = new EditStatement($statementId);
+    });
+
     $router->post("/vote/{statement_id}/{vote}", function($statement_id, $vote) {
         require __DIR__ . "/controllers/vote.php";
         $vote = new VoteController($statement_id, $vote);

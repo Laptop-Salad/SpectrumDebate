@@ -13,7 +13,7 @@ block content
                 input(type="text" name="ns-text" id="nsText" placeholder="Write a description", required)
                 input(type="submit")
         
-        div(class="statements") 
+        div(class="statements")
             each $statement in $statements
                 div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement[0]}'") 
                     div(class="percentages")
@@ -29,6 +29,6 @@ block content
                                 span(class="username") = $statement[1]
                                 span = "stated "
                                 span = $statement[4]
-
-
+                    
+                    a(href="/edit-statement/{$statement[0]}") = "Edit Statement"
         script(src="/app/scripts/dashboard.js");

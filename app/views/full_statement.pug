@@ -9,34 +9,34 @@ block content
             div(class="agree")
 
         //- Statement info
-        h1 = "{$statement[2]}"
+        h1 = "{$statement['title']}"
         p(class="post-info")
             span
-                b = "{$statement[1]}"
+                b = "{$statement['author']}"
             span = " stated "
-            span = "{$statement[4]}"
+            span = "{$statement['time']}"
 
         p = "{$votesCount['total']} people voted, {$votesCount['disagree']} people disagree, {$votesCount['neutral']} are neutral and {$votesCount['agree']} agree."
         
         //- Voting form
         p(id="opinionFormsTitle") = "What do you think?"
         div(id="opinionForms")
-            form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement[0]}/disagree")
+            form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement['id']}/disagree")
                 input(type="submit" value="Disagree")
 
-            form(id="formNeutral" method="POST" action="{$domain}/vote/{$statement[0]}/neutral")
+            form(id="formNeutral" method="POST" action="{$domain}/vote/{$statement['id']}/neutral")
                 input(type="submit" value="Neutral")
 
-            form(id="formAgree" method="POST" action="{$domain}/vote/{$statement[0]}/agree")
+            form(id="formAgree" method="POST" action="{$domain}/vote/{$statement['id']}/agree")
                 input(type="submit" value="Agree")
 
         //- Statement text
-        p = "{$statement[3]}"
+        p = "{$statement['text']}"
 
         hr
 
         //- Commenting Form
-        form(method="POST" action="{$domain}/comment/{$statement[0]}")
+        form(method="POST" action="{$domain}/comment/{$statement['id']}")
             input(name="comment" type="text" minlength="3" maxlength="100" required)
             input(type="submit" value="Comment")
 

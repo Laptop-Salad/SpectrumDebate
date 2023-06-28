@@ -11,6 +11,7 @@
             $this->opinion = $opinion;
 
             if (!$this->checkVoteValid()) {
+                echo $this->getRedirect("statement/$statement_id");
                 die();
             }
 
@@ -50,7 +51,7 @@
                 return False;
             }
 
-            if ($currStatement[1] == $_SESSION["username"]) {
+            if ($currStatement["author"] == $_SESSION["username"]) {
                 // $this->displayNotif("error", "You can't vote on your own statement");
                 return False;
             }

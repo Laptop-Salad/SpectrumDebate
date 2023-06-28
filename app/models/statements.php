@@ -45,6 +45,32 @@ class Statement extends BaseModel
         return False;
     }
 
+    function updateStatement($statementId, $title, $text) {
+        /**
+         * updates a statement in the database
+         * 
+         * @param string $statementId
+         * @param string $title
+         * @param string $text
+         * @return bool if statement was successfully uploaded
+         */
+        $statementId = $this->sanitizeInput($statementId);
+        $title = $this->sanitizeInput($title);
+        $text = $this->sanitizeInput($text);
+        
+        // Prepare and bind statement
+        $stmt = $this->conn->prepare("UPDATE statements
+        SET title = ?, text = ?
+        WHERE id = ?");
+        $stmt->bind_param("sss", $title, $text, $statementId);
+
+        if ($stmt->execute()) {
+            return True;
+        } 
+
+        return False;
+    }
+
     function getAllStatements()
     {
         /**
@@ -137,7 +163,7 @@ class Statement extends BaseModel
         $result = $stmt->get_result();
 
         // Create data to hold result
-        $data = array();
+        $data = [];
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -146,14 +172,13 @@ class Statement extends BaseModel
 
                 // Format time
                 $formattedTime = $this->formatTime($row["timestamp"]);
-                        
-                array_push($data,
-                    $row["id"],
-                    $username,
-                    $row["title"],
-                    $row["text"],
-                    $formattedTime,
-                );
+                
+                // Place data in array
+                $data["id"] = $row["id"];
+                $data["author"] = $username;
+                $data["title"] = $row["title"];
+                $data["text"] = $row["text"];
+                $data["time"] = $formattedTime;
             }
         }
 

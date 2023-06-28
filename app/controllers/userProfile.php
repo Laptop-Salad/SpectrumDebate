@@ -5,9 +5,6 @@
             $this->username = $username;
             $this->baseConstruct();
 
-            // ISSUE: USERNAME IS A PUBLIC VARIABLE, CAUSES ISSUES
-            // IF no user defined username is root
-
             // Get username
             require_once dirname(__DIR__, 1) . "/models/accounts.php";
             $account = new Account();
