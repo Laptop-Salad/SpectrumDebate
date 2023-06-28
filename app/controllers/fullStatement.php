@@ -6,6 +6,12 @@
             $statement = new Statement;
             $data = $statement->getStatementById($id);
 
+            // If statement is not found
+            if (count($data) == 0) {
+                $this->displayContent("full_statement.pug", "404 Not Found", []);
+                die();
+            }
+
             // Get votes
             require dirname(__DIR__, 1) . "/models/votes.php";
             $vote = new Vote;
@@ -21,8 +27,8 @@
                 "statement" => $data,
                 "votesCount" => $votesCount,
                 "comments" => $comments,
-            ];    
-
+            ];
+            
             $this->displayContent("full_statement.pug", $data["title"], $contentVariables);
         }
     }
