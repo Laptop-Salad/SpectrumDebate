@@ -17,6 +17,12 @@ class EditStatement extends BaseController {
 
         $statement = $this->doGetStatement($statementId);
 
+        // Ensure user actually authored this statement
+        if ($_SESSION["username"] != $statement["author"]) {
+            echo $this->getRedirect();
+            die();
+        }
+
         $variables = [
             "statement" => $statement
         ];
