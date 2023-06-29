@@ -19,6 +19,8 @@ class Account extends BaseModel
         $username = $this->sanitizeInput($username);
         $userpass = $this->sanitizeInput($userpass);
 
+        $userpass = password_hash($userpass, PASSWORD_DEFAULT);
+
         // Prepare and bind statement
         $sqlStmt = $this->conn->prepare("INSERT INTO users (username, password) 
         VALUES (?, ?)");
@@ -38,20 +40,29 @@ class Account extends BaseModel
          * checks that the user's username and password exist
          * 
          * @param string $username
-         * @param string $password
+         * @param string $userpass
          * @return bool True = if username and password exists
          */
 
+        $username = $this->sanitizeInput($username);
+        $userpass = $this->sanitizeInput($userpass);
+
         // Bind and prepare statement
-        $stmt = $this->conn->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
-        $stmt->bind_param("ss", $username, $userpass);
+        $stmt = $this->conn->prepare("SELECT password FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
 
         // Execute statement
         $stmt->execute();
         $result = $stmt->get_result();
     
         if ($result->num_rows > 0) {
-            return True;
+            while ($row = $result->fetch_assoc()) {
+                if (password_verify($userpass, $row["password"])) {
+                    return True;
+                }
+
+                return False;
+            }
         } else {
             return False;
         }
