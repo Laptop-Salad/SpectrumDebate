@@ -13,7 +13,10 @@ block content
             h1 = "{$statement['title']}"
             p(class="post-info")
                 span
-                    b = "{$statement['author']}"
+                    if $statement['author'] == ""
+                        b = "<deleted>"
+                    else
+                        b = "{$statement['author']}"
                 span = " stated "
                 span = "{$statement['time']}"
 
@@ -46,6 +49,10 @@ block content
                 each $comment in $comments
                     p 
                         span = "{$comment[3]}"
-                        span = " - {$comment[2]}"
+                        
+                        if $comment[2] == ""
+                            span = " - <deleted>"
+                        else
+                            span = " - {$comment[2]}"
     else 
         h1 = "404 Statement Not Found"

@@ -14,6 +14,9 @@ block content
                     div(class="inline")
                         h2(class="statement-title") = $statement[2] 
                         p(class="margin-right")
-                            a(class="username" href="{$domain}/user/{$statement[1]}") = $statement[1]
+                            if $statement[1] == "<deleted>"
+                                p = $statement[1] . " "
+                            else
+                                a(class="username" href="{$domain}/user/{$statement[1]}") = $statement[1]
                             span = "stated "
                             span = $statement[4]

@@ -111,6 +111,10 @@ class Statement extends BaseModel
                 // Look up user's username by id
                 $username = $this->account->findUserById($row["author_id"]);
 
+                if ($username == "") {
+                    $username = "<deleted>";
+                }
+
                 // Format time 
                 $formattedTime = $this->formatTime($row["timestamp"]);
                 
