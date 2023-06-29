@@ -20,6 +20,7 @@ class DeleteUser extends BaseController {
         // If user isn't found display error page
         if ($userid == "") {
             $this->displayContent("error.pug", "404 User Not Found", ["item" => "user"]);
+            die();
         }
 
         // Delete user

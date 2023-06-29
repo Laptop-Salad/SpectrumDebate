@@ -72,6 +72,11 @@
         $comment = new CommentController($statement_id);
     });
 
+    $router->get("/delete-comment/{commentId}", function($commentId) {
+        require __DIR__ . "/controllers/deleteComment.php";
+        $deleteComment = new DeleteComment($commentId);
+    });
+
     $router->get("/user/{username}", function($username) {
         require __DIR__ . "/controllers/userProfile.php";
         $userProfile = new UserProfile($username);

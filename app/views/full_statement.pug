@@ -54,5 +54,7 @@ block content
                             span = " - <deleted>"
                         else
                             span = " - {$comment[2]}"
+                    
+                    a(href="{$domain}/delete-comment/{$comment[0]}") = "Delete Comment"
     else 
         h1 = "404 Statement Not Found"

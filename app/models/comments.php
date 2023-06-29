@@ -23,6 +23,17 @@
             return False;
         }
 
+        function deleteComment($commentId) {
+            $stmt = $this->conn->prepare("DELETE FROM comments WHERE id = ?");
+            $stmt->bind_param("s", $commentId);
+            
+            if($stmt->execute()) {
+                return True;
+            }
+
+            return False;
+        }
+
         function getStatementComments($statement_id) {
             $stmt = $this->conn->prepare("SELECT * FROM comments WHERE statement_id = ?");
             $stmt->bind_param("s", $statement_id);
@@ -60,6 +71,27 @@
                     $username,
                     $row["text"]
                 ));
+            }
+
+            return $data;
+        }
+
+        function getCommentById($commentId) {
+            $stmt = $this->conn->prepare("SELECT * FROM comments WHERE id = ?");
+            $stmt->bind_param("s", $commentId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $data = array();
+
+            while ($row = $result->fetch_assoc()) {
+                $username = $this->account->findUserById($row["author_id"]);
+                array_push($data, 
+                    $row["id"],
+                    $row["statement_id"],
+                    $username,
+                    $row["text"]
+                );
             }
 
             return $data;
