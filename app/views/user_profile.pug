@@ -1,32 +1,35 @@
 extends base.pug
 
 block content 
-    main(id="userProfile")
-        h1 = $username
+    if $author
+        main(id="userProfile")
+            h1 = $author
 
-        section(id="statements")
-            h2 = "Statements"
-            
-            each $statement in $statements
-                div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement[0]}'") 
-                    div(class="percentages")
-                        div(class="disagree")
-                        div(class="neutral")
-                        div(class="agree")
-
-                    div(class="content")
-
-                        div(class="inline")
-                            h2(class="statement-title") = $statement[2] 
-                            p(class="margin-right")
-                                span(class="username") = $statement[1]
-                                span = "stated "
-                                span = $statement[4]
-        
-        section(id="comments")
-            h2 = "Comments"
-            
-            each $comment in $comments
-                p 
-                    span = "{$comment[3]}"
+            section(id="statements")
+                h2 = "Statements"
                 
+                each $statement in $statements
+                    div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement[0]}'") 
+                        div(class="percentages")
+                            div(class="disagree")
+                            div(class="neutral")
+                            div(class="agree")
+
+                        div(class="content")
+
+                            div(class="inline")
+                                h2(class="statement-title") = $statement[2] 
+                                p(class="margin-right")
+                                    span(class="username") = $statement[1]
+                                    span = "stated "
+                                    span = $statement[4]
+            
+            section(id="comments")
+                h2 = "Comments"
+                
+                each $comment in $comments
+                    p 
+                        span = "{$comment[3]}"
+    else 
+        h1 = "404 User Not Found"
+                        

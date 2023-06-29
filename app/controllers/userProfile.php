@@ -10,6 +10,15 @@
             $account = new Account();
             $userId = $account->findUser($this->username);
 
+            // If user isn't found don't continue
+            if ($userId == "") {
+                $this->displayContent("user_profile.pug", "404 Not Found", []);
+                die();
+            }
+
+            // Get properly formatted username
+            $this->username = $account->findUserById($userId);
+
             // Get statements
             require_once dirname(__DIR__, 1) . "/models/statements.php";
             $statement = new Statement;
@@ -21,12 +30,12 @@
             $comments = $comment->getUserComments($userId);
 
             $variables = [
-                "username" => $username,
+                "author" => $this->username,
                 "statements" => $statements,
                 "comments" => $comments
             ];
-            
-            $this->displayContent("user_profile.pug", $statements[0][1], $variables);
+
+            $this->displayContent("user_profile.pug", $this->username, $variables);
         }
     }
 ?>
