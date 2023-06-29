@@ -52,7 +52,7 @@ class Statement extends BaseModel
          * @param string $statementId
          * @param string $title
          * @param string $text
-         * @return bool if statement was successfully uploaded
+         * @return bool if statement was successfully updated
          */
         $statementId = $this->sanitizeInput($statementId);
         $title = $this->sanitizeInput($title);
@@ -70,6 +70,28 @@ class Statement extends BaseModel
 
         return False;
     }
+
+    function deleteStatement($statementId) {
+        /**
+         * deletes a statement in the database
+         * 
+         * @param string $statementId
+         * @return bool if statement was successfully deleted
+         */
+        $statementId = $this->sanitizeInput($statementId);
+        
+        // Prepare and bind statement
+        $stmt = $this->conn->prepare("DELETE FROM statements
+        WHERE id = ?");
+        $stmt->bind_param("s", $statementId);
+
+        if ($stmt->execute()) {
+            return True;
+        } 
+
+        return False;
+    }
+
 
     function getAllStatements()
     {

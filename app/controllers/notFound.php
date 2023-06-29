@@ -5,7 +5,7 @@
         }
 
         function displayViews() {
-            $this->displayContent("error.pug", "404 Not Found", []);
+            $this->displayContent("error.pug", "404 Not Found", ["item" => "Page"]);
         }
     }
 ?>

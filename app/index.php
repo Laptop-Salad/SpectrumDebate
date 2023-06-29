@@ -52,6 +52,11 @@
         $editStatement = new EditStatement($statementId);
     });
 
+    $router->get("/delete-statement/{statementId}", function($statementId) {
+        require __DIR__ . "/controllers/deleteStatement.php";
+        $deleteStatement = new DeleteStatement($statementId);
+    });
+
     $router->post("/vote/{statement_id}/{vote}", function($statement_id, $vote) {
         require __DIR__ . "/controllers/vote.php";
         $vote = new VoteController($statement_id, $vote);
