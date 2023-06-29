@@ -27,6 +27,11 @@
         $signup = new Signup;
     });
 
+    $router->get("/delete-user/{username}", function($username) {
+        require __DIR__ . "/controllers/deleteUser.php";
+        $deleteUser = new DeleteUser($username);
+    });
+
     $router->any("/login", function () {
         require __DIR__ . "/controllers/login.php";
         $login = new Login;

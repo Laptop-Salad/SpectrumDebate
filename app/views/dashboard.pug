@@ -5,6 +5,8 @@ block content
         h1 = "Dashboard"
         button(id="nsBtn") = "Write a new statement..."
 
+        a(href="delete-user/{$username}") = "Delete this account"
+
         dialog(id="nsModal")
             h2 = "Write a new statement"
             button(id="nsCloseBtn") = "Close"

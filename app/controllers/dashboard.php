@@ -35,7 +35,7 @@ class Dashboard extends BaseController
          */
 
         $contentVariables = [
-            "logo" => dirname(__DIR__, 1) . "/views/assets/logo.png",
+            "username" => $_SESSION["username"],
             "statements" => $statements
         ];
 

@@ -33,6 +33,28 @@ class Account extends BaseModel
             return False;
         }
     }
+
+
+    function deleteUser($userid)
+    {
+        /**
+         * creates a user
+         * 
+         * @param string $userid
+         * @return bool True = user was deleted
+         */
+
+        // Prepare and bind statement
+        $sqlStmt = $this->conn->prepare("DELETE FROM users WHERE id = ?");
+        $sqlStmt->bind_param("s", $userid);
+    
+        // Execute statement
+        if ($sqlStmt->execute()) {
+            return True;
+        } else {
+            return False;
+        }
+    }
     
     function checkCredentials($username, $userpass)
     {
