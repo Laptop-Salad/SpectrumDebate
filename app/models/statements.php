@@ -3,8 +3,7 @@ require_once "baseModel.php";
 
 class Statement extends BaseModel
 {
-    public $account;
-
+    private $account;
     function __construct()
     {
         $this->connectDB();

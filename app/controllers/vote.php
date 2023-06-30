@@ -1,8 +1,8 @@
 <?php
 
     class VoteController extends BaseController {
-        public $statement_id;
-        public $opinion;
+        private $statement_id;
+        private $opinion;
         function __construct($statement_id, $opinion) {
             $this->baseConstruct();
             $this->ensureUserLoggedIn();

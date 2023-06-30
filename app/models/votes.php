@@ -1,7 +1,7 @@
 <?php
     require_once "baseModel.php";
     class Vote extends BaseModel {    
-        public $account;
+        private $account;
 
         function __construct()
         {
