@@ -23,9 +23,21 @@
             return False;
         }
 
+        function updateComment($commentId, $text) {
+            $stmt = $this->conn->prepare("UPDATE comments SET text = ?
+            WHERE id = ?");
+            $stmt->bind_param("ss", $text, $commentId);
+            
+            if($stmt->execute()) {
+                return True;
+            }
+
+            return False;
+        }
+
         function deleteComment($commentId) {
             $stmt = $this->conn->prepare("DELETE FROM comments WHERE id = ?");
-            $stmt->bind_param("s", $commentId);
+            $stmt->bind_param("ss", $commentId);
             
             if($stmt->execute()) {
                 return True;

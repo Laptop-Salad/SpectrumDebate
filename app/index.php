@@ -72,6 +72,11 @@
         $comment = new CommentController($statement_id);
     });
 
+    $router->any("/edit-comment/{commentId}", function($commentId) {
+        require __DIR__ . "/controllers/editComment.php";
+        $editComment = new EditComment($commentId);
+    });
+
     $router->get("/delete-comment/{commentId}", function($commentId) {
         require __DIR__ . "/controllers/deleteComment.php";
         $deleteComment = new DeleteComment($commentId);

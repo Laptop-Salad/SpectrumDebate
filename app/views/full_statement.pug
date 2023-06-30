@@ -55,6 +55,9 @@ block content
                         else
                             span = " - {$comment[2]}"
                     
-                    a(href="{$domain}/delete-comment/{$comment[0]}") = "Delete Comment"
+                    if $comment[2] != ""
+                        if $username == $comment[2]
+                            a(href="{$domain}/delete-comment/{$comment[0]}") = "Delete Comment"
+                            a(href="{$domain}/edit-comment/{$comment[0]}") = " Edit Comment"
     else 
         h1 = "404 Statement Not Found"
