@@ -1,29 +1,29 @@
 <?php
 
     class VoteController extends BaseController {
-        private $statement_id;
+        private $statementId;
         private $opinion;
-        function __construct($statement_id, $opinion) {
+        function __construct($statementId, $opinion) {
             $this->baseConstruct();
             $this->ensureUserLoggedIn();
 
-            $this->statement_id = $statement_id;
+            $this->statementId = $statementId;
             $this->opinion = $opinion;
 
             if (!$this->checkVoteValid()) {
-                echo $this->getRedirect("statement/$statement_id");
+                echo $this->getRedirect("statement/$statementId");
                 die();
             }
 
             $this->doCreateVote();
-            echo $this->getRedirect("statement/$statement_id");
+            echo $this->getRedirect("statement/$statementId");
         }
         
         function doCreateVote() {
             require dirname(__DIR__, 1) . "/models/votes.php";
 
             $vote = New Vote;
-            $findVote = $vote->findVote($this->statement_id, $_SESSION["username"]);
+            $findVote = $vote->findVote($this->statementId, $_SESSION["username"]);
 
             if ($findVote) {
                 // If opinions are the same, delete
@@ -35,7 +35,7 @@
                 }
             } else {
                 // Create new vote
-                $vote->createVote($_SESSION["username"], $this->statement_id, $this->opinion);
+                $vote->createVote($_SESSION["username"], $this->statementId, $this->opinion);
             }
         }
 
@@ -44,7 +44,7 @@
             require dirname(__DIR__, 1) . "/models/statements.php";
             $statement = new Statement;
             
-            $currStatement = $statement->getStatementById($this->statement_id);
+            $currStatement = $statement->getStatementById($this->statementId);
 
             if (!$currStatement) {
                 // $this->displayNotif("error", "The statement you are trying to vote on may have been deleted.");

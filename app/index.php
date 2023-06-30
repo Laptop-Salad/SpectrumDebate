@@ -62,14 +62,14 @@
         $deleteStatement = new DeleteStatement($statementId);
     });
 
-    $router->post("/vote/{statement_id}/{vote}", function($statement_id, $vote) {
+    $router->post("/vote/{statementId}/{vote}", function($statementId, $vote) {
         require __DIR__ . "/controllers/vote.php";
-        $vote = new VoteController($statement_id, $vote);
+        $vote = new VoteController($statementId, $vote);
     });
 
-    $router->post("/comment/{statement_id}/", function($statement_id) {
+    $router->post("/comment/{statementId}/", function($statementId) {
         require __DIR__ . "/controllers/comment.php";
-        $comment = new CommentController($statement_id);
+        $comment = new CommentController($statementId);
     });
 
     $router->any("/edit-comment/{commentId}", function($commentId) {

@@ -1,19 +1,19 @@
 <?php
 class CommentController extends BaseController {
-    public $statement_id;
-    function __construct($statement_id) {
+    public $statementId;
+    function __construct($statementId) {
         $this->baseConstruct();
         $this->ensureUserLoggedIn();
 
-        $this->statement_id = $statement_id;
+        $this->statementId = $statementId;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             require dirname(__DIR__, 1) . "/models/comments.php";
             $comment = new Comment;
-            $comment->createNewComment($this->statement_id, $_POST["comment"], $_SESSION["username"]);
+            $comment->createNewComment($this->statementId, $_POST["comment"], $_SESSION["username"]);
         }
 
-        echo $this->getRedirect("statement/$statement_id");
+        echo $this->getRedirect("statement/$statementId");
     }
 }
 ?>
