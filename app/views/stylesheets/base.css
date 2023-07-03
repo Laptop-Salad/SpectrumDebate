@@ -438,3 +438,9 @@ nav ul li a {
         display: block;
     }
 }
+
+@media only screen and (max-width: 550px) {
+    header {
+        height: 10vh;
+    }
+}
