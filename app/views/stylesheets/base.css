@@ -1,0 +1,440 @@
+:root {
+    /* Colours */
+    --black: #0B2027;
+    --cold: #40798C;
+    --lukewarm: #E9C46A;
+    --warm: #E76F51;
+    /* Percentages */
+    --disgaree: 0fr;
+    --neutral: 0fr;
+    --agree: 0fr;
+}
+
+* {
+    /* Reset Stylesheet */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Dosis', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    /* Allows navbar to take up x amount of space and rest of content to
+    take up the rest */
+    display: flex;
+    flex-flow: column;
+}
+
+/* -- Links -- */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* -- Navbar -- */
+header {
+    height: 5vw;
+    background-color: var(--black);
+    display: grid;
+    grid-template: 1fr / repeat(3, 1fr);
+    padding: 0 2rem;
+}
+
+.logo-container {
+    /* Align logo center */
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    color: white;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 1rem;
+}
+
+nav ul li a {
+    color: white;
+}
+
+.accounts ul {
+    justify-content: end;
+}
+
+.shortcuts {
+    display: flex;
+    justify-content: center;
+}
+
+.accounts ul {
+    display: flex;
+    width: 100%;
+}
+
+.menu-container {
+    display: none;
+    justify-content: end;
+}
+
+.menu {
+    display: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
+}
+
+.smaller-menu {
+    display: none;
+}
+
+/* Smaller Menu */
+#smallerMenu {
+    display: none;
+    padding: 2rem;
+    flex-direction: column;
+    background-color: #0B2027;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.close-menu-container {
+    display: flex;
+    justify-content: end;
+
+}
+
+#smallerMenu .inline {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+}
+
+#smallerMenu .logo-container {
+    display: flex;
+    justify-content: start;
+}
+
+.sm-shortcuts > *, .sm-accounts > * {
+    display: block;
+}
+
+/* Statements */
+.statements {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statement {
+    margin: 1rem 0;
+    width: 40vw;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 20vh;
+    /* Percentages follow statement's border radius */
+    overflow: hidden; 
+}
+
+.content {
+    padding: 5px;
+}
+
+.percentages {
+    display: grid; 
+    grid-template: 1fr / var(--disgaree) var(--neutral) var(--agree);
+    background-color: var(--black);
+    width: 100%;
+    height: 20%;
+}
+
+.disagree {
+    background-color: var(--cold);
+}
+
+.neutral {
+    background-color: var(--lukewarm);
+}
+
+.agree {
+    background-color: var(--warm);
+}
+
+/* Full Statement */
+#fullStatement {
+    width: 100%;
+}
+
+#fullStatement .percentages {
+    height: 2vw;
+    display: grid; 
+    grid-template: 1fr / var(--disgaree) var(--neutral) var(--agree);
+    background-color: var(--black);
+    border-top: 1px solid white;
+    width: 100%;
+}
+
+#fullStatement .statementContent {
+    width: 50vw;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    height: 100%;
+}
+
+#fullStatement h1 {
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+#opinionFormsTitle {
+    font-size: 2rem;
+    margin: 20px 0 0 0;
+}
+
+#opinionForms {
+    display: flex;
+    margin: 5px 0 20px 0;
+}
+
+#opinionForms > * input {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+#formDisagree input {
+    background-color: var(--cold);
+}
+
+#formNeutral input {
+    background-color: var(--lukewarm);
+}
+
+#formAgree input {
+    background-color: var(--warm);
+}
+
+/* Comments */
+#commentForm {
+    margin: 30px 0 10px 0;
+}
+#commentInput {
+    border-radius: 5px;
+    width: 50%;
+    outline: 1px solid dodgerblue;
+}
+
+#commentButton {
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+}
+
+#commentButton:hover {
+    background-color: var(--black);
+}
+
+.comment {
+    padding: 5px 2px;
+}
+
+.comment:nth-of-type(odd) {
+    background-color: lightgray;
+}
+
+/* Dashboard */
+#dashboard {
+    padding: 0 2rem;
+}
+
+#dashboard h1 {
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+#dashboard #nsBtn {
+    display: block;
+    color: dodgerblue;
+    font-size: 1.5rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#dashboard #delete {
+    color: red;
+}
+
+/* New statement modal */
+#nsModal {
+    width: 100%;
+    height: 100%;
+    margin: auto auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#nsModal div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#nsModal h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-right: auto;
+}
+
+#nsCloseBtn {
+    background-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#nsModal form {
+    margin: 20px 0;
+}
+
+#nsTitle {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    outline: 1px solid var(--black);
+}
+
+#nsText {
+    display: block;
+    width: 100%;
+    height: 50%;
+    padding: 5px;
+    font-size: 1rem;
+    outline: 1px solid var(--black);
+    margin: 10px 0;
+}
+
+.submit {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.submit:hover {
+    background-color: var(--black);
+    color: white;
+}
+
+/* Edit comment */
+#editComment {
+    margin: 2rem;
+}
+
+#editComment h1 {
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+#editComment #eComment {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    outline: 1px solid var(--black);
+    margin: 4px 0;
+}
+
+/* Signup/Login */
+.account-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("app/assets/logo-square.svg");
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 20%;
+    height: 40%;
+}
+
+.account-form h1 {
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+.account-form form {
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+
+.account-form form input {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+    font-size: 1rem;
+    outline: 1px solid var(--black)
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .shortcuts, .accounts {
+        display: none;
+    }
+
+    header {
+        display: grid;
+        grid-template: 1fr / 1fr 1fr;
+    }
+    
+    .logo-container {
+        justify-content: center;
+    }
+
+    .statement {
+        width: 80vw;
+    }
+
+    .menu-container {
+        display: flex;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .smaller-menu {
+        display: block;
+    }
+}

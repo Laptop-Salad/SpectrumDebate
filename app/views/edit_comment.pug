@@ -2,6 +2,7 @@ extends base.pug
 
 block content 
     main(id="editComment")
+        h1 = "Edit Comment"
         form(method="POST" action="{$domain}/edit-comment/{$commentId}")
-            input(name="comment" type="text" minlength="3" maxlength="100" value="{$text}" required)
-            input(type="submit" value="Comment")
+            input(name="comment" id="eComment" type="text" minlength="3" maxlength="100" value="{$text}" required)
+            input(type="submit" class="submit" value="Comment")

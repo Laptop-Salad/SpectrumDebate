@@ -5,20 +5,21 @@ block content
         h1 = "Dashboard"
         button(id="nsBtn") = "Write a new statement..."
 
-        a(href="delete-user/{$username}") = "Delete this account"
+        a(id="delete" href="delete-user/{$username}") = "Delete this account"
 
         dialog(id="nsModal")
-            h2 = "Write a new statement"
-            button(id="nsCloseBtn") = "Close"
+            div
+                h2 = "Write a new statement"
+                button(id="nsCloseBtn") = "x"
             form(method="POST" action="new-statement")
-                input(type="text" name="ns-title" id="nsTitle" placeholder="Title", required)
-                input(type="text" name="ns-text" id="nsText" placeholder="Write a description", required)
-                input(type="submit")
+                input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
+                textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
+                input(type="submit" class="submit")
         
         div(class="statements")
             each $statement in $statements
-                div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement[0]}'") 
-                    div(class="percentages")
+                div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'") 
+                    div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
                         div(class="disagree")
                         div(class="neutral")
                         div(class="agree")
@@ -26,13 +27,13 @@ block content
                     div(class="content")
 
                         div(class="inline")
-                            h2(class="statement-title") = $statement[2] 
+                            h2(class="statement-title") = $statement["title"] 
                             p(class="margin-right")
-                                span(class="username") = $statement[1]
-                                span = "stated "
-                                span = $statement[4]
+                                span = "Stated "
+                                span = $statement["time"]
                     
-                    a(href="/edit-statement/{$statement[0]}") = "Edit Statement"
-                    a(href="/delete-statement/{$statement[0]}") = "Delete Statement"
+                    a(href="/edit-statement/{$statement['id']}") = "Edit Statement"
+                    br
+                    a(href="/delete-statement/{$statement['id']}") = "Delete Statement"
 
         script(src="/app/scripts/dashboard.js");

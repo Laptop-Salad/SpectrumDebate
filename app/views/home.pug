@@ -3,8 +3,8 @@ extends base.pug
 block content
     main(class="statements") 
         each $statement in $statements
-            div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement[0]}'") 
-                div(class="percentages")
+            div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'") 
+                div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
                     div(class="disagree")
                     div(class="neutral")
                     div(class="agree")
@@ -12,11 +12,11 @@ block content
                 div(class="content")
 
                     div(class="inline")
-                        h2(class="statement-title") = $statement[2] 
+                        h2(class="statement-title") = $statement["title"] 
                         p(class="margin-right")
-                            if $statement[1] == "<deleted>"
-                                p = $statement[1] . " "
+                            if $statement["username"] == "<deleted>"
+                                p = $statement["username"] . " "
                             else
-                                a(class="username" href="{$domain}/user/{$statement[1]}") = $statement[1]
-                            span = "stated "
-                            span = $statement[4]
+                                a(class="username" href="{$domain}/user/{$statement['username']}") = $statement["username"]
+                            span = " stated "
+                            span = $statement["time"]

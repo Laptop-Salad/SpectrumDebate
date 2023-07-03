@@ -2,62 +2,62 @@ extends base.pug
 
 block content
     if $statement
-        main(id="full-statement") 
+        main(id="fullStatement") 
             //- Ratio of votes
-            div(class="percentages" style="--votes-ratio: {$votesCount['disagree']}fr {$votesCount['neutral']}fr {$votesCount['agree']}fr;")
+            section(class="percentages" style="grid-template: 1fr / {$votesCount['disagree']}fr {$votesCount['neutral']}fr {$votesCount['agree']}fr;")
                 div(class="disagree")
                 div(class="neutral")
                 div(class="agree")
-
-            //- Statement info
-            h1 = "{$statement['title']}"
-            p(class="post-info")
-                span
-                    if $statement['author'] == ""
-                        b = "<deleted>"
-                    else
-                        b = "{$statement['author']}"
-                span = " stated "
-                span = "{$statement['time']}"
-
-            p = "{$votesCount['total']} people voted, {$votesCount['disagree']} people disagree, {$votesCount['neutral']} are neutral and {$votesCount['agree']} agree."
             
-            //- Voting form
-            p(id="opinionFormsTitle") = "What do you think?"
-            div(id="opinionForms")
-                form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement['id']}/disagree")
-                    input(type="submit" value="Disagree")
-
-                form(id="formNeutral" method="POST" action="{$domain}/vote/{$statement['id']}/neutral")
-                    input(type="submit" value="Neutral")
-
-                form(id="formAgree" method="POST" action="{$domain}/vote/{$statement['id']}/agree")
-                    input(type="submit" value="Agree")
-
-            //- Statement text
-            p = "{$statement['text']}"
-
-            hr
-
-            //- Commenting Form
-            form(method="POST" action="{$domain}/comment/{$statement['id']}")
-                input(name="comment" type="text" minlength="3" maxlength="100" required)
-                input(type="submit" value="Comment")
-
-            //- Comments
-            section(id="comments")
-                each $comment in $comments
-                    p 
-                        span = "{$comment[3]}"
-                        
-                        if $comment[2] == ""
-                            span = " - <deleted>"
+            //- Statement info
+            section(class="statementContent")
+                h1 = "{$statement['title']}"
+                p(class="post-info")
+                    span
+                        if $statement['author'] == ""
+                            b = "<deleted>"
                         else
-                            span = " - {$comment[2]}"
-                    
-                    if $comment[2] != ""
-                        if $username == $comment[2]
-                            a(href="{$domain}/delete-comment/{$comment[0]}") = "Delete Comment"
-                            a(href="{$domain}/edit-comment/{$comment[0]}") = " Edit Comment"
+                            b = "{$statement['author']}"
+                    span = " stated "
+                    span = "{$statement['time']}"
+
+                p = "{$votesCount['total']} people voted, {$votesCount['disagree']} people disagree, {$votesCount['neutral']} are neutral and {$votesCount['agree']} agree."
+                
+                //- Voting form
+                p(id="opinionFormsTitle") = "What do you think?"
+                section(id="opinionForms")
+                    form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement['id']}/disagree")
+                        input(type="submit" value="Disagree")
+
+                    form(id="formNeutral" method="POST" action="{$domain}/vote/{$statement['id']}/neutral")
+                        input(type="submit" value="Neutral")
+
+                    form(id="formAgree" method="POST" action="{$domain}/vote/{$statement['id']}/agree")
+                        input(type="submit" value="Agree")
+
+                //- Statement text
+                p = "{$statement['text']}"
+
+                //- Commenting Form
+                form(method="POST" id="commentForm" action="{$domain}/comment/{$statement['id']}")
+                    input(name="comment" id="commentInput" type="text" minlength="3" maxlength="100" required)
+                    input(type="submit" id="commentButton" value="Comment")
+
+                //- Comments
+                section(id="comments")
+                    each $comment in $comments
+                        section(class="comment")
+                            p 
+                                span = "{$comment[3]}"
+                                
+                                if $comment[2] == ""
+                                    span = " - <deleted>"
+                                else
+                                    span = " - {$comment[2]}"
+                            
+                            if $comment[2] != ""
+                                if $username == $comment[2]
+                                    a(href="{$domain}/delete-comment/{$comment[0]}") = "Delete Comment"
+                                    a(href="{$domain}/edit-comment/{$comment[0]}") = " Edit Comment"
     else 
         h1 = "404 Statement Not Found"

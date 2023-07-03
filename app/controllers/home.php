@@ -7,7 +7,7 @@ class Home extends BaseController
         $statements = $this->doGetStatements();
         $this->displayViews($statements);
     }
-
+    
     function doGetStatements()
     {
         /**
@@ -37,7 +37,7 @@ class Home extends BaseController
             "statements" => $statements,
         ];
 
-        $this->displayContent("home.pug", "Home", $contentVariables);
+        $this->displayContent("home.pug", "Home", $contentVariables, "home.css");
     }
 }
 ?>

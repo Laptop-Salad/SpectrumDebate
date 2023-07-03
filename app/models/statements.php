@@ -116,13 +116,19 @@ class Statement extends BaseModel
 
                 // Format time 
                 $formattedTime = $this->formatTime($row["timestamp"]);
+
+                // Get votes count
+                require_once "votes.php";
+                $vote = new Vote();
+                $votesCount = $vote->getStatementVotesCount($row["id"]);
                 
                 array_push($data, array(
-                    $row["id"],
-                    $username,
-                    $row["title"],
-                    $row["text"],
-                    $formattedTime,
+                    "id" => $row["id"],
+                    "username" => $username,
+                    "title" => $row["title"],
+                    "text" => $row["text"],
+                    "time" => $formattedTime,
+                    "votesCount" => $votesCount,
                 ));
             }
         }
@@ -160,12 +166,19 @@ class Statement extends BaseModel
             // Format time 
             $formattedTime = $this->formatTime($row["timestamp"]);
 
+            // Get votes count
+            require_once "votes.php";
+            $vote = new Vote();
+            $votesCount = $vote->getStatementVotesCount($row["id"]);
+
+
             array_push($data, array(
-                $row["id"],
-                $username,
-                $row["title"],
-                $row["text"],
-                $formattedTime,
+                "id" => $row["id"],
+                "username" => $username,
+                "title" => $row["title"],
+                "text" => $row["text"],
+                "time"=> $formattedTime,
+                "votesCount" => $votesCount,
             )
             );
         }

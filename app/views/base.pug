@@ -9,19 +9,25 @@ head
     link(href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet")
     script(src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous")
     title = "{$title}"
+    style
+        include stylesheets/base.css
 body
-    header 
-        div(class="logo") 
-            a(href="{$domain}/") = "Spectrum Debate"
+    header(id="header") 
+        section(class="logo-container") 
+            a(href="{$domain}/" id="logo") = "Spectrum Debate"
         nav(class="shortcuts")
             ul
                 li(class="link")
                     a(href="{$domain}/home") = "Home"
                 li(class="link")
                     a(href="{$domain}/dashboard") = "Dashboard"
-        
+
+        //- Menu button for smaller devices
+        section(class="menu-container")
+            button(id="menu" class="menu") = "Menu"
+
         if $username
-            nav
+            nav(class="accounts")
                 ul
                     li
                         a(href="{$domain}/dashboard") = "{$username}"
@@ -34,10 +40,43 @@ body
                         a(href="{$domain}/login" id="navLogin") = "Login" 
                     li(class="button") 
                         a(href="{$domain}/signup" id="navSignUp") = "Sign Up Now" 
+
+    //- Menu for smaller devices
+    section(id="smallerMenu")
+        section(class="inline")
+            section(class="logo-container") 
+                a(href="{$domain}/" id="logo") = "Spectrum Debate"
+            section(class="close-menu-container")
+                button(id="closeMenu" class="menu") = "Close Menu"
+
+        nav(class="sm-shortcuts")
+            ul
+                li(class="link")
+                    a(href="{$domain}/home") = "Home"
+                li(class="link")
+                    a(href="{$domain}/dashboard") = "Dashboard"
+
+        if $username
+            nav(class="sm-accounts")
+                ul
+                    li
+                        a(href="{$domain}/dashboard") = "{$username}"
+                    li
+                        a(href="{$domain}/logout" id="navLogout" class="logout") = "Logout"
+        else
+            nav(class="sm-accounts")
+                ul
+                    li(class="link") 
+                        a(href="{$domain}/login" id="navLogin") = "Login" 
+                    li(class="button") 
+                        a(href="{$domain}/signup" id="navSignUp") = "Sign Up Now" 
+
     
     dialog(id="notif")
         p(id="notifMessage") = ""
         form(method="dialog")
             button = "Close"
+    
+    script(type="text/javascript" src="app/scripts/base.js")
         
     block content
