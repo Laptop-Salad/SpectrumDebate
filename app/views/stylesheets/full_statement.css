@@ -1,0 +1,93 @@
+/* Full Statement */
+#fullStatement {
+    width: 100%;
+}
+
+#fullStatement .percentages {
+    height: 2vw;
+    display: grid; 
+    grid-template: 1fr / var(--disgaree) var(--neutral) var(--agree);
+    background-color: var(--black);
+    border-top: 1px solid white;
+    width: 100%;
+}
+
+#fullStatement .statementContent {
+    width: 50vw;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    height: 100%;
+}
+
+#fullStatement h1 {
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+#opinionFormsTitle {
+    font-size: 2rem;
+    margin: 20px 0 0 0;
+}
+
+#opinionForms {
+    display: flex;
+    margin: 5px 0 20px 0;
+}
+
+#opinionForms > * input {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+#formDisagree input {
+    background-color: var(--cold);
+}
+
+#formNeutral input {
+    background-color: var(--lukewarm);
+}
+
+#formAgree input {
+    background-color: var(--warm);
+}
+
+/* Comments */
+#commentForm {
+    margin: 30px 0 10px 0;
+}
+#commentInput {
+    border-radius: 5px;
+    width: 50%;
+    outline: 1px solid dodgerblue;
+}
+
+#commentButton {
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+}
+
+#commentButton:hover {
+    background-color: var(--black);
+}
+
+.comment {
+    padding: 5px 2px;
+}
+
+.comment:nth-of-type(odd) {
+    background-color: lightgray;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    #fullStatement .statementContent {
+        width: 100%;
+    }
+}

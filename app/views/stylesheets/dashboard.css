@@ -1,0 +1,21 @@
+/* Dashboard */
+#dashboard {
+    padding: 0 2rem;
+}
+
+#dashboard h1 {
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+#dashboard #nsBtn {
+    display: block;
+    color: dodgerblue;
+    font-size: 1.5rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#dashboard #delete {
+    color: red;
+}

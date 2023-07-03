@@ -1,0 +1,18 @@
+/* Edit comment */
+#editComment {
+    margin: 2rem;
+}
+
+#editComment h1 {
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+#editComment #eComment {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    outline: 1px solid var(--black);
+    margin: 4px 0;
+}

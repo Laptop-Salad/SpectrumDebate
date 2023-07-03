@@ -66,7 +66,6 @@ class BaseController
         "dialog.setAttribute('class', '$class');",
         "document.getElementById('notifMessage').innerHTML = '$message';",
         "</script>";
-
     }
 }
 ?>

@@ -1,0 +1,42 @@
+/* Statements */
+.statements {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statement {
+    margin: 1rem 0;
+    width: 40vw;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 20vh;
+    /* Percentages follow statement's border radius */
+    overflow: hidden; 
+}
+
+.content {
+    padding: 5px;
+}
+
+.percentages {
+    display: grid; 
+    grid-template: 1fr / var(--disgaree) var(--neutral) var(--agree);
+    background-color: var(--black);
+    width: 100%;
+    height: 20%;
+}
+
+.disagree {
+    background-color: var(--cold);
+}
+
+.neutral {
+    background-color: var(--lukewarm);
+}
+
+.agree {
+    background-color: var(--warm);
+}
