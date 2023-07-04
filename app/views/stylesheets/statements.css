@@ -12,7 +12,7 @@
     background-color: whitesmoke;
     border-radius: 5px;
     cursor: pointer;
-    height: 20vh;
+    height: 100%;
     /* Percentages follow statement's border radius */
     overflow: hidden; 
 }
@@ -26,7 +26,7 @@
     grid-template: 1fr / var(--disgaree) var(--neutral) var(--agree);
     background-color: var(--black);
     width: 100%;
-    height: 20%;
+    height: 5vh;
 }
 
 .disagree {
@@ -39,4 +39,11 @@
 
 .agree {
     background-color: var(--warm);
+}
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+    .statement {
+        width: 80vw;
+    }
 }

@@ -2,10 +2,11 @@ extends base.pug
 
 block content
     main(id="dashboard")
-        h1 = "Dashboard"
-        button(id="nsBtn") = "Write a new statement..."
+        section(class="options")
+            h1 = "Dashboard"
+            button(id="nsBtn") = "Write a new statement..."
 
-        a(id="delete" href="delete-user/{$username}") = "Delete this account"
+            a(id="delete" href="delete-user/{$username}") = "Delete this account"
 
         dialog(id="nsModal")
             div
