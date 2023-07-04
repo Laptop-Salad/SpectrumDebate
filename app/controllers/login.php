@@ -26,7 +26,13 @@ class Login extends BaseController
             echo $base->getRedirect("dashboard");
         } else {
             $this->displayViews();
-            $this->displayNotif("error", "Your username or password is invalid");
+            // Display invalid credentials message to user
+            // Hide hints
+            echo "<script type='text/javascript'>",
+            "document.getElementById('showInvalid').style.display = 'Block';",
+            "document.getElementById('usernameHint').style.display = 'none';",
+            "document.getElementById('passwordHint').style.display = 'none';",
+            "</script>";
             die();
         }
     }

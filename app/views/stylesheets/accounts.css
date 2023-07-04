@@ -35,3 +35,13 @@
     font-size: 1rem;
     outline: 1px solid var(--black)
 }
+
+/* Invalid message */
+#showInvalid,
+#showTaken {
+    color: red;
+    font-weight: bold;
+    display: none; /* Initially display none */
+}
+
+/* Media queries */

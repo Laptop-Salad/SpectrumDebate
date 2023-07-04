@@ -26,7 +26,10 @@ class Signup extends BaseController
         // Check is user already exists
         if ($account->findUser($username)) {
             $this->displayViews();
-            $this->displayNotif("error", "This username has already been taken, please choose another.");
+            // Show user message that username is already taken
+            echo "<script type='text/javascript'>",
+            "document.getElementById('showTaken').style.display = 'Block';",
+            "</script>";
             die();
         }
 
