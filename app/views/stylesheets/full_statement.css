@@ -89,5 +89,21 @@
 @media only screen and (max-width: 768px) {
     #fullStatement .statementContent {
         width: 100%;
+        padding: 0 2rem;
+        box-sizing: border-box;
+    }
+
+    #fullStatement .percentages {
+        height: 4vh;
+    }
+
+    #commentForm {
+        display: flex;
+        justify-content: center;
+    }
+
+    #commentInput {
+        width: 80%;
     }
 }
+

@@ -207,14 +207,11 @@ nav ul li a {
     header {
         display: grid;
         grid-template: 1fr / 1fr 1fr;
+        box-sizing: border-box;
     }
     
     .logo-container {
         justify-content: center;
-    }
-
-    .statement {
-        width: 80vw;
     }
 
     .menu-container {
@@ -228,6 +225,10 @@ nav ul li a {
     .smaller-menu {
         display: block;
     }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
 }
 
 @media only screen and (max-width: 550px) {
@@ -235,6 +236,10 @@ nav ul li a {
         height: 10vh;
     }
 }
+
+/* @media only screen and (max-width: 425px) {
+    .
+} */
 
 @media only screen and (max-width: 320px) {
     #logo {
