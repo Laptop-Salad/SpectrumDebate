@@ -17,5 +17,5 @@ extends base.pug
                                 p = $statement["username"] . " "
                             else
                                 a(class="username" href="{$domain}/user/{$statement['username']}") = $statement["username"]
-                            span = " stated "
+                            span = ", "
                             span = $statement["time"]

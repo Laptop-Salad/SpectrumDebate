@@ -222,23 +222,5 @@ class Statement extends BaseModel
 
         return $data;
     }
-
-    function formatTime($timestamp) {
-        /**
-         * returns a formatted string of a time string
-         * 
-         * @param string $timestamp
-         * @return string
-         */
-        
-        $datetime = strtotime($timestamp);
-        
-        $time = date("H", $datetime) . ":" . date("s", $datetime);
-        $dayOfMonth = date("j", $datetime) . date("S", $datetime);
-        $month = date("F");
-        $year = date("Y");
-
-        return "at " . $time . " on the " . $dayOfMonth . " of " . $month . ", " . $year;
-    }
 }
 ?>
