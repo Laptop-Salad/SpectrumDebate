@@ -41,9 +41,14 @@ body
             nav(class="accounts")
                 ul
                     li
-                        a(href="{$domain}/dashboard") = "{$username}"
+                        a(href="{$domain}/dashboard")
+                            i(class="fa-solid fa-user" style="color: #ffffff;")
+                            span = " {$username}"
                     li
-                        a(href="{$domain}/logout" id="navLogout" class="logout") = "Logout"
+                        a(href="{$domain}/logout" id="navLogout" class="logout")
+                            i(class="fa-solid fa-right-from-bracket" style="color: #ffffff;")
+                            span = " Logout"
+
         else
             nav(class="accounts")
                 ul
@@ -71,9 +76,13 @@ body
             nav(class="sm-accounts")
                 ul
                     li
-                        a(href="{$domain}/dashboard") = "{$username}"
+                        a(href="{$domain}/dashboard")
+                            i(class="fa-solid fa-user" style="color: #ffffff;")
+                            span = " {$username}"
                     li
-                        a(href="{$domain}/logout" id="navLogout" class="logout") = "Logout"
+                        a(href="{$domain}/logout" id="navLogout" class="logout")
+                            i(class="fa-solid fa-right-from-bracket" style="color: #ffffff;")
+                            span = " Logout"
         else
             nav(class="sm-accounts")
                 ul
