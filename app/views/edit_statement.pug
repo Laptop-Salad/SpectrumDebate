@@ -4,5 +4,5 @@ block content
     main(id="editStatement")
         form(method="POST" action="{$domain}/edit-statement/{$statement['id']}")
             input(type="text" name="title" id="title" placeholder="Title" value="{$statement['title']}" required)
-            input(type="text" name="text" id="text" placeholder="Write a description" value="{$statement['text']}" required)
-            input(type="submit")
+            textarea(type="text" name="text" id="text" placeholder="Write a description" required) = "{$statement['text']}"
+            input(type="submit" value="Update")
