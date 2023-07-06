@@ -8,14 +8,20 @@ head
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet")
     script(src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous")
+    script(src="https://kit.fontawesome.com/8737e79ded.js" crossorigin="anonymous")
     title = "{$title}"
     style
+        //- Required by all
         include stylesheets/base.css
+        include stylesheets/accounts.css
+
+        //- Almost all
         include stylesheets/statements.css
+        
         include stylesheets/full_statement.css
         include stylesheets/dashboard.css
-        include stylesheets/accounts.css
         include stylesheets/edit_comment.css
+        include stylesheets/user_profile.css
 body
     header(id="header") 
         section(class="logo-container") 
