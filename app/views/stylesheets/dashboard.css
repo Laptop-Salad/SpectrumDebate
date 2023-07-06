@@ -20,6 +20,24 @@
     color: red;
 }
 
+/* Statement */
+.statement-options {
+    display: flex;
+}
+
+.statement-options a {
+    display: block;
+    margin: 0 5px;
+}
+
+.statement-edit {
+    color: blue;
+}
+
+.statement-delete {
+    color: red;
+}
+
 /* Media queries */
 @media only screen and (max-width: 768px) {
     #dashboard .options {

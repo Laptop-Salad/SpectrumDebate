@@ -2,12 +2,14 @@ extends base.pug
 
 block content
     main(id="dashboard")
+        //- Account options
         section(class="options")
             h1 = "Dashboard"
             button(id="nsBtn") = "Write a new statement..."
 
             a(id="delete" href="delete-user/{$username}") = "Delete this account"
 
+        //- New statement modal
         dialog(id="nsModal")
             div
                 h2 = "Write a new statement"
@@ -17,24 +19,33 @@ block content
                 textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
                 input(type="submit" class="submit")
         
+        //- Statement
         div(class="statements")
             each $statement in $statements
-                div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'") 
+                div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
+
+                    //- Votes ratio 
                     div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
                         div(class="disagree")
                         div(class="neutral")
                         div(class="agree")
 
-                    div(class="content")
-
+                    //- Statement info
+                    section(class="content")
                         div(class="inline")
                             h2(class="statement-title") = $statement["title"] 
                             p(class="margin-right")
                                 span = "Stated "
                                 span = $statement["time"]
                     
-                    a(href="/edit-statement/{$statement['id']}") = "Edit Statement"
-                    br
-                    a(href="/delete-statement/{$statement['id']}") = "Delete Statement"
+                    //- Statement options
+                    section(class="statement-options")
+                        a(href="/edit-statement/{$statement['id']}" class="statement-edit")
+                            i(class="fa-solid fa-pencil")
+                            span = " Edit"
+                        br
+                        a(href="/delete-statement/{$statement['id']}" class="statement-delete")
+                            i(class="fa-solid fa-trash")
+                            span = " Delete"
 
         script(src="/app/scripts/dashboard.js");

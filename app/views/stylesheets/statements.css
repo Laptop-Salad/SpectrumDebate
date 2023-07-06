@@ -15,6 +15,7 @@
     height: 100%;
     /* Percentages follow statement's border radius */
     overflow: hidden; 
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .content {
