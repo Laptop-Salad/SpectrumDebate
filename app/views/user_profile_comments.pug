@@ -1,0 +1,24 @@
+extends base.pug
+
+block content 
+    if $author
+        main(id="userProfile")
+            section(class="user-info")
+                h1 = $author
+
+                //- Views
+                section(class="views")
+                    a(href="{$domain}/user/{$author}/statements") = "Statements"
+                    a(href="{$domain}/user/{$author}/comments") = "Comments"
+
+            //- Comments
+            section(id="comments")                    
+                //- If user hasn't posted any comments
+                if !$comments 
+                    p = "This user hasn't commented anything yet..."
+
+                each $comment in $comments
+                    p(class="comment") 
+                        span = "{$comment[3]}"
+    else 
+        h1 = "404 User Not Found"

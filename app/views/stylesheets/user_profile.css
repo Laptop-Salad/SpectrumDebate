@@ -1,0 +1,54 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#userProfile .user-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#userProfile .views {
+    display: flex;
+}
+
+#userProfile .views a {
+    margin: 0 5px;
+    font-size: 1rem;
+    color: black;
+    text-decoration: underline;
+}
+
+#userProfile {
+    margin: 2rem 0;
+}
+
+#userProfile h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+}
+
+#userProfile #comments {
+    margin: 2rem 0;
+}
+
+#userProfile #comments > * {
+    width: 50vw;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#userProfile .comment:only-of-type(odd) {
+    background-color: whitesmoke;
+}
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+    #userProfile #comments > * {
+        width: 95%;
+    }
+}
+

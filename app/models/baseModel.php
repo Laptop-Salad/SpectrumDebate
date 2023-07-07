@@ -47,7 +47,6 @@
             }
          
             return "$difference $strTime[$j] ago";
-         
         }
         
     }

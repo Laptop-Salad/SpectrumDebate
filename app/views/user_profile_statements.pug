@@ -1,0 +1,40 @@
+extends base.pug
+
+block content 
+    if $author
+        main(id="userProfile")
+            section(class="user-info")
+                h1 = $author
+
+                //- Views
+                section(class="views")
+                    a(href="{$domain}/user/{$author}/statements") = "Statements"
+                    a(href="{$domain}/user/{$author}/comments") = "Comments"
+                
+            //- Statements
+            section(id="statements")                
+                //- If user hasn't posted any statements
+                if !$statements
+                    p = "This user hasn't posted any statements yet..."
+
+                //- Timeline
+                section(class="statements")
+                    each $statement in $statements
+                        //- Statement
+                        div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'") 
+
+                            //- Vote ratio
+                            div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
+                                div(class="disagree")
+                                div(class="neutral")
+                                div(class="agree")
+
+                            //- Actual statement content
+                            div(class="content")
+                                div(class="inline")
+                                    h2(class="statement-title") = $statement["title"] 
+                                    p(class="margin-right")
+                                        span = $statement["time"]
+    else 
+        h1 = "404 User Not Found"
+                        

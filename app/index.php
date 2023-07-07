@@ -82,9 +82,9 @@
         $deleteComment = new DeleteComment($commentId);
     });
 
-    $router->get("/user/{username}", function($username) {
+    $router->get("/user/{username}/{view}", function($username, $view) {
         require __DIR__ . "/controllers/userProfile.php";
-        $userProfile = new UserProfile($username);
+        $userProfile = new UserProfile($username, $view);
     });
 
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
