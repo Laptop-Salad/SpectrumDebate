@@ -10,17 +10,3 @@ nsBtn.addEventListener('click', () => {
 nsCloseBtn.addEventListener('click', () => {
     nsModal.close();
 })
-
-// Edit statement dialog
-const editBtn = document.getElementById("editBtn");
-const editModal = document.getElementById("editModal");
-const editCloseBtn = document.getElementById("editCloseBtn");
-
-editBtn.addEventListener('click', () => {
-    editModal.showModal();
-})
-
-editCloseBtn.addEventListener('click', () => {
-    editModal.close();
-})
-

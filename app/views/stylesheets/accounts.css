@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("app/assets/logo-square.svg");
+    border-top: 1px solid white;
 }
 
 .account-form {
@@ -14,8 +14,11 @@
     align-items: center;
     background-color: whitesmoke;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    width: 20%;
-    height: 40%;
+    width: 30%;
+    height: 60%;
+    color: black;
+    border-radius: 5px;
+    padding: 0.5rem;
 }
 
 .account-form h1 {
@@ -33,7 +36,32 @@
     margin: 10px auto;
     width: 80%;
     font-size: 1rem;
-    outline: 1px solid var(--black)
+}
+
+/* Inputs */
+#username,
+#password {
+    border-bottom: 1px solid black;
+    outline: transparent;
+    background-color: transparent;
+    font-size: 1.2rem;
+}
+
+#username:invalid,
+#password:invalid {
+    border-bottom: 1px solid red;
+}
+
+.account-form input[type="submit"] {
+    font-size: 1.2rem;
+    width: 40%;
+    background-color: var(--black);
+    border-radius: 5px;
+    color: white;
+}
+
+.account-form input[type="submit"]:hover {
+    cursor: pointer;
 }
 
 /* Invalid message */
@@ -44,4 +72,22 @@
     display: none; /* Initially display none */
 }
 
+/* Input hints */
+#usernameHint,
+#passwordHint {
+    display: none;
+}
+
 /* Media queries */
+@media only screen and (max-width: 768px) {
+    .account-form {
+        width: 60vw;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .account-form {
+        width: 50vw;
+        height: 40vh;
+    }
+}

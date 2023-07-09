@@ -30,8 +30,6 @@ class Login extends BaseController
             // Hide hints
             echo "<script type='text/javascript'>",
             "document.getElementById('showInvalid').style.display = 'Block';",
-            "document.getElementById('usernameHint').style.display = 'none';",
-            "document.getElementById('passwordHint').style.display = 'none';",
             "</script>";
             die();
         }

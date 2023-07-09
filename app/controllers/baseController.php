@@ -34,25 +34,5 @@ class BaseController
         Phug::displayFile(dirname(__DIR__, 1) . "/views/favicon.html");
         Phug::displayFile(dirname(__DIR__, 1) . "/views/$filename", $variables);
     }
-
-    function displayNotif($type, $message) {
-        switch ($type) {
-            case "error":
-                $class = "notif-error";
-                break;
-            case "success":
-                $class = "notif-success";
-                break;
-            default:
-                $class = "notif-neutral";
-        }
-
-        echo "<script type='text/javascript'>",
-        "const dialog = document.getElementById('notif');",
-        "dialog.open = true;",
-        "dialog.setAttribute('class', '$class');",
-        "document.getElementById('notifMessage').innerHTML = '$message';",
-        "</script>";
-    }
 }
 ?>
