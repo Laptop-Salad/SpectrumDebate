@@ -38,13 +38,15 @@ body
         section(class="menu-container")
             button(id="menu" class="menu") = "Menu"
 
+        //- Navbar for larger devices
         if $username
             nav(class="accounts")
                 ul
                     li
                         a(href="{$domain}/dashboard")
                             i(class="fa-solid fa-user" style="color: #ffffff;")
-                            span = " {$username}"
+                            span = " "
+                            span(id="nUsername") = "{$username}"
                     li
                         a(href="{$domain}/logout" id="navLogout" class="logout")
                             i(class="fa-solid fa-right-from-bracket" style="color: #ffffff;")
@@ -79,7 +81,8 @@ body
                     li
                         a(href="{$domain}/dashboard")
                             i(class="fa-solid fa-user" style="color: #ffffff;")
-                            span = " {$username}"
+                            span = " "
+                            span(id="sUsername") = "{$username}"
                     li
                         a(href="{$domain}/logout" id="navLogout" class="logout")
                             i(class="fa-solid fa-right-from-bracket" style="color: #ffffff;")

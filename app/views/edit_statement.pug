@@ -2,7 +2,7 @@ extends base.pug
 
 block content 
     main(id="editStatement")
-        form(method="POST" action="{$domain}/edit-statement/{$statement['id']}")
-            input(type="text" name="title" id="title" placeholder="Title" value="{$statement['title']}" required)
-            textarea(type="text" name="text" id="text" placeholder="Write a description" required) = "{$statement['text']}"
+        form(method="POST" action="{$domain}/edit-statement/{$statement['id']}" id="editStateForm")
+            input(type="text" name="title" id="title" placeholder="Title" value="{$statement['title']}" minlength="1" maxlength="100" required)
+            textarea(type="text" name="text" id="text" placeholder="Write a description" minlength="1" maxlength="1000" required) = "{$statement['text']}"
             input(type="submit" value="Update")
