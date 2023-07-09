@@ -1,7 +1,7 @@
 <?php
 class EditStatement extends BaseController {
     function __construct($statementId) {
-        require dirname(__DIR__, 1) . "/models/statements.php";
+        require_once dirname(__DIR__, 1) . "/models/statements.php";
         $this->baseConstruct();
         $this->ensureUserLoggedIn();
 

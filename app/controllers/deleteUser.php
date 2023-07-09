@@ -13,7 +13,7 @@ class DeleteUser extends BaseController {
         }
 
         // Ensure account actually exists
-        require dirname(__DIR__, 1) . "/models/accounts.php";
+        require_once dirname(__DIR__, 1) . "/models/accounts.php";
         $account = new Account;
         $userid = $account->findUser($username);
 
@@ -27,7 +27,7 @@ class DeleteUser extends BaseController {
         $account->deleteUser($userid);
         
         // Destroy session
-        require "logout.php";
+        require_once "logout.php";
         $logout = new Logout(True);
         
     }

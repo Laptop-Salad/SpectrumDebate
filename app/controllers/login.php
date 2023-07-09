@@ -13,7 +13,7 @@ class Login extends BaseController
 
     function doCheckCredentials()
     {
-        include dirname(__DIR__, 1) . "/models/accounts.php";
+        require_once dirname(__DIR__, 1) . "/models/accounts.php";
 
         $username = $_POST["username"];
         $userpass = $_POST["userpass"];

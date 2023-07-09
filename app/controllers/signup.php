@@ -15,7 +15,7 @@ class Signup extends BaseController
 
     function doCreateUser()
     {
-        include dirname(__DIR__, 1) . "/models/accounts.php";
+        require_once dirname(__DIR__, 1) . "/models/accounts.php";
 
         // Get user input
         $username = $_POST["username"];
