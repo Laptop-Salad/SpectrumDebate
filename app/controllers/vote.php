@@ -40,19 +40,13 @@
         }
 
         function checkVoteValid() {
-            // Person cannot vote on their own post
+            // Ensure post exists
             require_once dirname(__DIR__, 1) . "/models/statements.php";
             $statement = new Statement;
             
             $currStatement = $statement->getStatementById($this->statementId);
 
             if (!$currStatement) {
-                // $this->displayNotif("error", "The statement you are trying to vote on may have been deleted.");
-                return False;
-            }
-
-            if ($currStatement["author"] == $_SESSION["username"]) {
-                // $this->displayNotif("error", "You can't vote on your own statement");
                 return False;
             }
 
