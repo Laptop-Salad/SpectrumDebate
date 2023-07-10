@@ -1,5 +1,6 @@
 /* Statements */
 .statements {
+    margin: 2rem 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -46,6 +47,11 @@
 
 .agree {
     background-color: var(--warm);
+}
+
+/* No statements */
+.no-statements {
+    font-size: 1.5rem;
 }
 
 /* Media queries */

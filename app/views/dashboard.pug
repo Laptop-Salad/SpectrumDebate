@@ -21,6 +21,8 @@ block content
         
         //- Statement
         div(class="statements")
+            if $statements == []
+                p(class="no-statements") = "You have no statements yet..."
             each $statement in $statements
                 div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
 
