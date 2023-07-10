@@ -88,7 +88,7 @@
     color: red;
 }
 
-/* Media queries */
+/** Media queries **/
 
 /* Mobile S */
 @media only screen and (max-width: 320px) {

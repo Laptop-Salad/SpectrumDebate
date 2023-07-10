@@ -41,3 +41,31 @@
     color: white;
     cursor: pointer;
 }
+
+/** Media queries **/
+
+/* Laptop L */
+@media only screen and (min-width: 1440px) {
+    #editStatement form input[name="title"] {
+        font-size: 3rem;
+    }
+    
+    #editStatement form textarea {
+        font-size: 2rem;
+    }    
+    #editStatement input[type="submit"] {
+        width: 100%;
+        font-size: 2rem;
+    }
+}
+
+/* 4K */
+@media only screen and (min-width: 2560px) {
+    #editStatement form input[name="title"] {
+        font-size: 5rem;
+    }
+    
+    #editStatement form textarea {
+        font-size: 4rem;
+    }    
+}
