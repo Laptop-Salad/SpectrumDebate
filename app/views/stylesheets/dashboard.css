@@ -20,6 +20,56 @@
     color: red;
 }
 
+/* New statement modal */
+#nsModal {
+    width: 100%;
+    height: 100%;
+    margin: auto auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#nsModal div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#nsModal h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-right: auto;
+}
+
+#nsCloseBtn {
+    background-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#nsModal form {
+    margin: 20px 0;
+}
+
+#nsTitle {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    outline: 1px solid var(--black);
+}
+
+#nsText {
+    display: block;
+    width: 100%;
+    height: 50%;
+    padding: 5px;
+    font-size: 1rem;
+    outline: 1px solid var(--black);
+    margin: 10px 0;
+}
+
 /* Statement */
 .statement-options {
     display: flex;
@@ -57,6 +107,27 @@
     }
 }
 
+/* Laptop L */
+@media only screen and (min-width: 1440px) {
+    #nsTitle {
+        font-size: 3rem;
+    }
+
+    #nsText {
+        font-size: 2rem;
+    }
+
+    #nsModal input[type="submit"] {
+        font-size: 1.5rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    #nsCloseBtn {
+        font-size: 2rem;
+    }
+}
+
 /* 4K */
 @media only screen and (min-width: 2560px) {
     #dashboard h1 {
@@ -73,5 +144,25 @@
 
     #dashboard .no-statements {
         font-size: 5rem;
+    }
+
+    #nsModal h2 {
+        font-size: 5rem;
+    }
+
+    #nsTitle {
+        font-size: 4rem;
+    }
+
+    #nsText {
+        font-size: 3rem;
+    }
+
+    #nsModal input[type="submit"] {
+        font-size: 3rem;
+    }
+
+    #nsCloseBtn {
+        font-size: 4rem;
     }
 }
