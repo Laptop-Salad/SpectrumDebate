@@ -1,6 +1,6 @@
 /* Dashboard */
 #dashboard {
-    padding: 0 2rem;
+    padding: 2rem;
 }
 
 #dashboard h1 {
@@ -39,11 +39,39 @@
 }
 
 /* Media queries */
+
+/* Mobile S */
+@media only screen and (max-width: 320px) {
+    #dashboard .no-statements {
+        text-align: center;
+    }
+}
+
+/* Tablet */
 @media only screen and (max-width: 768px) {
     #dashboard .options {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
+    }
+}
+
+/* 4K */
+@media only screen and (min-width: 2560px) {
+    #dashboard h1 {
+        font-size: 8rem;
+    }
+
+    #dashboard #nsBtn {
+        font-size: 5rem;
+    }
+
+    #dashboard #delete {
+        font-size: 4rem;
+    }
+
+    #dashboard .no-statements {
+        font-size: 5rem;
     }
 }
