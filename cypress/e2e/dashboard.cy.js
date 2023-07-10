@@ -5,7 +5,6 @@ function logUserIn() {
   cy.get("#login").submit();
 }
 
-
 describe("Checks user dashboard", () => {
   it("Ensures username displays in navbar", () => {
     logUserIn();

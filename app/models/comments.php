@@ -37,7 +37,7 @@
 
         function deleteComment($commentId) {
             $stmt = $this->conn->prepare("DELETE FROM comments WHERE id = ?");
-            $stmt->bind_param("ss", $commentId);
+            $stmt->bind_param("s", $commentId);
             
             if($stmt->execute()) {
                 return True;
