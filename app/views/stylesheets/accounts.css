@@ -78,16 +78,9 @@
     display: none;
 }
 
-/* Media queries */
-@media only screen and (max-width: 768px) {
+/** Media queries **/
+@media only screen and (min-width: 768px) {
     .account-form {
         width: 60vw;
-    }
-}
-
-@media only screen and (min-width: 1440px) {
-    .account-form {
-        width: 50vw;
-        height: 40vh;
     }
 }
