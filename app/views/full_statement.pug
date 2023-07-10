@@ -49,11 +49,7 @@ block content
                         section(class="comment")
                             p 
                                 span = "{$comment[3]}"
-                                
-                                if $comment[2] == ""
-                                    span = " - <deleted>"
-                                else
-                                    span = " - {$comment[2]}"
+                                span = " - {$comment[2]}"
                             
                             if $comment[2] != ""
                                 if $username == $comment[2]

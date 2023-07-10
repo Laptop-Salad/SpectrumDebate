@@ -13,9 +13,6 @@ extends base.pug
                     div(class="inline")
                         h2(class="statement-title") = $statement["title"] 
                         p(class="margin-right")
-                            if $statement["username"] == "<deleted>"
-                                p = $statement["username"] . " "
-                            else
-                                a(class="username" href="{$domain}/user/{$statement['username']}") = $statement["username"]
+                            a(class="username" href="{$domain}/user/{$statement['username']}") = $statement["username"]
                             span = ", "
                             span = $statement["time"]
