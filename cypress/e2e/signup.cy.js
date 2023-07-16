@@ -1,73 +1,93 @@
+function login(username, password) {
+  cy.get("#username").type(username);
+  cy.get("#password").type(password);
+  cy.get("#login").submit();
+}
+
+// Username for testing purposes
+const username = "tester" + Math.floor(Math.random() * 100);
+const password = "Password" + Math.floor(Math.random() * 100);
+
+// ** Load Sign Up Page **
 describe("Sign Up page", () => {
   it("successfully loads", () => {
     cy.visit("//localhost/signup")
   })
 })
 
-// Username for testing purposes
-const username = "tester" + Math.floor(Math.random() * 100);
-
+// ** Sign Up a User **
 describe("Sign up", () => {
   it("Signs up a new user", () => {
     cy.visit("//localhost/signup");
 
-    // Enter username
-    cy.get("#username").type(username);
+    cy.get("#submit").should("be.disabled");
 
-    // Enter password
-    cy.get("#password").type("Password1");
+    cy.get("#username").type(username);
+    cy.get("#userAvail").should("have.text", "Username available");
+    cy.get("#userLength").should("have.text", "Between 3 and 10 characters ✓");
+
+    cy.get("#password").type(password);
+    cy.get("#passLength").should("have.text", "Between 8 and 20 characters ✓");
+
+    cy.get("#cPassword").type(password);
+    cy.get("#passMatch").should("have.text", "Passwords Match");
+
+    cy.get("#submit").should("not.be.disabled");
 
     // Submit form
-    cy.get("#signupForm").submit();
+    cy.get("#submit").click();
 
     // User is redirected to login
-    cy.url().should("eq", "http://localhost/login");
+    cy.url().should("eq", "http://localhost/login/signup");
+
+    // Success notification
+    cy.get("body").should("have.attr", "class").and("contain", "swal2-shown")
   })
 
   it("Ensures new user can log in", () => {
     cy.visit("//localhost/login");
 
-    // Enter login details
-    cy.get("#username").type(username);
-    cy.get("#password").type("Password1");
-
-    // Submits form
-    cy.get("#login").submit();
+    login(username, password);
 
     // If login detais are correct, user should be sent to dashboard
     cy.url().should("eq", "http://localhost/dashboard");
   })
+})
 
-  /* Could be in dashboard tests but is here to prevent too many
-  tester accounts. 
-  */
-  describe("Deletes user", () => {
-    it("Deletes new user", () => {
-      cy.visit("//localhost/login");
+describe("Taken username", () => {
+  it("Stops taken username", () => {
+    cy.visit("//localhost/signup")
+    cy.get("#username").type(username);
+    cy.get("#userAvail").should("have.text", "Username taken");
+  })
+})
 
-      // Enter login details
-      cy.get("#username").type(username);
-      cy.get("#password").type("Password1");
-  
-      // Submits form
-      cy.get("#login").submit();
-  
-      // Click delete account button
-      cy.get("#delete").click();  
-    })
+describe("Not matching passwords", () => {
+  it("Stops not matching passwords", () => {
+    cy.visit("//localhost/signup")
+    cy.get("#password").type("Secret007");
+    cy.get("#cPassword").type("Secret");
+    cy.get("#passMatch").should("have.text", "Passwords don't match");
+  })
+})
 
-    it("Ensures new user has been deleted", () => {
-      cy.visit("//localhost/login");
+// ** Delete A User **
+describe("Deletes user", () => {
+  it("Deletes new user", () => {
+    cy.visit("//localhost/login");
+    
+    login(username, password);
+    
+    // Click delete account button
+    cy.get("#delete").click();  
+  })
 
-      // Enter login details
-      cy.get("#username").type(username);
-      cy.get("#password").type("Password1");
-  
-      // Submits form
-      cy.get("#login").submit();
+  it("Ensures new user has been deleted", () => {
+    cy.visit("//localhost/login");
 
-      // Should say username/password is incorrect
-      cy.get("#showInvalid").should("be.visible");
-    })
+    login(username, password);
+
+    // Should say username/password is incorrect
+    cy.get("#showInvalid").should("be.visible");
   })
 })

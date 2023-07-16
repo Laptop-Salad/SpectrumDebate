@@ -1,7 +1,7 @@
 <?php
 class Login extends BaseController
 {
-    function __construct()
+    function __construct($forwarding = null)
     {
         $this->baseConstruct();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -9,6 +9,21 @@ class Login extends BaseController
         }
 
         $this->displayViews();
+
+        switch($forwarding) {
+            case "signup":
+                echo "
+                <script type='text/javascript'>
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Account created. You can log in now.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  })
+                </script>";
+            default:
+                break;
+        }
     }
 
     function doCheckCredentials()

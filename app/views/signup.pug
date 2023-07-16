@@ -5,11 +5,19 @@ block content
         div(class="account-form")
             h1 = "Sign Up"
             form(method="POST" action="signup" id="signupForm")
-                input(id="username" name="username" type="text" placeholder="Username" minlength="3" maxlength="10" required)
-                input(id="password" name="userpass" type="password" placeholder="Password" minlength="8" maxlength="20" required)
-                input(type="submit" value="Submit")
-            p(id="usernameHint") = "Usernames should be between 3 and 10 characters long"
-            p(id="passwordHint") = "Passwords should be between 8 and 20 characters long"
-            p(id="showTaken") = "This username has already been taken, please choose another."
+                label(for="username" aria-label="required")
+                    input(id="username" name="username" type="text" placeholder="Username*" minlength="3" maxlength="10" required)
+                    span(id="userAvail") = ""
+                    span(id="userLength") = "Between 3 and 10 characters ✗"
+
+                label(for="password" aria-label="required")
+                    input(id="password" name="userpass" type="password" placeholder="Password*" minlength="8" maxlength="20" required)
+                    span(id="passLength") = "Between 8 and 20 characters ✗"
+                
+                label(for="cPassword" aria-label="required")
+                    input(id="cPassword" name="cpass" type="password" placeholder="Confirm Password*" minlength="8" maxlength="20" required)
+                    span(id="passMatch") = "Password matches"
+                
+                input(id="submit" type="submit" value="Create Account")
     
     script(type="text/javascript" src="app/scripts/signup.js") 

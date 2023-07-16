@@ -5,82 +5,77 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid white;
-}
-
-.account-form {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: whitesmoke;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    width: 30%;
-    height: 60%;
-    color: black;
-    border-radius: 5px;
-    padding: 0.5rem;
 }
 
-.account-form h1 {
+.account-page h1 {
     font-weight: 400;
     font-size: 3rem;
+    margin: 0 0 2rem 0;
 }
 
-.account-form form {
-    width: 100%;
-    margin: 20px 0 0 0;
-}
-
-.account-form form input {
-    display: block;
-    margin: 10px auto;
-    width: 80%;
+.account-page input {
     font-size: 1rem;
-}
-
-/* Inputs */
-#username,
-#password {
-    border-bottom: 1px solid black;
     outline: transparent;
+    margin: 1rem 0;
+}
+
+.account-page input[type="text"],
+.account-page input[type="password"] {
     background-color: transparent;
-    font-size: 1.2rem;
+    border-bottom: 1px solid black;
+    width: 100%;
 }
 
-#username:invalid,
-#password:invalid {
-    border-bottom: 1px solid red;
-}
-
-.account-form input[type="submit"] {
-    font-size: 1.2rem;
-    width: 40%;
-    background-color: var(--black);
-    border-radius: 5px;
+.account-page input[type="submit"] {
+    margin: 0 auto;
+    background-color: dodgerblue;
     color: white;
+    border-radius: 2px;
+    padding: 5px;
 }
 
-.account-form input[type="submit"]:hover {
+.account-page input[type="submit"]:hover {
     cursor: pointer;
 }
 
-/* Invalid message */
-#showInvalid,
-#showTaken {
-    color: red;
-    font-weight: bold;
-    display: none; /* Initially display none */
+.account-page input[type="submit"]:disabled {
+    color: black;
+    background-color: lightgray;
+    cursor: not-allowed;
 }
 
-/* Input hints */
-#usernameHint,
-#passwordHint {
-    display: none;
+.account-page label {
+    width: 100%;
 }
 
-/** Media queries **/
-@media only screen and (min-width: 768px) {
+.account-form {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#signupForm {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+}
+
+#signUpForm span {
+    display: block;
+}
+
+/* ** Media Queries ** */
+@media only screen and (max-width: 425px) {
     .account-form {
-        width: 60vw;
+        width: 90vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .account-form {
+        width: 50vw;
     }
 }

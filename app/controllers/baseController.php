@@ -17,8 +17,12 @@ class BaseController
         }
     }
 
-    function getRedirect($location = "") {
-        return "<script type='text/javascript'>window.location.href='//localhost/$location'</script>";
+    function getRedirect($location = "", $forwarding = "") {
+        if ($forwarding == "") {
+            return "<script type='text/javascript'>window.location.href='//localhost/$location'</script>";
+        } else {
+            return "<script type='text/javascript'>window.location.href='//localhost/$location/$forwarding'</script>";
+        }
     }
 
     function displayContent($filename, $pageTitle, $variables, $stylesheet = null) {

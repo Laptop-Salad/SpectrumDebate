@@ -25,6 +25,7 @@ body {
     take up the rest */
     display: flex;
     flex-flow: column;
+    background-color: #efefef;
 }
 
 /* -- Links -- */

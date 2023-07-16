@@ -32,9 +32,19 @@
         $deleteUser = new DeleteUser($username);
     });
 
-    $router->any("/login", function () {
+    $router->any("/login", function() {
         require __DIR__ . "/controllers/login.php";
         $login = new Login;
+    });
+
+    $router->any("/login/{forwarding}", function ($forwarding) {
+        require __DIR__ . "/controllers/login.php";
+
+        if ($forwarding == "") {
+            $login = new Login;
+        } else {
+            $login = new Login($forwarding);
+        }
     });
 
     $router->any("/logout", function () {
@@ -85,6 +95,13 @@
     $router->get("/user/{username}/{view}", function($username, $view) {
         require __DIR__ . "/controllers/userProfile.php";
         $userProfile = new UserProfile($username, $view);
+    });
+
+    // Ajax check username available
+    $router->get("/user-avail/{username}", function($username) {
+        require_once __DIR__ . "/models/signupChecks.php";
+        $signupCheck = new SignupCheck;
+        echo $signupCheck->checkUserAvail($username);
     });
 
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());

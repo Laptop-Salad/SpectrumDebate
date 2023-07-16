@@ -96,7 +96,7 @@ class Account extends BaseModel
          * checks that a username exists
          * 
          * @param string $username
-         * @return bool|int integer is found userid
+         * @return string empty|int integer is found userid
          */
 
         // Prepare and bind statement
