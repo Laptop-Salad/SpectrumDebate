@@ -3,6 +3,7 @@ class Dashboard extends BaseController
 {
     function __construct()
     {
+        // GET only
         $this->baseConstruct();
         $this->ensureUserLoggedIn("login");
         $statements = $this->doGetStatements();
@@ -11,7 +12,7 @@ class Dashboard extends BaseController
 
     function doGetStatements() {
         /**
-         * creates a Statement model to get all statements from a specific user
+         * Creates a Statement model to get all statements from a specific user
          * 
          * @return array of statements
          */
@@ -25,13 +26,9 @@ class Dashboard extends BaseController
     function displayViews($statements)
     {
         /**
-         * displays a view
+         * Prepares to display views
          * 
-         * - header
-         * - navbar (user_navbar)
-         * - content
-         * 
-         * @param array $statements array of statements
+         * @param array $statements
          */
 
         $contentVariables = [
