@@ -98,11 +98,11 @@
 
             while ($row = $result->fetch_assoc()) {
                 $username = $this->account->findUserById($row["author_id"]);
-                array_push($data, 
-                    $row["id"],
-                    $row["statement_id"],
-                    $username,
-                    $row["text"]
+                $data = array(
+                    "id" => $row["id"],
+                    "statement_id" => $row["statement_id"],
+                    "username" => $username,
+                    "text" => $row["text"]
                 );
             }
 

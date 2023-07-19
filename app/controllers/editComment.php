@@ -37,14 +37,8 @@ class EditComment extends BaseController {
             die();
         }
 
-        // If user is not found
-        if ($currComment[2] == "") {
-            echo $this->getRedirect();
-            die();
-        }
-
         // If logged in user doesn't own comment
-        if ($currComment[2] != $_SESSION["username"]) {
+        if ($currComment["username"] != $_SESSION["username"]) {
             echo $this->getRedirect();
             die();
         }

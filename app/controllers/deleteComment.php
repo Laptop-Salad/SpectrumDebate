@@ -1,29 +1,42 @@
 <?php
 class DeleteComment extends BaseController {
+    private $currComment;
+    private $commentId;
     function __construct($commentId) {
         $this->baseConstruct();
         $this->ensureUserLoggedIn();
 
-        // Find comment
+        $this->commentId = $commentId;
+        $this->currComment = $this->doFindComment();
+
+        if ($this->checkDeleteValid()) {
+            $this->doDeleteComment();
+        } else {
+            $this->getRedirect("statement/" . $this->currComment["statement_id"]);
+        }
+
+        echo $this->getRedirect("statement/" . $this->currComment["statement_id"]);
+    }
+
+    function doFindComment() {
         require_once dirname(__DIR__, 1) . "/models/comments.php";
         $comment = new Comment;
-        $currComment = $comment->getCommentById($commentId);
+        $currComment = $comment->getCommentById($this->commentId);
+        return $currComment;
+    }
 
-        // If comment doesn't exist
-        if (count($currComment) == 0) {
-            $this->displayContent("error.pug", "404 Comment Not Found", ["item" => "Comment"]);
-            die();
-        }
-
+    function checkDeleteValid() {
         // Ensure user owns comment
-        if ($currComment[2] != $_SESSION["username"]) {
-            echo $this->getRedirect();
-            die();
+        if ($this->currComment["username"] != $_SESSION["username"]) {
+            return false;
         }
 
-        // Delete comment
-        $comment->deleteComment($commentId);
-        echo $this->getRedirect("");
+        return true;
+    }
+
+    function doDeleteComment() {
+        $comment = new Comment;
+        $comment->deleteComment($this->commentId);
     }
 }
 

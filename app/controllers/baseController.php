@@ -1,11 +1,12 @@
 <?php
 class BaseController
 {
+    private $forwarding;
     function baseConstruct()
     {
         session_start();
     }
-
+        
     function ensureUserLoggedIn($redirect = "")
     {
         /**
