@@ -8,17 +8,21 @@ class DeleteComment extends BaseController {
 
         $this->commentId = $commentId;
         $this->currComment = $this->doFindComment();
-
+        
         if ($this->checkDeleteValid()) {
             $this->doDeleteComment();
         } else {
             $this->getRedirect("statement/" . $this->currComment["statement_id"]);
         }
 
+        // Redirect back to statement
         echo $this->getRedirect("statement/" . $this->currComment["statement_id"]);
     }
 
     function doFindComment() {
+        /**
+         * Instantiates a comment model to find comment
+         */
         require_once dirname(__DIR__, 1) . "/models/comments.php";
         $comment = new Comment;
         $currComment = $comment->getCommentById($this->commentId);
@@ -26,6 +30,10 @@ class DeleteComment extends BaseController {
     }
 
     function checkDeleteValid() {
+        /**
+         * Ensures the comment is able to be deleted
+         */
+
         // Ensure user owns comment
         if ($this->currComment["username"] != $_SESSION["username"]) {
             return false;
@@ -35,6 +43,9 @@ class DeleteComment extends BaseController {
     }
 
     function doDeleteComment() {
+        /**
+         * Instantiates a comment model to delete comment
+         */
         $comment = new Comment;
         $comment->deleteComment($this->commentId);
     }

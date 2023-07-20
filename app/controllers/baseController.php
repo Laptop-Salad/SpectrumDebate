@@ -26,7 +26,7 @@ class BaseController
          * Gets a javascript redirect script
          * 
          * @param string $location where to redirect, e.g. dashboard, login
-         * @param string $forwarding A script showing a popup to display, e.g. successful acc. creation
+         * @param string $forwarding states what popup to display, e.g. successful acc. creation
          */
         if ($forwarding == "") {
             return "<script type='text/javascript'>window.location.href='//localhost/$location'</script>";
