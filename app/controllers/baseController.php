@@ -31,7 +31,7 @@ class BaseController
         if ($forwarding == "") {
             return "<script type='text/javascript'>window.location.href='//localhost/$location'</script>";
         } else {
-            return "<script type='text/javascript'>window.location.href='//localhost/$location/$forwarding'</script>";
+            return "<script type='text/javascript'>window.location.href='//localhost/$location?alert=$forwarding'</script>";
         }
     }
 
@@ -56,6 +56,32 @@ class BaseController
 
         Phug::displayFile(dirname(__DIR__, 1) . "/views/favicon.html");
         Phug::displayFile(dirname(__DIR__, 1) . "/views/$filename", $variables);
+
+        // Show forwarded alerts
+        $this->showAlert();
+    }
+
+    function showAlert() {
+        parse_str($_SERVER["QUERY_STRING"], $parameters);
+
+        if (!isset($parameters["alert"])) {
+            return;
+        }
+
+        switch($parameters["alert"]) {
+            case "signup-success":
+                echo "
+                <script type='text/javascript'>
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Account created. You can log in now.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  })
+                </script>";
+            default:
+                break;
+        }
     }
 }
 ?>

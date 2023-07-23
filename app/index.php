@@ -37,16 +37,6 @@
         $login = new Login;
     });
 
-    $router->any("/login/{forwarding}", function ($forwarding) {
-        require __DIR__ . "/controllers/login.php";
-
-        if ($forwarding == "") {
-            $login = new Login;
-        } else {
-            $login = new Login($forwarding);
-        }
-    });
-
     $router->any("/logout", function () {
         require __DIR__ . "/controllers/logout.php";
         $logout = new Logout;

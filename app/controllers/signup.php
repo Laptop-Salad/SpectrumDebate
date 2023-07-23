@@ -79,7 +79,7 @@ class Signup extends BaseController
         // Create new user
         if ($account->createUser($username, $userpass)) {
             $base = new BaseController;
-            echo $base->getRedirect("login", "signup");
+            echo $base->getRedirect("login", "signup-success");
         } else {
             echo "
             <script type='text/javascript'>
@@ -95,7 +95,7 @@ class Signup extends BaseController
     }
     function displayViews()
     {
-        $this->displayContent("signup.pug", "Signup", [], "signup.css");
+        $this->displayContent("signup.pug", "Signup", []);
     }
 }
 ?>
