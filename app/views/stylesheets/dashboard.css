@@ -16,8 +16,14 @@
     cursor: pointer;
 }
 
-#dashboard #delete {
+#dashboard #delAcc {
     color: red;
+    font-size: 1.2rem;
+}
+
+#dashboard #delAcc:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* New statement modal */
@@ -84,7 +90,7 @@
     color: blue;
 }
 
-.statement-delete {
+.statement-delAcc {
     color: red;
 }
 
@@ -138,7 +144,7 @@
         font-size: 5rem;
     }
 
-    #dashboard #delete {
+    #dashboard #delAcc {
         font-size: 4rem;
     }
 
