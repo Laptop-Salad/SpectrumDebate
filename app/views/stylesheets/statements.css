@@ -24,6 +24,16 @@
     font-size: 2rem;
 }
 
+.statement .username {
+    color: dodgerblue;
+    text-decoration: none;
+}
+
+.statement .username:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .content {
     padding: 5px;
 }
