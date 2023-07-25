@@ -49,6 +49,13 @@
     width: 100%;
 }
 
+.account-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+}
+
 .account-form {
     width: 30vw;
     display: flex;
@@ -56,15 +63,15 @@
     align-items: center;
 }
 
-#signupForm {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 100%;
-}
-
+/* Sign up form specific */
 #signUpForm span {
     display: block;
+}
+
+/* Login form specific */
+#loginForm #showInvalid {
+    display: none;
+    color: red;
 }
 
 /* ** Media Queries ** */

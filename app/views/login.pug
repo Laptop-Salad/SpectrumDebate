@@ -1,7 +1,7 @@
 extends base.pug
 
 block content
-    main(class="account-page")
+    main(id="loginForm" class="account-page")
         div(class="account-form")
             h1 = "Login"
             form(id="login" method="POST" action="/login")
