@@ -1,8 +1,10 @@
+const domain = "//localhost/";
+
 function createUser() {
     const username = "tester" + Math.floor(Math.random() * 100);
     const password = "Password" + Math.floor(Math.random() * 100);
 
-    cy.visit("//localhost/signup");
+    cy.visit(domain + "signup");
     cy.get("#username").type(username);
     cy.get("#password").type(password);
     cy.get("#cPassword").type(password);
@@ -13,7 +15,7 @@ function createUser() {
 }
 
 function logUserIn(username, password) {
-    cy.visit("//localhost/login");
+    cy.visit(domain + "login");
     cy.get("#username").type(username);
     cy.get("#password").type(password);
     cy.get("#login").submit();
@@ -24,4 +26,4 @@ function deleteUser(username, password) {
     cy.get("#login").submit();  
 }
 
-export {createUser, logUserIn, deleteUser};
+export {domain, createUser, logUserIn, deleteUser};

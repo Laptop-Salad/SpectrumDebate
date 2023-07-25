@@ -36,7 +36,7 @@ block content
                         input(type="submit" value="Agree")
 
                 //- Statement text
-                p = "{$statement['text']}"
+                p(id="statementText") = "{$statement['text']}"
 
                 //- Commenting Form
                 form(method="POST" id="commentForm" action="{$domain}/comment/{$statement['id']}")
