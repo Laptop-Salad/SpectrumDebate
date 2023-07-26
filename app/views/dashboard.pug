@@ -7,14 +7,14 @@ block content
             h1 = "Dashboard"
             button(id="nsBtn") = "Write a new statement..."
 
-            button(id="delAcc" href="delete-user/{$username}") = "Delete this account"
+            button(id="delAcc" href="delete-user/{username}") = "Delete this account"
 
         //- New statement modal
         dialog(id="nsModal")
             div
                 h2 = "Write a new statement"
                 button(id="nsCloseBtn") = "x"
-            form(id="nsForm" method="POST" action="new-statement")
+            form(id="nsForm" method="POST" action="new-statement" autocomplete="off")
                 input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
                 textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
                 input(type="submit" class="submit")
