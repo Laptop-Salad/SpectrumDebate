@@ -39,7 +39,7 @@ block content
                 p(id="statementText") = "{$statement['text']}"
 
                 //- Commenting Form
-                form(method="POST" id="commentForm" action="{$domain}/comment/{$statement['id']}")
+                form(method="POST" id="commentForm" action="{$domain}/comment/{$statement['id']}" autocomplete="off")
                     input(name="comment" id="commentInput" type="text" minlength="3" maxlength="100" required)
                     input(type="submit" id="commentButton" value="Comment")
 
