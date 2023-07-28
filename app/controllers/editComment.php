@@ -43,7 +43,7 @@ class EditComment extends BaseController {
             die();
         }
 
-        return $currComment[3];
+        return $currComment["text"];
     }
 }
 ?>
