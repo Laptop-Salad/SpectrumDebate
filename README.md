@@ -17,3 +17,6 @@ Spectrum Debate is a site where users can debate various topics using three opti
 - Searching for statements
 - Searching for user profiles
 - Searching for comments on a post
+
+## License
+This project is licensed under the MIT license.
