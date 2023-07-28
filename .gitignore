@@ -1,6 +1,5 @@
 vendor/
 config/
-.htaccess
 cypress/downloads
 cypress/fixtures
 cypress/support
