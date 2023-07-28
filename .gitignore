@@ -1,5 +1,6 @@
 vendor/
-config/
+config/config.php
+config/dbconfig.php
 cypress/downloads
 cypress/fixtures
 cypress/support
