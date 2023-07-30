@@ -27,7 +27,9 @@ head
 body
     header(id="header") 
         section(class="logo-container") 
-            a(href="{$domain}/" id="logo") = "Spectrum Debate"
+            a(href="{$domain}/" id="logo")
+                img(src="../app/assets/logo.svg", alt="Spectrum debate logo")
+
         nav(class="shortcuts")
             ul
                 li(class="link")
