@@ -70,6 +70,7 @@
     $router->post("/comment/{statementId}/", function($statementId) {
         require __DIR__ . "/controllers/comment.php";
         $comment = new CommentController($statementId);
+        $comment->handleRequest();
     });
 
     $router->any("/edit-comment/{commentId}", function($commentId) {

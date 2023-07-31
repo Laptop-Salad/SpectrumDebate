@@ -6,6 +6,7 @@ class Account extends BaseModel
     function __construct() {
         $this->connectDB();
     }
+
     function createUser($username, $userpass)
     {
         /**
@@ -33,7 +34,6 @@ class Account extends BaseModel
             return False;
         }
     }
-
 
     function deleteUser($userid)
     {
@@ -69,44 +69,46 @@ class Account extends BaseModel
         $username = $this->sanitizeInput($username);
         $userpass = $this->sanitizeInput($userpass);
 
-        // Bind and prepare statement
-        $stmt = $this->conn->prepare("SELECT password FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-
-        // Execute statement
-        $stmt->execute();
-        $result = $stmt->get_result();
+        // Get the full details of the user
+        $user = $this->findUser($username, true);
     
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                if (password_verify($userpass, $row["password"])) {
-                    return True;
-                }
-
-                return False;
-            }
+        if (password_verify($userpass, $user["password"])) {
+            return True;
         } else {
             return False;
         }
     }
     
-    function findUser($username)
+    function findUser($username, $full = False)
     {
         /**
          * checks that a username exists
          * 
          * @param string $username
-         * @return string empty|int integer is found userid
+         * @param bool $full if the full user details are required or just the user id
+         * @return string empty|int integer is found userid| array if the $full param is true
          */
 
         // Prepare and bind statement
-        $stmt = $this->conn->prepare("SELECT id FROM users WHERE username = ?");
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
 
         // Execute and bind result
         $stmt->execute();
         $result = $stmt->get_result();
+        
+        // If the full details of the user is required
+        if ($full) {
+            while ($row = $result->fetch_assoc()) {
+                return array(
+                    "id" => $row["id"],
+                    "username" => $row["username"],
+                    "password" => $row["password"]
+                );
+            }
+        }
 
+        // If only the userid is required
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 return $row["id"];

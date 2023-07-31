@@ -1,10 +1,10 @@
 <?php
 
-require dirname(__DIR__, 2) . "/app/controllers/BaseController.php";
+require dirname(__DIR__, 3) . "/app/controllers/BaseController.php";
 
 use PHPUnit\Framework\TestCase;
 
-final class BaseControllerTest extends TestCase {
+final class BaseTest extends TestCase {
     public function testClassConstructor() {
         $base = new BaseController;
         $base->baseConstruct();
