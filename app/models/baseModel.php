@@ -13,6 +13,11 @@
         }
 
         function formatTime($timestamp) {
+            /**
+             * @param string $timestamp in the format: YYYY-MM-DD HH:MI:SS
+             * @return string x amount_of_time ago, e.g. 5 hours ago
+             */
+
             // Set correct timezone
             date_default_timezone_set('Europe/London');
 
