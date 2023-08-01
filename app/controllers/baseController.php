@@ -46,7 +46,6 @@ class BaseController
 
         $variables["domain"] = "//localhost";
         $variables["title"] = $pageTitle;
-        $variables["assets_path"] = dirname(__DIR__, 1) . "/assets";
 
         // Username to display in navbar
         if (isset($_SESSION["username"])) {
