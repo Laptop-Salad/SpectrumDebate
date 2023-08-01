@@ -28,7 +28,7 @@ body
     header(id="header") 
         section(class="logo-container") 
             a(href="{$domain}/" id="logo")
-                img(src="../app/assets/logo.svg", alt="Spectrum debate logo")
+                img(src="{$domain}/app/assets/logo.svg", alt="Spectrum debate logo")
 
         nav(class="shortcuts")
             ul
@@ -47,12 +47,12 @@ body
                 ul
                     li
                         a(href="{$domain}/dashboard")
-                            i(class="fa-solid fa-user" style="color: #ffffff;")
+                            i(class="fa-solid fa-user" style="color: #000;")
                             span = " "
                             span(id="nUsername") = "{$username}"
                     li
                         a(href="{$domain}/logout" id="navLogout" class="logout")
-                            i(class="fa-solid fa-right-from-bracket" style="color: #ffffff;")
+                            i(class="fa-solid fa-right-from-bracket" style="color: #000;")
                             span = " Logout"
 
         else
@@ -83,12 +83,12 @@ body
                 ul
                     li
                         a(href="{$domain}/dashboard")
-                            i(class="fa-solid fa-user" style="color: #ffffff;")
+                            i(class="fa-solid fa-user" style="color: #000;")
                             span = " "
                             span(id="sUsername") = "{$username}"
                     li
                         a(href="{$domain}/logout" id="navLogout" class="logout")
-                            i(class="fa-solid fa-right-from-bracket" style="color: #ffffff;")
+                            i(class="fa-solid fa-right-from-bracket" style="color: #000;")
                             span = " Logout"
         else
             nav(class="sm-accounts")
