@@ -4,7 +4,9 @@ This document details the file structure of the website.
 ## Main Folders
 - app => The actual code for the website
 - config (excluded) => Any config files, for example, connecting to the database.
-- cypress => Frontend tests using [Cypress](https://www.cypress.io/), written using JS.
+- tests 
+    cypress => Frontend tests using [Cypress](https://www.cypress.io/), written using JS.
+    unittests
 - docs => Documentation for the website
 
 ## /app
