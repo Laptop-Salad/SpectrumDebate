@@ -17,7 +17,7 @@
              * 
              * @param string $username
              * @param string $statement_id
-             * @param string $vote
+             * @param string $vote disagree neutral agree
              * @return bool
              */
             $userid = $this->account->findUser($username);
@@ -80,11 +80,11 @@
             $data = array();
 
             while ($row = $result->fetch_assoc()) {
-                array_push($data,
-                $row["id"],
-                $row["statement_id"],
-                $row["opinion"],
-                $row["author_id"]);
+                $data = array(
+                "id" => $row["id"],
+                "statement_id" => $row["statement_id"],
+                "opinion" => $row["opinion"],
+                "author_id" => $row["author_id"]);
 
                 return $data;
             }

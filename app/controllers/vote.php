@@ -27,11 +27,11 @@
 
             if ($findVote) {
                 // If opinions are the same, delete
-                if ($findVote[2] == $this->opinion) {
-                    $vote->deleteVote($findVote[0]);
+                if ($findVote["opinion"] == $this->opinion) {
+                    $vote->deleteVote($findVote["id"]);
                 } else {
                     // If opinions are different, update
-                    $vote->updateVote($findVote[0], $this->opinion);
+                    $vote->updateVote($findVote["id"], $this->opinion);
                 }
             } else {
                 // Create new vote
