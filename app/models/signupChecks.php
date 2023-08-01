@@ -4,8 +4,8 @@ require_once "baseModel.php";
 class SignupCheck extends BaseModel {
     function checkLength($username, $password) {
         /**
-         * @param string $username
-         * @param string $password
+         * @param string $username between 3 and 10 characters
+         * @param string $password between 8 and 20 characters
          * 
          * Check if username and password meets length requirements
          */

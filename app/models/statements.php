@@ -91,7 +91,6 @@ class Statement extends BaseModel
         return False;
     }
 
-
     function getAllStatements()
     {
         /**
