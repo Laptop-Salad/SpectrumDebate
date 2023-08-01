@@ -19,6 +19,6 @@ block content
 
                 each $comment in $comments
                     p(class="comment") 
-                        span = "{$comment[3]}"
+                        span = "{$comment['text']}"
     else 
         h1 = "404 User Not Found"

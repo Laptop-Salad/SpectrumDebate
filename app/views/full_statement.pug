@@ -48,12 +48,12 @@ block content
                     each $comment in $comments
                         section(class="comment")
                             p 
-                                span = "{$comment[3]}"
-                                span = " - {$comment[2]}"
+                                span = "{$comment['text']}"
+                                span = " - {$comment['username']}"
                             
-                            if $comment[2] != ""
-                                if $username == $comment[2]
-                                    a(href="{$domain}/delete-comment/{$comment[0]}") = "Delete Comment"
-                                    a(href="{$domain}/edit-comment/{$comment[0]}") = " Edit Comment"
+                            if $comment["username"] != ""
+                                if $username == $comment["username"]
+                                    a(href="{$domain}/delete-comment/{$comment['id']}") = "Delete Comment"
+                                    a(href="{$domain}/edit-comment/{$comment['id']}") = " Edit Comment"
     else 
         h1 = "404 Statement Not Found"

@@ -9,12 +9,17 @@
             $this->connectDB();
         }
 
-        function createNewComment($statement_id, $comment, $username) {
+        function createComment($statementId, $comment, $username) {
+            /**
+             * @param int $statementId
+             * @param string $comment
+             * @param string $username
+             */
             $userid = $this->account->findUser($username);
 
             $stmt = $this->conn->prepare("INSERT INTO comments (statement_id, author_id, text)
             VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $statement_id, $userid, $comment);
+            $stmt->bind_param("sss", $statementId, $userid, $comment);
             
             if($stmt->execute()) {
                 return True;
@@ -24,6 +29,10 @@
         }
 
         function updateComment($commentId, $text) {
+            /**
+             * @param string $commentId
+             * @param string $text
+             */
             $stmt = $this->conn->prepare("UPDATE comments SET text = ?
             WHERE id = ?");
             $stmt->bind_param("ss", $text, $commentId);
@@ -36,6 +45,9 @@
         }
 
         function deleteComment($commentId) {
+            /**
+             * @param string $commentId
+             */
             $stmt = $this->conn->prepare("DELETE FROM comments WHERE id = ?");
             $stmt->bind_param("s", $commentId);
             
@@ -46,9 +58,12 @@
             return False;
         }
 
-        function getStatementComments($statement_id) {
+        function getStatementComments($statementId) {
+            /**
+             * @param string $statementId
+             */
             $stmt = $this->conn->prepare("SELECT * FROM comments WHERE statement_id = ?");
-            $stmt->bind_param("s", $statement_id);
+            $stmt->bind_param("s", $statementId);
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -57,10 +72,10 @@
             while ($row = $result->fetch_assoc()) {
                 $username = $this->account->findUserById($row["author_id"]);
                 array_push($data, array(
-                    $row["id"],
-                    $row["statement_id"],
-                    $username,
-                    $row["text"]
+                    "id" => $row["id"],
+                    "statement_id" => $row["statement_id"],
+                    "username" => $username,
+                    "text" => $row["text"]
                 ));
             }
 
@@ -68,6 +83,9 @@
         }
 
         function getUserComments($userId) {
+            /**
+             * @param string $userId
+             */
             $stmt = $this->conn->prepare("SELECT * FROM comments WHERE author_id = ?");
             $stmt->bind_param("s", $userId);
             $stmt->execute();
@@ -78,10 +96,10 @@
             while ($row = $result->fetch_assoc()) {
                 $username = $this->account->findUserById($row["author_id"]);
                 array_push($data, array(
-                    $row["id"],
-                    $row["statement_id"],
-                    $username,
-                    $row["text"]
+                    "id" => $row["id"],
+                    "statement_id" => $row["statement_id"],
+                    "username" => $username,
+                    "text" => $row["text"]
                 ));
             }
 
@@ -89,6 +107,9 @@
         }
 
         function getCommentById($commentId) {
+            /**
+             * @param string $commentId
+             */
             $stmt = $this->conn->prepare("SELECT * FROM comments WHERE id = ?");
             $stmt->bind_param("s", $commentId);
             $stmt->execute();
