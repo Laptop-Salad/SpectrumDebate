@@ -16,7 +16,7 @@ class Dashboard extends BaseController
          * 
          * @return array of statements
          */
-        require_once dirname(__DIR__, 1) . "/models/statements.php";
+        require_once dirname(__DIR__, 1) . "/models/Statement.php";
 
         $statement = new Statement;
         $statements = $statement->getUserStatements($_SESSION["username"]);

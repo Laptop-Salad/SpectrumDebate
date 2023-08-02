@@ -1,4 +1,11 @@
 extends base.pug
+    div(id="searchContainer")
+        form(id="searchForm" autocomplete="off")
+            input(id="search" type="text" minlength="1" maxlength="100" placeholder="Search") 
+        
+        div(id="searchResults")
+            h3 = "Statements"
+            h3 = "Users"
 
     main(class="statements") 
         if $statements == []
@@ -19,3 +26,5 @@ extends base.pug
                             a(class="username" href="{$domain}/user/{$statement['username']}/statements") = $statement["username"]
                             span = ", "
                             span = $statement["time"]
+    
+    script(src="../app/scripts/home.js") 

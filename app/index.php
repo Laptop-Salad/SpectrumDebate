@@ -1,98 +1,104 @@
 <?php
     require_once "../vendor/autoload.php";
-    require __DIR__ . "/controllers/baseController.php";
+    require __DIR__ . "/controllers/BaseController.php";
 
     use Phroute\Phroute\RouteCollector;
 
     $router = new RouteCollector();
 
     $router->get("/", function () {
-        require __DIR__ . "/controllers/home.php";
+        require __DIR__ . "/controllers/Home.php";
         $home = new Home;
     });
 
     $router->get("/home", function () {
-        require __DIR__ . "/controllers/home.php";
+        require __DIR__ . "/controllers/Home.php";
         $home = new Home;
     });
 
     $router->get("/dashboard", function () {
-        require __DIR__ . "/controllers/dashboard.php";
+        require __DIR__ . "/controllers/Dashboard.php";
         $dashboard = new Dashboard;
 
     });
 
     $router->any("/signup", function () {
-        require __DIR__ . "/controllers/signup.php";
+        require __DIR__ . "/controllers/Signup.php";
         $signup = new Signup;
     });
 
     $router->get("/delete-user/{username}", function($username) {
-        require __DIR__ . "/controllers/deleteUser.php";
+        require __DIR__ . "/controllers/DeleteUser.php";
         $deleteUser = new DeleteUser($username);
     });
 
     $router->any("/login", function() {
-        require __DIR__ . "/controllers/login.php";
+        require __DIR__ . "/controllers/Login.php";
         $login = new Login;
     });
 
     $router->any("/logout", function () {
-        require __DIR__ . "/controllers/logout.php";
+        require __DIR__ . "/controllers/Logout.php";
         $logout = new Logout;
     });
 
     $router->post("/new-statement", function () {
-        require __DIR__ . "/controllers/newStatement.php";
+        require __DIR__ . "/controllers/NewStatement.php";
         $newStatement = new NewStatement;
     });
 
     $router->get("/statement/{id}", function($id) {
-        require __DIR__ . "/controllers/fullStatement.php";
-        $fullStatement = new fullStatement($id);
+        require __DIR__ . "/controllers/FullStatement.php";
+        $fullStatement = new FullStatement($id);
     });
 
     $router->any("/edit-statement/{statementId}", function($statementId) {
-        require __DIR__ . "/controllers/editStatement.php";
+        require __DIR__ . "/controllers/EditStatement.php";
         $editStatement = new EditStatement($statementId);
     });
 
     $router->get("/delete-statement/{statementId}", function($statementId) {
-        require __DIR__ . "/controllers/deleteStatement.php";
+        require __DIR__ . "/controllers/DeleteStatement.php";
         $deleteStatement = new DeleteStatement($statementId);
     });
 
     $router->post("/vote/{statementId}/{vote}", function($statementId, $vote) {
-        require __DIR__ . "/controllers/vote.php";
+        require __DIR__ . "/controllers/Vote.php";
         $vote = new VoteController($statementId, $vote);
     });
 
     $router->post("/comment/{statementId}/", function($statementId) {
-        require __DIR__ . "/controllers/comment.php";
+        require __DIR__ . "/controllers/CommentController.php";
         $comment = new CommentController($statementId);
         $comment->handleRequest();
     });
 
     $router->any("/edit-comment/{commentId}", function($commentId) {
-        require __DIR__ . "/controllers/editComment.php";
+        require __DIR__ . "/controllers/EditComment.php";
         $editComment = new EditComment($commentId);
     });
 
     $router->get("/delete-comment/{commentId}", function($commentId) {
-        require __DIR__ . "/controllers/deleteComment.php";
+        require __DIR__ . "/controllers/DeleteComment.php";
         $deleteComment = new DeleteComment($commentId);
     });
 
     $router->get("/user/{username}/{view}", function($username, $view) {
-        require __DIR__ . "/controllers/userProfile.php";
+        require __DIR__ . "/controllers/UserProfile.php";
         $userProfile = new UserProfile($username, $view);
     });
 
     // Ajax check username available
     $router->get("/user-avail/{username}", function($username) {
-        require_once __DIR__ . "/models/signupChecks.php";
+        require_once __DIR__ . "/models/SignupCheck.php";
         $signupCheck = new SignupCheck;
         echo $signupCheck->checkUserAvail($username);
+    });
+
+    // Ajax search for statements
+    $router->get("/search/{term}", function($term) {
+        require_once __DIR__ . "/controllers/Search.php";
+        $search = new Search($term);
     });
 
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());

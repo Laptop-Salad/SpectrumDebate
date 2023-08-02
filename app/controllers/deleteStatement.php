@@ -2,8 +2,8 @@
 class DeleteStatement extends BaseController {
     private $currStatement;
     function __construct($statementId) {
-        require_once dirname(__DIR__ , 1) . "/models/statements.php";
-        require_once dirname(__DIR__, 1) . "/models/accounts.php";
+        require_once dirname(__DIR__ , 1) . "/models/Statement.php";
+        require_once dirname(__DIR__, 1) . "/models/Account.php";
 
         $this->baseConstruct();
         $this->ensureUserLoggedIn();

@@ -1,6 +1,6 @@
 <?php
-require dirname(__DIR__, 3) . "/app/models/statements.php";
-require dirname(__DIR__, 3) . "/app/models/accounts.php";
+require dirname(__DIR__, 3) . "/app/models/Statement.php";
+require dirname(__DIR__, 3) . "/app/models/Account.php";
 
 
 use PHPUnit\Framework\TestCase;

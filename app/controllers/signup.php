@@ -8,7 +8,7 @@ class Signup extends BaseController
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Check signup requirements
-            require_once dirname(__DIR__, 1) . "/models/signupChecks.php"; 
+            require_once dirname(__DIR__, 1) . "/models/SignupCheck.php"; 
             $signupCheck = new SignUpCheck;
 
             $username = $_POST["username"];
@@ -68,7 +68,7 @@ class Signup extends BaseController
 
     function doCreateUser()
     {
-        require_once dirname(__DIR__, 1) . "/models/accounts.php";
+        require_once dirname(__DIR__, 1) . "/models/Account.php";
 
         // Get user input
         $username = $_POST["username"];

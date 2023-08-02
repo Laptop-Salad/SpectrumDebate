@@ -10,7 +10,7 @@ class EditComment extends BaseController {
         $text = $this->ensureValid();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            require_once dirname(__DIR__, 1) . "/models/comments.php";
+            require_once dirname(__DIR__, 1) . "/models/Comment.php";
             $comment = new Comment;
             $comment->updateComment($commentId, $_POST["comment"]);
             echo $this->getRedirect();
@@ -27,7 +27,7 @@ class EditComment extends BaseController {
 
     function ensureValid() {
         // Get comment
-        require_once dirname(__DIR__, 1) . "/models/comments.php";
+        require_once dirname(__DIR__, 1) . "/models/Comment.php";
         $comment = new Comment;
         $currComment = $comment->getCommentById($this->commentId);
 

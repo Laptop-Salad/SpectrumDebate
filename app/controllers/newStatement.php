@@ -9,7 +9,7 @@ class NewStatement extends BaseController
 
     function doCreateStatement()
     {
-        require_once dirname(__DIR__, 1) . "/models/statements.php";
+        require_once dirname(__DIR__, 1) . "/models/Statement.php";
 
         $title = $_POST["ns-title"];
         $text = $_POST["ns-text"];

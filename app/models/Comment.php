@@ -1,10 +1,10 @@
 <?php
-    require_once "baseModel.php";
+    require_once "BaseModel.php";
 
     class Comment extends BaseModel {
         private $account;
         function __construct() {            
-            require_once "accounts.php";
+            require_once "Account.php";
             $this->account = New Account;
             $this->connectDB();
         }

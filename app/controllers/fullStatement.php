@@ -1,8 +1,8 @@
 <?php
-    class fullStatement extends BaseController {
+    class FullStatement extends BaseController {
         function __construct($id) {
             $this->baseConstruct();
-            require_once dirname(__DIR__, 1) . "/models/statements.php";
+            require_once dirname(__DIR__, 1) . "/models/Statement.php";
             $statement = new Statement;
             $data = $statement->getStatementById($id);
 
@@ -13,12 +13,12 @@
             }
 
             // Get votes
-            require_once dirname(__DIR__, 1) . "/models/votes.php";
+            require_once dirname(__DIR__, 1) . "/models/Vote.php";
             $vote = new Vote;
             $votesCount = $vote->getStatementVotesCount($data["id"]);
 
             // Get comments
-            require_once dirname(__DIR__, 1) . "/models/comments.php";
+            require_once dirname(__DIR__, 1) . "/models/Comment.php";
             $comment = new Comment;
             $comments = $comment->getStatementComments($id);
 

@@ -1,5 +1,5 @@
 <?php
-require_once "baseModel.php";
+require_once "BaseModel.php";
 
 class Account extends BaseModel
 {

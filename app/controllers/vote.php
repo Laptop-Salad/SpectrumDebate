@@ -20,7 +20,7 @@
         }
         
         function doCreateVote() {
-            require_once dirname(__DIR__, 1) . "/models/votes.php";
+            require_once dirname(__DIR__, 1) . "/models/Vote.php";
 
             $vote = New Vote;
             $findVote = $vote->findVote($this->statementId, $_SESSION["username"]);
@@ -41,7 +41,7 @@
 
         function checkVoteValid() {
             // Ensure post exists
-            require_once dirname(__DIR__, 1) . "/models/statements.php";
+            require_once dirname(__DIR__, 1) . "/models/Statement.php";
             $statement = new Statement;
             
             $currStatement = $statement->getStatementById($this->statementId);

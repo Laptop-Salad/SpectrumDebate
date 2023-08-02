@@ -7,7 +7,7 @@
             $this->baseConstruct();
 
             // Get username
-            require_once dirname(__DIR__, 1) . "/models/accounts.php";
+            require_once dirname(__DIR__, 1) . "/models/Account.php";
             $account = new Account();
             $userId = $account->findUser($this->username);
             $this->userId = $userId;
@@ -36,7 +36,7 @@
 
         function displayStatements() {
             // Get statements
-            require_once dirname(__DIR__, 1) . "/models/statements.php";
+            require_once dirname(__DIR__, 1) . "/models/Statement.php";
             $statement = new Statement;
             $statements = $statement->getUserStatements($this->username);
 
@@ -51,7 +51,7 @@
 
         function displayComments() {            
             // Get comments
-            require_once dirname(__DIR__, 1) . "/models/comments.php";
+            require_once dirname(__DIR__, 1) . "/models/Comment.php";
             $comment = new Comment();
             $comments = $comment->getUserComments($this->userId);
 

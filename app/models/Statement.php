@@ -1,5 +1,5 @@
 <?php
-require_once "baseModel.php";
+require_once "BaseModel.php";
 
 class Statement extends BaseModel
 {
@@ -7,7 +7,7 @@ class Statement extends BaseModel
     function __construct()
     {
         $this->connectDB();
-        require_once "accounts.php";
+        require_once "Account.php";
         $account = new Account;
         $this->account = $account;
     }
@@ -113,7 +113,7 @@ class Statement extends BaseModel
                 $formattedTime = $this->formatTime($row["timestamp"]);
 
                 // Get votes count
-                require_once "votes.php";
+                require_once "Vote.php";
                 $vote = new Vote();
                 $votesCount = $vote->getStatementVotesCount($row["id"]);
                 
@@ -162,7 +162,7 @@ class Statement extends BaseModel
             $formattedTime = $this->formatTime($row["timestamp"]);
 
             // Get votes count
-            require_once "votes.php";
+            require_once "Vote.php";
             $vote = new Vote();
             $votesCount = $vote->getStatementVotesCount($row["id"]);
 
@@ -216,6 +216,48 @@ class Statement extends BaseModel
         }
 
         return $data;
+    }
+
+    function getLikeStatements($term) {
+        /**
+         * get statements whose title contains $term
+         * 
+         * @param string $term statements should contain
+         * @return array of statements
+         */
+        $stmt = $this->conn->prepare("SELECT * FROM statements WHERE title LIKE ?");
+        $stmt->bind_param("s", "%" . $term . "%");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Create array to hold results
+        $data = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                // Look up user's username by id
+                $username = $this->account->findUserById($row["author_id"]);
+
+                // Format time 
+                $formattedTime = $this->formatTime($row["timestamp"]);
+
+                // Get votes count
+                require_once "Vote.php";
+                $vote = new Vote();
+                $votesCount = $vote->getStatementVotesCount($row["id"]);
+                
+                array_push($data, array(
+                    "id" => $row["id"],
+                    "username" => $username,
+                    "title" => $row["title"],
+                    "text" => $row["text"],
+                    "time" => $formattedTime,
+                    "votesCount" => $votesCount,
+                ));
+            }
+        }
+
+        return $data;  
     }
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-require_once "baseModel.php";
+require_once "BaseModel.php";
 
 class SignupCheck extends BaseModel {
     function checkLength($username, $password) {
@@ -29,7 +29,7 @@ class SignupCheck extends BaseModel {
          * 
          * Check if username is available
          */
-        require_once "accounts.php";
+        require_once "Account.php";
         $account = new Account;
         $checkUser = $account->findUser($username);
         

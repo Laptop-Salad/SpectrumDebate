@@ -19,3 +19,4 @@ composer install
 4. Import the database using the file in /database. For example, using PhpMyAdmin.
 5. In the /config folder rename [config_template.php](../config/config_template.php) to config.php.
 6. Place your username and password for the database in their locations.
+7. The project should now be working.

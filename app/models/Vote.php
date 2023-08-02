@@ -1,12 +1,12 @@
 <?php
-    require_once "baseModel.php";
+    require_once "BaseModel.php";
     class Vote extends BaseModel {    
         private $account;
 
         function __construct()
         {
             $this->connectDB();
-            require_once "accounts.php";
+            require_once "Account.php";
             $account = new Account;
             $this->account = $account;
         }
