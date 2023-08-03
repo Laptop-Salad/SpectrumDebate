@@ -2,6 +2,7 @@
 class BaseController
 {
     private $forwarding;
+    private $domain = "//localhost";
     function baseConstruct()
     {
         /**
@@ -29,9 +30,9 @@ class BaseController
          * @param string $forwarding states what popup to display, e.g. successful acc. creation
          */
         if ($forwarding == "") {
-            return "<script type='text/javascript'>window.location.href='//localhost/$location'</script>";
+            return "<script type='text/javascript'>window.location.href='$this->domain/$location'</script>";
         } else {
-            return "<script type='text/javascript'>window.location.href='//localhost/$location?alert=$forwarding'</script>";
+            return "<script type='text/javascript'>window.location.href='$this->domain/$location?alert=$forwarding'</script>";
         }
     }
 
@@ -44,7 +45,7 @@ class BaseController
          * @param array $variables variables to pass to the pug file
          */
 
-        $variables["domain"] = "//localhost";
+        $variables["domain"] = $this->domain;
         $variables["title"] = $pageTitle;
 
         // Username to display in navbar
