@@ -11,12 +11,13 @@ Spectrum Debate is a site where users can debate various topics using three opti
 - Account deletion
 - Voting on statements
 - Viewing user profiles with all their statements and comments
+- Searching for statements
+- Searching for user profiles
 
 ## Future features
 - When you comment, your vote on the statement is shown above your comment
-- Searching for statements
-- Searching for user profiles
 - Searching for comments on a post
+- Following users
 
 ## License
 This project is licensed under the MIT license.
