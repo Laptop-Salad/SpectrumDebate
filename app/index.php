@@ -95,11 +95,16 @@
         echo $signupCheck->checkUserAvail($username);
     });
 
-    // Ajax search for statements
+    // Ajax search for statements and users
     $router->get("/search/{term}", function($term) {
         require_once __DIR__ . "/controllers/Search.php";
         $search = new Search($term);
     });
+
+    $router->get("/search/", function() {
+        return json_encode([]);
+    });
+
 
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 
