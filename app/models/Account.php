@@ -139,5 +139,34 @@ class Account extends BaseModel
             }
         }
     }
+
+    function getLikeUsers($term)
+    {
+        /**
+         * find users whose username contains $term
+         * 
+         * @param string $term username should contain
+         * @return array[array] of users
+         */
+
+        $term = "%$term%";
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE lower(username) LIKE lower(?)");
+        $stmt->bind_param("s", $term);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $data = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($data, array(
+                    "id" => $row["id"],
+                    "username" => $row["username"]
+                ));
+            }
+        }
+
+        return $data;
+    }
 }
 ?>

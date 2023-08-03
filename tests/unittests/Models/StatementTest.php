@@ -1,6 +1,6 @@
 <?php
-require dirname(__DIR__, 3) . "/app/models/Statement.php";
-require dirname(__DIR__, 3) . "/app/models/Account.php";
+require_once dirname(__DIR__, 3) . "/app/models/Statement.php";
+require_once dirname(__DIR__, 3) . "/app/models/Account.php";
 
 
 use PHPUnit\Framework\TestCase;
@@ -83,7 +83,8 @@ class StatementTest extends TestCase {
 
         $this->assertEquals(
             $this->statementId,
-            $result[0]["id"],
+            // The new statement will be the last entry
+            $result[count($result) - 1]["id"],
             "Statements not found successfully"
         );
     }

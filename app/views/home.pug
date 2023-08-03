@@ -5,7 +5,10 @@ extends base.pug
         
         div(id="searchResults")
             h3 = "Statements"
+            div(id="searchStatements")
+            hr
             h3 = "Users"
+            div(id="searchUsers")
 
     main(class="statements") 
         if $statements == []

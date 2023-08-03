@@ -1,6 +1,5 @@
 <?php
-require dirname(__DIR__, 3) . "/app/models/SignUpCheck.php";
-
+require_once dirname(__DIR__, 3) . "/app/models/SignUpCheck.php";
 
 use PHPUnit\Framework\TestCase;
 

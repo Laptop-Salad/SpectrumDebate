@@ -13,7 +13,7 @@ class CommentController extends BaseController {
         /**
          * Instantiates a comment model to create a comment.
          */
-        require_once dirname(__DIR__, 1) . "/models/Comments.php";
+        require_once dirname(__DIR__, 1) . "/models/Comment.php";
         $comment = new Comment;
         $comment->createComment($this->statementId, $_POST["comment"], $_SESSION["username"]);
     }

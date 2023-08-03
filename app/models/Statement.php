@@ -223,10 +223,11 @@ class Statement extends BaseModel
          * get statements whose title contains $term
          * 
          * @param string $term statements should contain
-         * @return array of statements
+         * @return array[array] of statements
          */
-        $stmt = $this->conn->prepare("SELECT * FROM statements WHERE title LIKE ?");
-        $stmt->bind_param("s", "%" . $term . "%");
+        $term = "%$term%";
+        $stmt = $this->conn->prepare("SELECT * FROM statements WHERE lower(title) LIKE lower(?)");
+        $stmt->bind_param("s", $term);
         $stmt->execute();
         $result = $stmt->get_result();
 

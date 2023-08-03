@@ -1,7 +1,7 @@
 <?php
-require dirname(__DIR__, 3) . "/app/models/Vote.php";
-require dirname(__DIR__, 3) . "/app/models/Account.php";
-require dirname(__DIR__, 3) . "/app/models/Statementphp";
+require_once dirname(__DIR__, 3) . "/app/models/Vote.php";
+require_once dirname(__DIR__, 3) . "/app/models/Account.php";
+require_once dirname(__DIR__, 3) . "/app/models/Statement.php";
 
 use PHPUnit\Framework\TestCase;
 

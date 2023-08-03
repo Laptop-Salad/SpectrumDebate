@@ -1,21 +1,24 @@
 <?php
-require dirname(__DIR__, 3) . "/app/models/Account.php";
+require_once dirname(__DIR__, 3) . "/app/models/Account.php";
 
 use PHPUnit\Framework\TestCase;
 
 class AccountTest extends TestCase {
     private $username = "testUser";
+    private $userId;
     private $password = "testPass";
 
-    public function testCreateUser() {
+    public function setUp() : void {
         $user = new Account;
         $result = $user->createUser($this->username, $this->password);
+        $this->userId = $user->conn->insert_id;
         
         $this->assertEquals(
             true,
             $result, 
             "User was not created successfully"
         );
+
     }
 
     public function testFindUser() {
@@ -26,16 +29,11 @@ class AccountTest extends TestCase {
             $result,
             "Username could not be found"
         );
-
-        return $result;
     }
 
-    /**
-     * @depends testFindUser
-     */
-    public function testFindUserById($userId) {
+    public function testFindUserById() {
         $user = new Account;
-        $result = $user->findUserById($userId);
+        $result = $user->findUserById($this->userId);
 
         $this->assertEquals(
             $this->username,
@@ -55,12 +53,43 @@ class AccountTest extends TestCase {
         );
     }
 
-    /**
-     * @depends testFindUser
-     */
-    public function testDeleteUser($userId) {
+    public function testDeleteUser() {
         $user = new Account;
-        $result = $user->deleteUser($userId);
+        $result = $user->deleteUser($this->userId);
+
+        $this->assertEquals(
+            true,
+            $result,
+            "User was not deleted successfully"
+        );
+    }
+
+    public function testGetLikeUsers() {
+        $user = new Account;
+        $result = $user->getLikeUsers($this->username);
+
+        $this->assertNotEmpty(
+            $result,
+            "Users not found successfully"
+        );
+
+        $foundUser = false;
+
+        foreach($result as $user) {
+            if ($user["username"] == $this->username) {
+                $foundUser = true;
+            }
+        }
+
+        $this->assertTrue(
+            $foundUser,
+            "User not found"
+        );
+    }
+
+    public function tearDown() : void {
+        $user = new Account;
+        $result = $user->deleteUser($this->userId);
 
         $this->assertEquals(
             true,

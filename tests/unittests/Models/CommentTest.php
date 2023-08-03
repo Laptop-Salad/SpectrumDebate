@@ -1,7 +1,7 @@
 <?php
-require dirname(__DIR__, 3) . "/app/models/Comment.php";
-require dirname(__DIR__, 3) . "/app/models/Statement.php";
-require dirname(__DIR__, 3) . "/app/models/Account.php";
+require_once dirname(__DIR__, 3) . "/app/models/Comment.php";
+require_once dirname(__DIR__, 3) . "/app/models/Statement.php";
+require_once dirname(__DIR__, 3) . "/app/models/Account.php";
 
 
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,13 @@ class CommentTest extends TestCase {
     private $updatedComment = "Hello everyone!";
     private function createTestComment() {
         $comment = new Comment;
-        $comment->createComment($this->statementId, $this->comment, $this->username);
+        $result = $comment->createComment($this->statementId, $this->comment, $this->username);
+
+        $this->assertEquals(
+            true,
+            $result,
+            "Test comment was not successfully created"
+        );
 
         return $comment;
     }
@@ -92,7 +98,7 @@ class CommentTest extends TestCase {
         $comment = $this->createTestComment();
         $result = $comment->getUserComments($this->userId);
 
-        $this->assertNotNull(
+        $this->assertNotEmpty(
             $result,
             "User comments not found"
         );
