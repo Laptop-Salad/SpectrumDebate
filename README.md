@@ -15,12 +15,12 @@ Spectrum Debate is a site where users can debate various topics using three opti
 - Searching for user profiles
 
 ## Future features
-When you comment, your vote on the statement is shown above your comment
-Adding users as friends
-Getting notifications on the website when friends post a statement
-Adding tags to posts such as "Food" "Politics", etc.
-Filter system
-Night mode
+- When you comment, your vote on the statement is shown above your comment
+- Adding users as friends
+- Getting notifications on the website when friends post a statement
+- Adding tags to posts such as "Food" "Politics", etc.
+- Filter system
+- Night mode
 
 ## License
 This project is licensed under the MIT license.
