@@ -2,7 +2,7 @@
 class BaseController
 {
     private $forwarding;
-    private $domain = "//localhost";
+    public $domain = "//localhost";
     function baseConstruct()
     {
         /**
@@ -80,6 +80,7 @@ class BaseController
                     confirmButtonText: 'Ok'
                   })
                 </script>";
+                break;
             default:
                 break;
         }

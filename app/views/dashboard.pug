@@ -2,51 +2,61 @@ extends base.pug
 
 block content
     main(id="dashboard")
-        //- Account options
-        section(class="options")
-            h1 = "Dashboard"
-            button(id="nsBtn") = "Write a new statement..."
+        h1 = "Dashboard"
 
-            button(id="delAcc" href="delete-user/{$username}") = "Delete this account"
+        section(class="grid-container")
+            //- Account options
+            aside
+                section(class="options")
+                    ul(class="list-group")
+                        li(class="list-group-item")
+                            button(id="nsBtn") = "☛ Write a new statement..."
+                        li(class="list-group-item")
+                            button(id="friends") = "☛ My Friends" 
+                        li(class="list-group-item")
+                            button(id="statements") = "☛ My Statements" 
+                        li(class="list-group-item")
+                            button(id="delAcc" href="delete-user/{$username}") = "☛ Delete this account"
 
-        //- New statement modal
-        dialog(id="nsModal")
-            div
-                h2 = "Write a new statement"
-                button(id="nsCloseBtn") = "x"
-            form(id="nsForm" method="POST" action="new-statement" autocomplete="off")
-                input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
-                textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
-                input(type="submit" class="submit")
-        
-        //- Statement
-        div(class="statements")
-            if $statements == []
-                p(class="no-statements") = "You have no statements yet..."
-            each $statement in $statements
-                div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
+            //- New statement modal
+            dialog(id="nsModal")
+                div
+                    h2 = "Write a new statement"
+                    button(id="nsCloseBtn") = "x"
+                form(id="nsForm" method="POST" action="new-statement" autocomplete="off")
+                    input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
+                    textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
+                    input(type="submit" class="submit")
+            
+            //- Statement
+            div(class="statements")
+                if $statements == []
+                    p(class="no-statements") = "You have no statements yet..."
+                each $statement in $statements
+                    div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
 
-                    //- Votes ratio 
-                    div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
-                        div(class="disagree")
-                        div(class="neutral")
-                        div(class="agree")
+                        //- Votes ratio 
+                        div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
+                            div(class="disagree")
+                            div(class="neutral")
+                            div(class="agree")
 
-                    //- Statement info
-                    section(class="content")
-                        div(class="inline")
-                            h2(class="statement-title") = $statement["title"] 
-                            p(class="margin-right")
-                                span = $statement["time"]
-                    
-                    //- Statement options
-                    section(class="statement-options")
-                        a(href="/edit-statement/{$statement['id']}" class="statement-edit")
-                            i(class="fa-solid fa-pencil")
-                            span = " Edit"
-                        br
-                        a(href="/delete-statement/{$statement['id']}" class="statement-delete")
-                            i(class="fa-solid fa-trash")
-                            span = " Delete"
+                        //- Statement info
+                        section(class="content")
+                            div(class="inline")
+                                h2(class="statement-title") = $statement["title"] 
+                                p(class="margin-right")
+                                    span = $statement["time"]
+                        
+                        //- Statement options
+                        section(class="statement-options")
+                            a(href="/edit-statement/{$statement['id']}" class="statement-edit")
+                                i(class="fa-solid fa-pencil")
+                                span = " Edit"
+                            br
+                            a(href="/delete-statement/{$statement['id']}" class="statement-delete")
+                                i(class="fa-solid fa-trash")
+                                span = " Delete"
 
-        script(src="/app/scripts/dashboard.js");
+            div(class="friends") 
+            script(src="/app/scripts/dashboard.js");

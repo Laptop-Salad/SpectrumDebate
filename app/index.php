@@ -88,6 +88,11 @@
         $userProfile = new UserProfile($username, $view);
     });
 
+    $router->get("/new-friend/{toUsername}", function($toUsername) {
+        require __DIR__ . "/controllers/CreateFriend.php";
+        $createFriend = new CreateFriend($toUsername);
+    });
+
     // Ajax check username available
     $router->get("/user-avail/{username}", function($username) {
         require_once __DIR__ . "/models/SignupCheck.php";

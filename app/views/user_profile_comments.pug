@@ -6,6 +6,12 @@ block content
             section(class="user-info")
                 h1 = $author
 
+                if $isFriend
+                    a(id="delFriend" href="{$domain}/new-friend/{$author}") = "Remove Friend"
+                else 
+                    a(id="addFriend" href="{$domain}/new-friend/{$author}") = "Add Friend"
+
+
                 //- Views
                 section(class="views")
                     a(href="{$domain}/user/{$author}/statements") = "Statements"

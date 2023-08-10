@@ -6,6 +6,11 @@ block content
             section(class="user-info")
                 h1 = $author
 
+                if $isFriend
+                    a(id="delFriend" href="{$domain}/new-friend/{$author}") = "Remove Friend"
+                else 
+                    a(id="addFriend" href="{$domain}/new-friend/{$author}") = "Add Friend"
+
                 //- Views
                 section(class="views")
                     a(href="{$domain}/user/{$author}/statements") = "Statements"
@@ -13,12 +18,12 @@ block content
                 
             //- Statements
             section(id="statements")                
-                //- If user hasn't posted any statements
-                if !$statements
-                    p = "This user hasn't posted any statements yet..."
-
                 //- Timeline
                 section(class="statements")
+                    //- If user hasn't posted any statements
+                    if !$statements
+                        p = "This user hasn't posted any statements yet..."
+
                     each $statement in $statements
                         //- Statement
                         div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'") 

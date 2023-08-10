@@ -6,6 +6,7 @@ head
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css")
     link(href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet")
     script(src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous")
     script(src="https://kit.fontawesome.com/8737e79ded.js" crossorigin="anonymous")
@@ -48,13 +49,10 @@ body
                 ul
                     li
                         a(href="{$domain}/dashboard")
-                            i(class="fa-solid fa-user" style="color: #000;")
-                            span = " "
-                            span(id="nUsername") = "{$username}"
+                            span(id="nUsername") = "@{$username}"
                     li
                         a(href="{$domain}/logout" id="navLogout" class="logout")
-                            i(class="fa-solid fa-right-from-bracket" style="color: #000;")
-                            span = " Logout"
+                            span = "Logout"
 
         else
             nav(class="accounts")
@@ -84,13 +82,10 @@ body
                 ul
                     li
                         a(href="{$domain}/dashboard")
-                            i(class="fa-solid fa-user" style="color: #fff;")
-                            span = " "
-                            span(id="sUsername") = "{$username}"
+                            span(id="sUsername") = "@{$username}"
                     li
                         a(href="{$domain}/logout" id="navLogout" class="logout")
-                            i(class="fa-solid fa-right-from-bracket" style="color: #fff;")
-                            span = " Logout"
+                            span = "Logout"
         else
             nav(class="sm-accounts")
                 ul
