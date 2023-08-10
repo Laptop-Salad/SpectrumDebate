@@ -5,26 +5,44 @@
 
 #dashboard h1 {
     font-weight: 400;
-    font-size: 3rem;
 }
 
-#dashboard #nsBtn {
-    display: block;
-    color: dodgerblue;
-    font-size: 1.5rem;
-    background-color: transparent;
+/* Grid */
+#dashboard .grid-container {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+#dashboard .options {
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+#dashboard #statements {
+    grid-row-start: 1;
+    grid-column-start: 2;
+}
+
+/* Options */
+#dashboard .options {
+    position: sticky;
+    margin: 1rem 0 0 0;
+    width: 80%;
+    top: 20;
+    height: 80%;
+    padding: 1rem;
+}
+
+#dashboard .options button {
+    background: transparent;
+}
+
+#dashboard .list-group-item:hover {
+    background-color: lightgray;
     cursor: pointer;
 }
 
-#dashboard #delAcc {
-    color: red;
-    font-size: 1.2rem;
-}
-
-#dashboard #delAcc:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
 
 /* New statement modal */
 #nsModal {
@@ -105,11 +123,22 @@
 
 /* Tablet */
 @media only screen and (max-width: 768px) {
-    #dashboard .options {
+    #dashboard h1 {
+        text-align: center;
+    }
+
+    #dashboard .grid-container {
+        grid-template: 1fr 1fr / 1fr;
+        grid-gap: 0;
+    }
+
+    #dashboard aside {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+        justify-content: center;
+    }
+
+    #dashboard #statements {
+        grid-row-start: 2;
     }
 }
 

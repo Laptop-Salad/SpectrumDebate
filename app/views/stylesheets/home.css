@@ -1,5 +1,4 @@
 /* Search input */
-
 #searchContainer {
     display: flex;
     flex-direction: column;
@@ -15,7 +14,7 @@
     box-sizing: border-box;
 }
 
-#searchResults h3 {
+#searchResults h4 {
     font-weight: 400;
 }
 

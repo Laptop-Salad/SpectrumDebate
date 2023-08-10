@@ -5,5 +5,3 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 RewriteEngine on
 RewriteRule (.*) app/index.php
-
-php_value error_reporting 2039

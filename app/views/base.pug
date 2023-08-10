@@ -6,18 +6,21 @@ head
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+
+    //- Bootstrap
     link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js")
+
+    //- Google fonts
     link(href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet")
     script(src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous")
     script(src="https://kit.fontawesome.com/8737e79ded.js" crossorigin="anonymous")
     script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11")
     title = "{$title}"
     style
-        //- Required by all
         include stylesheets/base.css
         include stylesheets/accounts.css
 
-        //- Almost all
         include stylesheets/statements.css
         
         include stylesheets/full_statement.css
@@ -27,73 +30,36 @@ head
         include stylesheets/user_profile.css
         include stylesheets/home.css
 body
-    header(id="header") 
-        section(class="logo-container") 
-            a(href="{$domain}/" id="logo" class="logoLg")
+    nav(class="navbar navbar-expand-lg")
+        div(class="container-fluid")
+            //- Logo
+            a(href="{$domain}/" id="logo" class="navbar-brand")
                 img(src="{$domain}/app/assets/logo.svg", alt="Spectrum debate logo")
 
-        nav(class="shortcuts")
-            ul
-                li(class="link")
-                    a(href="{$domain}/home") = "Home"
-                li(class="link")
-                    a(href="{$domain}/dashboard") = "Dashboard"
+            //- Smaller navbar toggler
+            button(class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation")
+                span(class="navbar-toggler-icon")
 
-        //- Menu button for smaller devices
-        section(class="menu-container")
-            button(id="menu" class="menu") = "Menu"
-
-        //- Navbar for larger devices
-        if $username
-            nav(class="accounts")
-                ul
-                    li
-                        a(href="{$domain}/dashboard")
-                            span(id="nUsername") = "@{$username}"
-                    li
-                        a(href="{$domain}/logout" id="navLogout" class="logout")
-                            span = "Logout"
-
-        else
-            nav(class="accounts")
-                ul
-                    li(class="link") 
-                        a(href="{$domain}/login" id="navLogin") = "Login" 
-                    li(class="button") 
-                        a(href="{$domain}/signup" id="navSignUp") = "Sign Up Now" 
-
-    //- Menu for smaller devices
-    section(id="smallerMenu")
-        section(class="inline")
-            a(href="{$domain}/" id="logo")
-                img(src="{$domain}/app/assets/logo.svg", alt="Spectrum debate logo")
-            section(class="close-menu-container")
-                button(id="closeMenu" class="menu") = "Close Menu"
-
-        nav(class="sm-shortcuts")
-            ul
-                li(class="link")
-                    a(href="{$domain}/home") = "Home"
-                li(class="link")
-                    a(href="{$domain}/dashboard") = "Dashboard"
-
-        if $username
-            nav(class="sm-accounts")
-                ul
-                    li
-                        a(href="{$domain}/dashboard")
-                            span(id="sUsername") = "@{$username}"
-                    li
-                        a(href="{$domain}/logout" id="navLogout" class="logout")
-                            span = "Logout"
-        else
-            nav(class="sm-accounts")
-                ul
-                    li(class="link") 
-                        a(href="{$domain}/login" id="navLogin") = "Login" 
-                    li(class="button") 
-                        a(href="{$domain}/signup" id="navSignUp") = "Sign Up Now" 
-    
-    script(type="text/javascript" src="../app/scripts/base.js")
+            //- Navbar items, collapsible
+            div(class="collapse navbar-collapse container" id="navbarNavDropdown")
+                ul(class="navbar-nav col")
+                    li(class="nav-item")
+                        a(href="{$domain}/home" class="nav-link text-dark") = "Home"
+                    li(class="nav-item")
+                        a(href="{$domain}/dashboard" class="nav-link text-dark") = "Dashboard"
+                
+                ul(class="navbar-nav col justify-content-end")
+                    //- If logged in
+                    if $username
+                        li(class="nav-item")
+                            a(href="{$domain}/dashboard" class="nav-link text-primary") = "@{$username}"
+                        li(class="nav-item")
+                            a(href="{$domain}/logout" class="nav-link text-danger") = "Logout"
+                    //- If not logged in
+                    else
+                        li(class="nav-item")
+                            a(href="{$domain}/login" class="nav-link text-dark") = "Login" 
+                        li(class="nav-item")
+                            a(href="{$domain}/signup" class="nav-link text-dark") = "Sign Up Now" 
         
     block content

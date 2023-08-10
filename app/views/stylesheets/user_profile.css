@@ -45,6 +45,35 @@
     background-color: whitesmoke;
 }
 
+#addFriend,
+#delFriend {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    margin: 0 0 20px 0;
+}
+
+#addFriend:hover,
+#delFriend:hover {
+    text-decoration: none;
+}
+
+#addFriend {
+    background-color: dodgerblue;
+}
+
+#addFriend:hover {
+    background-color: rgb(18, 79, 139);
+}
+
+#delFriend {
+    background-color: darkred;
+}
+
+#delFriend:hover {
+    background-color: rgb(54, 1, 1);
+}
+
 /* Media queries */
 @media only screen and (max-width: 768px) {
     #userProfile #comments > * {
