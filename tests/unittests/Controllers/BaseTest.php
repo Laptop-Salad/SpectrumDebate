@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__DIR__, 3) . "/app/controllers/BaseController.php";
+require_once dirname(__DIR__, 3) . "/app/controllers/BaseController.php";
 
 use PHPUnit\Framework\TestCase;
 

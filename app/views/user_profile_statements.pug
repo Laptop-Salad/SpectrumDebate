@@ -17,12 +17,12 @@ block content
                     a(href="{$domain}/user/{$author}/comments") = "Comments"
                 
             //- Statements
-            section(id="statements")                
+            section(id="statements")     
+                if !$statements
+                    p = "This user hasn't posted any statements yet..."           
                 //- Timeline
-                section(class="statements")
+                section(class="statement container-sm")
                     //- If user hasn't posted any statements
-                    if !$statements
-                        p = "This user hasn't posted any statements yet..."
 
                     each $statement in $statements
                         //- Statement

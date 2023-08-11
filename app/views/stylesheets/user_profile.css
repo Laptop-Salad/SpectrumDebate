@@ -3,6 +3,13 @@
     margin: 0;
 }
 
+#userProfile #statements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+}
+
 #userProfile .user-info {
     width: 100%;
     display: flex;

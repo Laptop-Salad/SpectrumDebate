@@ -28,8 +28,46 @@ body {
     background-color: #efefef;
 }
 
-
 #logo img {
     width: 40px;
     margin: 20px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2rem
+}
+
+div ul li a:hover {
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+}
+
+.search-start {
+    display: none;
+}
+
+#searchContainer {
+    margin: auto auto !important;
+}
+
+#searchResults {
+    position: absolute;
+    margin-top:2rem; 
+    overflow: auto;
+    height:20vh;
+    z-index:100;
+}
+
+/* Media queries */
+@media only screen and (max-width: 1000px) {
+    .search-mid {
+        display: none;
+    }
+
+    .search-start {
+        display: flex;
+    }
 }

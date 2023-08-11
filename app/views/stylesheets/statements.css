@@ -8,12 +8,12 @@
 }
 
 .statement {
-    margin: 1rem 0;
     width: 40vw;
+    margin: 1rem 0;
+    padding: 0;
     background-color: whitesmoke;
     border-radius: 5px;
     cursor: pointer;
-    height: 100%;
     /* Percentages follow statement's border radius */
     overflow: hidden; 
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

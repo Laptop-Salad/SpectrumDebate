@@ -1,3 +1,5 @@
+const domain = "//localhost";
+
 const searchResults = document.getElementById("searchResults");
 const search = document.getElementById("search");
 
@@ -44,34 +46,36 @@ function getSearchRes() {
             var statements = data.statements;
             var users = data.users;
 
-            console.log(statements);
-            console.log(users);
+            // Clear previous search results from container
+            document.getElementById("searchStatements").innerHTML = "";
 
-            for (var i = 0; i < statements.length; i++) {
-                // Clear previous search results from container
-                document.getElementById("searchStatements").innerHTML = "";
-                    
-                var currStmt = statements[i];
-
-                $("#searchStatements").append(`
-                <a href='statement/${currStmt.id}'>${currStmt.title}</a>
-                <div>
-                <p>${currStmt.username}</p>
-                <p>•</p>
-                <p>${currStmt.time}</p>
-                </div>
-                `)
-            }
-
-            for (var i = 0; i < users.length; i++) {
-                // Clear previous search results from container
-                document.getElementById("searchUsers").innerHTML = "";
+            if (statements) {
+                for (var i = 0; i < statements.length; i++) {                    
+                    var currStmt = statements[i];
     
-                var currStmt = users[i];
+                    $("#searchStatements").append(`
+                    <a href='${domain}/statement/${currStmt.id}'>${currStmt.title}</a>
+                    <div>
+                    <p>${currStmt.username}</p>
+                    <p>•</p>
+                    <p>${currStmt.time}</p>
+                    </div>
+                    `)
+                }    
+            } 
 
-                $("#searchUsers").append(`
-                <a href='user/${currStmt.username}/statements'>${currStmt.username}</a>
-                `)
+            // Clear previous search results from container
+            document.getElementById("searchUsers").innerHTML = "";
+
+            if (users) {
+                for (var i = 0; i < users.length; i++) {    
+                    var currStmt = users[i];
+    
+                    $("#searchUsers").append(`
+                    <a href='${domain}/user/${currStmt.username}/statements'>${currStmt.username}</a>
+                    `)
+                }
+    
             }
         }
     };

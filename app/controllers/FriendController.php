@@ -1,5 +1,5 @@
 <?php
-class CreateFriend extends BaseController {
+class FriendController extends BaseController {
     private $toUser;
     function __construct($toUser) {
         $this->baseConstruct();

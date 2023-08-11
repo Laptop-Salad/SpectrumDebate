@@ -89,8 +89,8 @@
     });
 
     $router->get("/new-friend/{toUsername}", function($toUsername) {
-        require __DIR__ . "/controllers/CreateFriend.php";
-        $createFriend = new CreateFriend($toUsername);
+        require __DIR__ . "/controllers/FriendController.php";
+        $createFriend = new FriendController($toUsername);
     });
 
     // Ajax check username available

@@ -9,14 +9,12 @@ block content
             aside
                 section(class="options")
                     ul(class="list-group")
-                        li(class="list-group-item")
-                            button(id="nsBtn") = "☛ Write a new statement..."
-                        li(class="list-group-item")
-                            button(id="friends") = "☛ My Friends" 
-                        li(class="list-group-item")
-                            button(id="statements") = "☛ My Statements" 
-                        li(class="list-group-item")
-                            button(id="delAcc" href="delete-user/{$username}") = "☛ Delete this account"
+                        li(id="nsBtn" class="list-group-item text-primary") = "☛ Write a new statement..."
+                        li(id="followingBtn" class="list-group-item") = "☛ Following" 
+                        li(id="followersBtn" class="list-group-item") = "☛ Followers" 
+                        li(id="statementsBtn" class="list-group-item") = "☛ My Statements"
+                        li(id="commentsBtn" class="list-group-item") = "☛ My Comments"
+                        li(id="delAcc" href="{$domain}/delete-user/{$username}" class="list-group-item text-danger") = "☛ Delete this account"
 
             //- New statement modal
             dialog(id="nsModal")
@@ -29,11 +27,11 @@ block content
                     input(type="submit" class="submit")
             
             //- Statement
-            div(class="statements")
+            div(id="statementsList" class="statements")
                 if $statements == []
-                    p(class="no-statements") = "You have no statements yet..."
+                    p(class="no-item") = "You have no statements yet..."
                 each $statement in $statements
-                    div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
+                    div(class="statement container-sm" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
 
                         //- Votes ratio 
                         div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
@@ -58,5 +56,33 @@ block content
                                 i(class="fa-solid fa-trash")
                                 span = " Delete"
 
-            div(class="friends") 
-            script(src="/app/scripts/dashboard.js");
+            div(id="commentsList" class="comments") 
+                ul(class="list-group")
+                    if $comments == []    
+                        li(class="list-group-item") = "You have no comments..."
+                    else 
+                        each $comment in $comments
+                            li(class="list-group-item")
+                                a(href="{$domain}/statement/{$comment['statement_id']}") = "{$comment['text']}"
+
+
+            div(id="followingList" class="following") 
+                ul(class="list-group")
+                    if $follows == []    
+                        li(class="list-group-item") = "You are currently not following anyone.."
+                    else 
+                        each $follow in $follows
+                            li(class="list-group-item")
+                                a(href="{$domain}/user/{$follow['username']}/statements") = "@{$follow['username']}"
+            
+            div(id="followersList" class="following") 
+                ul(class="list-group")
+                    if $followers == []    
+                        li(class="list-group-item") = "No one is currently following you.."
+                    else 
+                        each $follower in $followers
+                            li(class="list-group-item")
+                                a(href="{$domain}/user/{$follower['username']}/statements") = "@{$follower['username']}"
+
+
+    script(src="/app/scripts/dashboard.js");

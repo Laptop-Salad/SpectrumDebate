@@ -35,7 +35,7 @@ body
             //- Logo
             a(href="{$domain}/" id="logo" class="navbar-brand")
                 img(src="{$domain}/app/assets/logo.svg", alt="Spectrum debate logo")
-
+            
             //- Smaller navbar toggler
             button(class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation")
                 span(class="navbar-toggler-icon")
@@ -48,6 +48,20 @@ body
                     li(class="nav-item")
                         a(href="{$domain}/dashboard" class="nav-link text-dark") = "Dashboard"
                 
+            //- Search
+            div(id="searchContainer" class="d-flex flex-column search-mid" role="search")
+                form(id="searchForm" autocomplete="off")
+                    input(id="search" type="text" minlength="1" maxlength="100" placeholder="Search" aria-label="Search") 
+
+                div(id="searchResults")
+                    h4 = "Statements"
+                    div(id="searchStatements")
+                    hr
+                    h4 = "Users"
+                    div(id="searchUsers")
+
+            //- Accounts
+            div(class="collapse navbar-collapse container" id="navbarNavDropdown")
                 ul(class="navbar-nav col justify-content-end")
                     //- If logged in
                     if $username
@@ -61,5 +75,6 @@ body
                             a(href="{$domain}/login" class="nav-link text-dark") = "Login" 
                         li(class="nav-item")
                             a(href="{$domain}/signup" class="nav-link text-dark") = "Sign Up Now" 
-        
+    
+    script(src="{$domain}/app/scripts/base.js")
     block content

@@ -1,21 +1,10 @@
 extends base.pug
-    div(id="searchContainer")
-        form(id="searchForm" autocomplete="off")
-            input(id="search" type="text" minlength="1" maxlength="100" placeholder="Search") 
-        
-        div(id="searchResults")
-            h4 = "Statements"
-            div(id="searchStatements")
-            hr
-            h4 = "Users"
-            div(id="searchUsers")
-
     main(class="statements") 
         if $statements == []
             p(class="no-statements") = "There are no statements yet..."
 
         each $statement in $statements
-            div(class="statement" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'") 
+            div(class="statement container-sm" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'") 
                 div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
                     div(class="disagree")
                     div(class="neutral")
@@ -29,5 +18,3 @@ extends base.pug
                             a(class="username" href="{$domain}/user/{$statement['username']}/statements") = $statement["username"]
                             span = ", "
                             span = $statement["time"]
-    
-    script(src="../app/scripts/home.js") 

@@ -28,6 +28,12 @@
     outline: transparent;
 }
 
+#searchStatements,
+#searchUsers {
+    display: flex;
+    flex-direction: column;
+}
+
 #searchResults a {
     color: dodgerblue;
 }
