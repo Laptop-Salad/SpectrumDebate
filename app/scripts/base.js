@@ -80,6 +80,6 @@ function getSearchRes() {
         }
     };
 
-    xmlhttp.open("GET", "//localhost/search/" + currTerm, true);
+    xmlhttp.open("GET", `${domain}/search/` + currTerm, true);
     xmlhttp.send();
 }

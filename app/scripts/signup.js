@@ -39,7 +39,7 @@ username.addEventListener("input", () => {
             }
         };
 
-        xmlhttp.open("GET", "//localhost/user-avail/" + currUsername, true);
+        xmlhttp.open("GET", `${domain}/user-avail/` + currUsername, true);
         xmlhttp.send();
     } else {
         document.getElementById("userAvail").innerHTML = "";
