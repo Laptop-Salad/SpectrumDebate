@@ -1,22 +1,25 @@
-extends base.pug
+extends min_nav.pug
 
 block content
-    main(class="account-page")
+    main(id="accountForm" class="account-page")
+        div(class="poster")
+            div(class="poster-img")
+
         div(class="account-form")
             h1 = "Sign Up"
             form(method="POST" action="signup" id="signupForm")
-                label(for="username" aria-label="required")
-                    input(id="username" name="username" type="text" placeholder="Username*" minlength="3" maxlength="10" required)
-                    span(id="userAvail") = ""
-                    span(id="userLength") = "Between 3 and 10 characters ✗"
+                label(for="username" class="fw-bold" aria-label="required") = "Username"
+                input(id="username" class="form-control" name="username" type="text" placeholder="Username*" minlength="3" maxlength="10" required)
+                span(id="userAvail" class="text-info") = ""
+                span(id="userLength" class="text-info mb-3") = "Between 3 and 10 characters ✗"
 
-                label(for="password" aria-label="required")
-                    input(id="password" name="userpass" type="password" placeholder="Password*" minlength="8" maxlength="20" required)
-                    span(id="passLength") = "Between 8 and 20 characters ✗"
+                label(for="password" class="fw-bold" aria-label="required") = "Password"
+                input(id="password" class="form-control" name="userpass" type="password" placeholder="Password*" minlength="8" maxlength="20" required)
+                span(id="passLength" class="text-info mb-3") = "Between 8 and 20 characters ✗"
                 
-                label(for="cPassword" aria-label="required")
-                    input(id="cPassword" name="cpass" type="password" placeholder="Confirm Password*" minlength="8" maxlength="20" required)
-                    span(id="passMatch") = "Password matches"
+                label(for="cPassword" class="fw-bold" aria-label="required") = "Confirm Password"
+                input(id="cPassword" class="form-control" name="cpass" type="password" placeholder="Confirm Password*" minlength="8" maxlength="20" required)
+                span(id="passMatch" class="text-info mb-3") = "Password matches"
                 
                 input(id="submit" type="submit" value="Create Account")
     

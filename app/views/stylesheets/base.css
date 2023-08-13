@@ -44,11 +44,6 @@ div ul li a:hover {
 a {
     text-decoration: none;
 }
-
-.search-start {
-    display: none;
-}
-
 #searchContainer {
     margin: auto auto !important;
 }
@@ -64,10 +59,6 @@ a {
 /* Media queries */
 @media only screen and (max-width: 1000px) {
     .search-mid {
-        display: none;
-    }
-
-    .search-start {
-        display: flex;
+        order: 1 !important;
     }
 }

@@ -71,6 +71,10 @@ class Account extends BaseModel
 
         // Get the full details of the user
         $user = $this->findUser($username, true);
+
+        if (!$user) {
+            return False;
+        }
     
         if (password_verify($userpass, $user["password"])) {
             return True;
