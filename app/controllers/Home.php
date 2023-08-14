@@ -3,7 +3,7 @@ class Home extends BaseController
 {
     function __construct()
     {
-        $this->baseConstruct();
+        $this->baseConstruct(); 
         $statements = $this->doGetStatements();
         $this->displayViews($statements);
     }
