@@ -10,50 +10,51 @@ block content
                 div(class="agree")
             
             //- Statement info
-            section(class="statementContent")
-                h1 = "{$statement['title']}"
-                p(class="post-info")
-                    span
-                        if $statement['author'] == ""
-                            b = "<deleted>"
-                        else
-                            b = "{$statement['author']}"
-                    span = ", "
-                    span = "{$statement['time']}"
+            section(class="content mt-3")
+                section(class="statementContent")
+                    h1 = "{$statement['title']}"
+                    p(class="post-info")
+                        span
+                            if $statement['author'] == ""
+                                b = "<deleted>"
+                            else
+                                a(href="{$domain}/user/{$statement['author']}/statements") = "{$statement['author']}"
+                        span = ", "
+                        span = "{$statement['time']}"
 
-                p = "{$votesCount['total']} people voted, {$votesCount['disagree']} people disagree, {$votesCount['neutral']} are neutral and {$votesCount['agree']} agree."
-                
-                //- Voting form
-                p(id="opinionFormsTitle") = "What do you think?"
-                section(id="opinionForms")
-                    form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement['id']}/disagree")
-                        input(type="submit" value="Disagree")
+                    p = "{$votesCount['total']} people voted, {$votesCount['disagree']} people disagree, {$votesCount['neutral']} are neutral and {$votesCount['agree']} agree."
+                    
+                    //- Statement text
+                    p(id="statementText") = "{$statement['text']}"
 
-                    form(id="formNeutral" method="POST" action="{$domain}/vote/{$statement['id']}/neutral")
-                        input(type="submit" value="Neutral")
+                    //- Voting form
+                    p(id="opinionFormsTitle") = "What do you think?"
+                    section(id="opinionForms")
+                        form(id="formDisagree" method="POST" action="{$domain}/vote/{$statement['id']}/disagree")
+                            input(type="submit" value="Disagree")
 
-                    form(id="formAgree" method="POST" action="{$domain}/vote/{$statement['id']}/agree")
-                        input(type="submit" value="Agree")
+                        form(id="formNeutral" method="POST" action="{$domain}/vote/{$statement['id']}/neutral")
+                            input(type="submit" value="Neutral")
 
-                //- Statement text
-                p(id="statementText") = "{$statement['text']}"
+                        form(id="formAgree" method="POST" action="{$domain}/vote/{$statement['id']}/agree")
+                            input(type="submit" value="Agree")
 
-                //- Commenting Form
-                form(method="POST" id="commentForm" action="{$domain}/comment/{$statement['id']}" autocomplete="off")
-                    input(name="comment" id="commentInput" type="text" minlength="3" maxlength="100" required)
-                    input(type="submit" id="commentButton" value="Comment")
 
-                //- Comments
-                section(id="comments")
-                    each $comment in $comments
-                        section(class="comment")
-                            p 
-                                span = "{$comment['text']}"
-                                span = " - {$comment['username']}"
-                            
-                            if $comment["username"] != ""
-                                if $username == $comment["username"]
-                                    a(href="{$domain}/delete-comment/{$comment['id']}") = "Delete Comment"
-                                    a(href="{$domain}/edit-comment/{$comment['id']}") = " Edit Comment"
+                    //- Commenting Form
+                    form(method="POST" id="commentForm" action="{$domain}/comment/{$statement['id']}" autocomplete="off")
+                        input(name="comment" class="form-control" id="commentInput" type="text" minlength="3" maxlength="100" required)
+                        input(type="submit" class="btn btn-dark ms-3" id="commentButton" value="Comment")
+
+                    //- Comments
+                    section(id="comments")
+                        each $comment in $comments
+                            section(class="comment")
+                                a(href="{$domain}/user/{$comment['username']}/statements") = " {$comment['username']}"
+                                p = "{$comment['text']}"
+                                
+                                if $comment["username"] != ""
+                                    if $username == $comment["username"]
+                                        a(href="{$domain}/delete-comment/{$comment['id']}") = "Delete Comment"
+                                        a(href="{$domain}/edit-comment/{$comment['id']}") = " Edit Comment"
     else 
         h1 = "404 Statement Not Found"
