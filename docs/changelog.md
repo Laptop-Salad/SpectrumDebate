@@ -1,6 +1,11 @@
 # Changelog
 
+## 15/08/2023
+
 ## 13/08/2023
+
+### Changed
+- Sign up and login ui now have a poster to display for larger devices ->[b9f2214](https://github.com/Laptop-Salad/SpectrumDebate/commit/b9f2214c4126493f8d1559dd5f2eb93006d2cf46)
 
 ## 11/08/2023
 
