@@ -30,18 +30,6 @@
     height: 60vh;
 }
 
-#editStatement input[type="submit"] {
-    padding: 5px;
-    margin: 2rem 0;
-    border-radius: 5px;
-}
-
-#editStatement input[type="submit"]:hover {
-    background-color: var(--black);
-    color: white;
-    cursor: pointer;
-}
-
 /** Media queries **/
 
 /* Laptop L */

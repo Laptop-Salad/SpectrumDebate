@@ -3,6 +3,6 @@ extends navbar.pug
 block content 
     main(id="editStatement")
         form(method="POST" action="{$domain}/edit-statement/{$statement['id']}" id="editStateForm")
-            input(type="text" name="title" id="title" placeholder="Title" value="{$statement['title']}" minlength="1" maxlength="100" required)
-            textarea(type="text" name="text" id="text" placeholder="Write a description" minlength="1" maxlength="1000" required) = "{$statement['text']}"
-            input(type="submit" value="Update")
+            input(id="title"  type="text" name="title" placeholder="Title" value="{$statement['title']}" minlength="1" maxlength="100" required)
+            textarea(id="text" type="text" name="text" placeholder="Write a description" minlength="1" maxlength="1000" required) = "{$statement['text']}"
+            input(type="submit" class="submit" value="Update")
