@@ -1,6 +1,19 @@
 # Changelog
 
-## 15/08/2023
+## 17/08/2023
+
+### Fixed
+- Update submit edit statement/comment button ->[585e6f6](https://github.com/Laptop-Salad/SpectrumDebate/commit/585e6f607af82b7a56df158c7191b9b174971642)
+
+### Changed
+- Update full statement ui ->[f0448c2](https://github.com/Laptop-Salad/SpectrumDebate/commit/f0448c23372aea1c4846b85fc430f2b854c6524f)
+
+- Update search ui to use a modal ->[286f641](https://github.com/Laptop-Salad/SpectrumDebate/commit/286f6417e2df6d6d872ed242b6167ac20d6d84ac)
+
+## 14/08/2023
+
+### Fixed 
+- Sign up form content overflowing ->[cf9cbf6](https://github.com/Laptop-Salad/SpectrumDebate/commit/cf9cbf6c7f1bb0a863985cff52e1818bd140868a)
 
 ## 13/08/2023
 
