@@ -1,19 +1,8 @@
 const searchResults = document.getElementById("searchResults");
 const search = document.getElementById("search");
 
-// Initially hide search results box
-searchResults.style.display = "none";
-
 search.addEventListener("focus", () => {
     searchResults.style.display = "block";
-});
-
-document.getElementById("searchContainer").addEventListener("mouseenter", () => {
-    searchResults.style.display = "block";
-});
-
-document.getElementById("searchContainer").addEventListener("mouseleave", () => {
-    searchResults.style.display = "none";
 });
 
 // Get search results
@@ -44,10 +33,8 @@ function getSearchRes() {
             var statements = data.statements;
             var users = data.users;
 
-            // Clear previous search results from container
-            document.getElementById("searchStatements").innerHTML = "";
-
-            if (statements) {
+            if (statements && statements.length > 0) {
+                document.getElementById("searchStatements").innerHTML = "";
                 for (var i = 0; i < statements.length; i++) {                    
                     var currStmt = statements[i];
     
@@ -62,10 +49,8 @@ function getSearchRes() {
                 }    
             } 
 
-            // Clear previous search results from container
-            document.getElementById("searchUsers").innerHTML = "";
-
-            if (users) {
+            if (users && users.length > 0) {
+                document.getElementById("searchUsers").innerHTML = "";
                 for (var i = 0; i < users.length; i++) {    
                     var currStmt = users[i];
     

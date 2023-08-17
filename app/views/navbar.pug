@@ -20,16 +20,8 @@ block head
                         a(href="{$domain}/dashboard" class="nav-link text-dark") = "Dashboard"
                 
             //- Search
-            div(id="searchContainer" class="d-flex flex-column search-mid" role="search")
-                form(id="searchForm" autocomplete="off")
-                    input(id="search" type="text" minlength="1" maxlength="100" placeholder="Search" aria-label="Search") 
-
-                div(id="searchResults")
-                    h4 = "Statements"
-                    div(id="searchStatements")
-                    hr
-                    h4 = "Users"
-                    div(id="searchUsers")
+            div(id="searchContainer" class="search-mid" data-bs-toggle="modal" data-bs-target="#modalSearch" role="search")
+                div() = "Search"
 
             //- Accounts
             div(class="collapse navbar-collapse container" id="navbarNavDropdown")
@@ -47,4 +39,23 @@ block head
                         li(class="nav-item")
                             a(href="{$domain}/signup" class="nav-link text-dark") = "Sign Up Now" 
     
+    //- Search container modal
+    div(id="modalSearch" class="modal fade" tabindex="-1" aria-hidden="true")
+        div(class="modal-dialog  modal-dialog-centered")
+            div(class="modal-content")
+                div(class="modal-header")               
+                    div(id="searchModal" class="search-mid" role="search")
+                        form(id="searchForm" autocomplete="off")
+                            input(id="search" type="text" minlength="1" maxlength="100" placeholder="Search" aria-label="Search") 
+                    
+                    button(class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close")
+
+                div(class="modal-body")
+                    div(id="searchResults")
+                        h4 = "Statements"
+                        div(id="searchStatements")
+                        hr
+                        h4 = "Users"
+                        div(id="searchUsers")
+
     script(src="{$domain}/app/scripts/search.js")
