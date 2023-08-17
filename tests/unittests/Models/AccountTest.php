@@ -23,49 +23,197 @@ class AccountTest extends TestCase {
 
     public function testFindUser() {
         $user = new Account;
+
+        // Existing username as username
         $result = $user->findUser($this->username);
 
         $this->assertNotNull(
             $result,
             "Username could not be found"
         );
+
+        // Non-existing username as username
+        $result = $user->findUser("FancyUsername");
+
+        $this->assertNull(
+            $result,
+            "Username is not null"
+        );
+
+        // Empty string as username
+        $result = $user->findUser("");
+
+        $this->assertNull(
+            $result,
+            "Username is not null"
+        );
+
+        // Null as username
+        $result = $user->findUser(null);
+
+        $this->assertNull(
+            $result,
+            "Username is not null"
+        );
+
+        // Integer as username
+        $result = $user->findUser(5);
+
+        $this->assertNull(
+            $result,
+            "Username is not null"
+        );
     }
 
     public function testFindUserById() {
         $user = new Account;
+
+        // Existing User id as User id
         $result = $user->findUserById($this->userId);
 
         $this->assertEquals(
             $this->username,
             $result,
-            "User id could not be found"
+            "User id is null"
         );
+
+        // Non-existing User id as User id
+        $result = $user->findUserById("09");
+
+        $this->assertNull(
+            $result,
+            "User id is not null"
+        );  
+
+        // Empty string User id as User id
+        $result = $user->findUserById("");
+
+        $this->assertNull(
+            $result,
+            "User id is not null"
+        );  
+
+        // Null User id as User id
+        $result = $user->findUserById(null);
+
+        $this->assertNull(
+            $result,
+            "User id is not null"
+        );  
+
+        // Integer id as User id
+        $result = $user->findUserById(59085);
+
+        $this->assertNull(
+            $result,
+            "User id is not null"
+        );  
     }
 
     public function testCredentials() {
         $user = new Account;
+
+        // Existing username and password
         $result = $user->checkCredentials($this->username, $this->password);
 
         $this->assertEquals(
             true,
             $result,
-            "Username or password don't match records"
+            "Username or password doesn't match records"
+        );
+
+        // Username with an existing password
+        $result = $user->checkCredentials("username", $this->password);
+
+        $this->assertFalse(
+            $result,
+            "Username or password matches records"
+        );
+
+        // Non-existing username and password
+        $result = $user->checkCredentials("username", "password");
+
+        $this->assertFalse(
+            $result,
+            "Username or password matches records"
+        );
+
+        // Empty strings as username and password
+        $result = $user->checkCredentials("", "");
+
+        $this->assertFalse(
+            $result,
+            "Username or password matches records"
+        );
+
+        // Null as username and password
+        $result = $user->checkCredentials(null, null);
+
+        $this->assertFalse(
+            $result,
+            "Username or password matches records"
+        );
+
+        // Integer as username and password
+        $result = $user->checkCredentials(5, 6);
+
+        $this->assertFalse(
+            $result,
+            "Username or password matches records"
         );
     }
 
     public function testDeleteUser() {
         $user = new Account;
-        $result = $user->deleteUser($this->userId);
 
-        $this->assertEquals(
-            true,
+        // Existing user
+        $result = $user->createUser($this->username, $this->password);
+        $userId = $user->conn->insert_id;
+
+        $result = $user->deleteUser($userId);
+
+        $this->assertTrue(
             $result,
             "User was not deleted successfully"
+        );
+
+        // Non-existing user
+        $result = $user->deleteUser("9088765");
+
+        $this->assertFalse(
+            $result,
+            "User was deleted successfully"
+        );
+
+        // Empty string user
+        $result = $user->deleteUser("");
+
+        $this->assertFalse(
+            $result,
+            "User was deleted successfully"
+        );
+
+        // Null user
+        $result = $user->deleteUser(null);
+
+        $this->assertFalse(
+            $result,
+            "User was deleted successfully"
+        );
+
+        // Integer user
+        $result = $user->deleteUser(9888877);
+
+        $this->assertFalse(
+            $result,
+            "User was deleted successfully"
         );
     }
 
     public function testGetLikeUsers() {
         $user = new Account;
+
+        // Find existing user
         $result = $user->getLikeUsers($this->username);
 
         $this->assertNotEmpty(
@@ -74,9 +222,8 @@ class AccountTest extends TestCase {
         );
 
         $foundUser = false;
-
-        foreach($result as $user) {
-            if ($user["username"] == $this->username) {
+        foreach($result as $username) {
+            if ($username["username"] == $this->username) {
                 $foundUser = true;
             }
         }
@@ -84,6 +231,30 @@ class AccountTest extends TestCase {
         $this->assertTrue(
             $foundUser,
             "User not found"
+        );
+
+        // Find non-existing user
+        $result = $user->getLikeUsers("username");
+
+        $this->assertEmpty(
+            $result,
+            "User found"
+        );
+
+        // Find null user
+        $result = $user->getLikeUsers(null);
+
+        $this->assertEmpty(
+            $result,
+            "User found"
+        );
+
+        // Find integer user
+        $result = $user->getLikeUsers(98765);
+
+        $this->assertEmpty(
+            $result,
+            "User found"
         );
     }
 

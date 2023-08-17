@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\Constraint\IsEmpty;
 require_once "BaseModel.php";
 
 class Account extends BaseModel
@@ -44,16 +45,17 @@ class Account extends BaseModel
          * @return bool True = user was deleted
          */
 
+
+        // Check if user id exists
+        if (is_null($this->findUserById($userid))) {
+            return false;
+        }
+
         // Prepare and bind statement
         $sqlStmt = $this->conn->prepare("DELETE FROM users WHERE id = ?");
         $sqlStmt->bind_param("s", $userid);
-    
-        // Execute statement
-        if ($sqlStmt->execute()) {
-            return True;
-        } else {
-            return False;
-        }
+        
+        return $sqlStmt->execute();
     }
     
     function checkCredentials($username, $userpass)
@@ -152,6 +154,8 @@ class Account extends BaseModel
          * @param string $term username should contain
          * @return array[array] of users
          */
+
+        if (empty($term)) {return [];};
 
         $term = "%$term%";
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE lower(username) LIKE lower(?)");

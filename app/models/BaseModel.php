@@ -22,7 +22,7 @@
             date_default_timezone_set('Europe/London');
 
             // Get times
-            $now = strtotime(date("Y-m-d H:i:s", time())); 
+            $now = strtotime(gmdate("Y-m-d H:i:s", time())); 
             $timestamp = strtotime($timestamp);
 
             $difference = $now - $timestamp;
