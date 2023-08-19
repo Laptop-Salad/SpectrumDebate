@@ -23,6 +23,9 @@ Spectrum Debate is a site where users can debate various topics using three opti
 - Getting notifications on the website when friends post a statement
 - Adding tags to posts such as "Food" "Politics", etc.
 - Filter
+- Profile picture
+- Bio
+- Attaching images to statements
 
 ## License
 This project is licensed under the MIT license.
