@@ -66,4 +66,3 @@ followersBtn.addEventListener('click', () => {
   $("#statementsList").hide();
   $("#followersList").show();
 })
-

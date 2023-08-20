@@ -21,10 +21,13 @@ block content
                 div
                     h2 = "Write a new statement"
                     button(id="nsCloseBtn") = "x"
-                form(id="nsForm" method="POST" action="new-statement" autocomplete="off")
+
+                //- Text form
+                form(id="nsForm" method="POST" action="new-statement" autocomplete="off" enctype="multipart/form-data")
                     input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
                     textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
-                    input(type="submit" class="submit")
+                    input(id="imageToUpload" type="file" name="ns-image")
+                    input(id="nsSubmit" type="submit" class="submit")
             
             //- Statement
             div(id="statementsList" class="statements")

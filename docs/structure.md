@@ -8,6 +8,7 @@ This document details the file structure of the website.
     cypress => Frontend tests using [Cypress](https://www.cypress.io/), written using JS.
     unittests
 - docs => Documentation for the website
+- uploads => used for uploading files to the website
 
 ## /app
 The website uses MVC architecture.

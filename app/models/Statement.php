@@ -12,7 +12,7 @@ class Statement extends BaseModel
         $this->account = $account;
     }
 
-    function createStatement($username, $title, $text)
+    function createStatement($username, $title, $text, $imgUrl = null)
     {
         /**
          * uploads statement to database
@@ -31,12 +31,12 @@ class Statement extends BaseModel
         if (!$userid) {
             return False;
         }
-        
-        // Prepare and bind statement
-        $stmt = $this->conn->prepare("INSERT INTO statements (author_id, title, text)
-            VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $userid, $title, $text);
 
+        // Prepare and bind statement
+        $stmt = $this->conn->prepare("INSERT INTO statements (author_id, title, text, image_url)
+            VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $userid, $title, $text, $imgUrl);
+        
         if ($stmt->execute()) {
             return True;
         } 
@@ -122,6 +122,7 @@ class Statement extends BaseModel
                     "username" => $username,
                     "title" => $row["title"],
                     "text" => $row["text"],
+                    "image_url" => $row["image_url"],
                     "time" => $formattedTime,
                     "votesCount" => $votesCount,
                 ));
@@ -172,6 +173,7 @@ class Statement extends BaseModel
                 "username" => $username,
                 "title" => $row["title"],
                 "text" => $row["text"],
+                "image_url" => $row["image_url"],
                 "time"=> $formattedTime,
                 "votesCount" => $votesCount,
             )
@@ -211,6 +213,7 @@ class Statement extends BaseModel
                 $data["author"] = $username;
                 $data["title"] = $row["title"];
                 $data["text"] = $row["text"];
+                $data["image_url"] = $row["image_url"];
                 $data["time"] = $formattedTime;
             }
         }
@@ -252,6 +255,7 @@ class Statement extends BaseModel
                     "username" => $username,
                     "title" => $row["title"],
                     "text" => $row["text"],
+                    "image_url" => $row["image_url"],
                     "time" => $formattedTime,
                     "votesCount" => $votesCount,
                 ));

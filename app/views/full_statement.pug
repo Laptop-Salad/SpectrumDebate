@@ -13,6 +13,11 @@ block content
             section(class="content mt-3")
                 section(class="statementContent")
                     h1 = "{$statement['title']}"
+
+                    //- Is there an attached image
+                    if $statement['image_url']
+                        img(src="{$domain}/uploads/${statement['image_url']}")
+
                     p(class="post-info")
                         span
                             if $statement['author'] == ""
