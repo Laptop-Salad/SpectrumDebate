@@ -17,6 +17,7 @@ Spectrum Debate is a site where users can debate various topics using three opti
 - Searching for statements
 - Searching for user profiles
 - Adding users as friends
+- Attaching images to statements
 
 ## Future features
 - When you comment, your vote on the statement is shown above your comment
@@ -25,7 +26,6 @@ Spectrum Debate is a site where users can debate various topics using three opti
 - Filter
 - Profile picture
 - Bio
-- Attaching images to statements
 
 ## License
 This project is licensed under the MIT license.
