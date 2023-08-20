@@ -18,14 +18,14 @@ Spectrum Debate is a site where users can debate various topics using three opti
 - Searching for user profiles
 - Adding users as friends
 - Attaching images to statements
+- User Bio
 
 ## Future features
 - When you comment, your vote on the statement is shown above your comment
 - Getting notifications on the website when friends post a statement
 - Adding tags to posts such as "Food" "Politics", etc.
 - Filter
-- Profile picture
-- Bio
+- Avatar
 
 ## License
 This project is licensed under the MIT license.
