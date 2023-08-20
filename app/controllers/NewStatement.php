@@ -13,10 +13,10 @@ class NewStatement extends BaseController
 
         $title = $_POST["ns-title"];
         $text = $_POST["ns-text"];
-        $image = $_FILES["ns-image"];
         $username = $_SESSION["username"];
 
-        if (isset($image)) {
+        if (isset($_FILES["ns-image"])) {
+            $image = $_FILES["ns-image"];
             require dirname(__DIR__, 1) . "/models/Upload.php";
             $upload = new Upload($username, $image);
             $result = $upload->uploadImage();
@@ -31,7 +31,7 @@ class NewStatement extends BaseController
                 Swal.fire({
                     title: 'Error!',
                     text: '$resultMsg , file was not uploaded and statement was not created',
-                    icon: 'success',
+                    icon: 'error',
                     confirmButtonText: 'Ok'
                   }).then((result) => {
                     if (result.isConfirmed) {

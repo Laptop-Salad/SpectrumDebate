@@ -4,5 +4,7 @@ block content
     main(id="editStatement")
         form(method="POST" action="{$domain}/edit-statement/{$statement['id']}" id="editStateForm")
             input(id="title"  type="text" name="title" placeholder="Title" value="{$statement['title']}" minlength="1" maxlength="100" required)
+            img(src="{$domain}/uploads/${statement['image_url']}" class="w-25")
             textarea(id="text" type="text" name="text" placeholder="Write a description" minlength="1" maxlength="1000" required) = "{$statement['text']}"
+            input(id="imageToUpload" type="file" name="image")
             input(type="submit" class="submit" value="Update")

@@ -44,7 +44,7 @@ class Statement extends BaseModel
         return False;
     }
 
-    function updateStatement($statementId, $title, $text) {
+    function updateStatement($statementId, $title, $text, $imageUrl = null) {
         /**
          * updates a statement in the database
          * 
@@ -58,10 +58,17 @@ class Statement extends BaseModel
         $text = $this->sanitizeInput($text);
         
         // Prepare and bind statement
-        $stmt = $this->conn->prepare("UPDATE statements
-        SET title = ?, text = ?
-        WHERE id = ?");
-        $stmt->bind_param("sss", $title, $text, $statementId);
+        if ($imageUrl) {
+            $stmt = $this->conn->prepare("UPDATE statements
+            SET title = ?, text = ?, image_url = ?
+            WHERE id = ?");
+            $stmt->bind_param("ssss", $title, $text, $imageUrl, $statementId);    
+        } else {
+            $stmt = $this->conn->prepare("UPDATE statements
+            SET title = ?, text = ?
+            WHERE id = ?");
+            $stmt->bind_param("sss", $title, $text, $statementId);    
+        }
 
         if ($stmt->execute()) {
             return True;
