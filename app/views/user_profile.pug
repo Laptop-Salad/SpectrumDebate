@@ -10,7 +10,6 @@ block content
                     if $bio
                         p = "{$bio}"
 
-
                 if $isFriend
                     a(id="delFriend" href="{$domain}/new-friend/{$author}") = "Remove Friend"
                 else 
@@ -18,15 +17,16 @@ block content
 
                 //- Views
                 section(class="views")
-                    a(href="{$domain}/user/{$author}/statements") = "Statements"
-                    a(href="{$domain}/user/{$author}/comments") = "Comments"
+                    button(id="viewStatements" class="btn btn-light me-2") = "Statements"
+                    button(id="viewComments" class="btn btn-light") = "Comments"
                 
             //- Statements
             section(id="statements")     
                 if !$statements
-                    p = "This user hasn't posted any statements yet..."           
+                    p = "This user hasn't posted any statements yet..."   
+
                 //- Timeline
-                section(class="statement container-sm")
+                section(class="container-sm")
                     //- If user hasn't posted any statements
 
                     each $statement in $statements
@@ -45,6 +45,18 @@ block content
                                     h2(class="statement-title") = $statement["title"] 
                                     p(class="margin-right")
                                         span = $statement["time"]
+            
+            //- Comments
+            section(id="comments")                    
+                //- If user hasn't posted any comments
+                if !$comments 
+                    p = "This user hasn't commented anything yet..."
+
+                each $comment in $comments
+                    p(class="comment") 
+                        span = "{$comment['text']}"
+    
+        script(src="/app/scripts/userProfile.js" type="text/javascript")
     else 
         h1 = "404 User Not Found"
                         

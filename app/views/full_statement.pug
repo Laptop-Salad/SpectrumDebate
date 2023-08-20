@@ -23,7 +23,7 @@ block content
                             if $statement['author'] == ""
                                 b = "<deleted>"
                             else
-                                a(href="{$domain}/user/{$statement['author']}/statements") = "{$statement['author']}"
+                                a(href="{$domain}/user/{$statement['author']}") = "{$statement['author']}"
                         span = ", "
                         span = "{$statement['time']}"
 
@@ -54,7 +54,7 @@ block content
                     section(id="comments")
                         each $comment in $comments
                             section(class="comment")
-                                a(href="{$domain}/user/{$comment['username']}/statements") = " {$comment['username']}"
+                                a(href="{$domain}/user/{$comment['username']}") = " {$comment['username']}"
                                 p = "{$comment['text']}"
                                 
                                 if $comment["username"] != ""

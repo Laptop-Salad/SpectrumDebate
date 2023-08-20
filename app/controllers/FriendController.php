@@ -18,7 +18,7 @@ class FriendController extends BaseController {
                     confirmButtonText: 'Ok'
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      window.location.href = '$this->domain/user/$toUser/statements';
+                      window.location.href = '$this->domain/user/$toUser';
                     }
                   })
                 </script>";
@@ -39,7 +39,7 @@ class FriendController extends BaseController {
                 confirmButtonText: 'Ok'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '$this->domain/user/$toUser/statements';
+                  window.location.href = '$this->domain/user/$toUser';
                 }
               })
             </script>";
@@ -52,7 +52,7 @@ class FriendController extends BaseController {
                 confirmButtonText: 'Ok'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '$this->domain/user/$toUser/statements';
+                  window.location.href = '$this->domain/user/$toUser';
                 }
               })
             </script>";
@@ -72,7 +72,7 @@ class FriendController extends BaseController {
                 confirmButtonText: 'Ok'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '$this->domain/user/$toUser/statements';
+                  window.location.href = '$this->domain/user/$toUser';
                 }
               })
             </script>";
@@ -85,7 +85,7 @@ class FriendController extends BaseController {
                 confirmButtonText: 'Ok'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '$this->domain/user/$toUser/statements';
+                  window.location.href = '$this->domain/user/$toUser';
                 }
               })
             </script>";

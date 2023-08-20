@@ -21,13 +21,6 @@
     display: flex;
 }
 
-#userProfile .views a {
-    margin: 0 5px;
-    font-size: 1rem;
-    color: black;
-    text-decoration: underline;
-}
-
 #userProfile {
     margin: 2rem 0;
 }
@@ -58,11 +51,6 @@
     border-radius: 5px;
     color: white;
     margin: 0 0 20px 0;
-}
-
-#addFriend:hover,
-#delFriend:hover {
-    text-decoration: none;
 }
 
 #addFriend {

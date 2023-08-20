@@ -15,6 +15,6 @@ extends navbar.pug
                     div(class="inline")
                         h2(class="statement-title") = $statement["title"] 
                         p(class="margin-right")
-                            a(class="username" href="{$domain}/user/{$statement['username']}/statements") = $statement["username"]
+                            a(class="username" href="{$domain}/user/{$statement['username']}") = $statement["username"]
                             span = ", "
                             span = $statement["time"]

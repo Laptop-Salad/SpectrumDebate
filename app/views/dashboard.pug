@@ -89,7 +89,7 @@ block content
                     else 
                         each $follow in $follows
                             li(class="list-group-item")
-                                a(href="{$domain}/user/{$follow['username']}/statements") = "@{$follow['username']}"
+                                a(href="{$domain}/user/{$follow['username']}") = "@{$follow['username']}"
             
             div(id="followersList" class="following") 
                 ul(class="list-group")
@@ -98,7 +98,7 @@ block content
                     else 
                         each $follower in $followers
                             li(class="list-group-item")
-                                a(href="{$domain}/user/{$follower['username']}/statements") = "@{$follower['username']}"
+                                a(href="{$domain}/user/{$follower['username']}") = "@{$follower['username']}"
 
 
     script(src="/app/scripts/dashboard.js");

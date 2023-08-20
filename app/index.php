@@ -83,9 +83,9 @@
         $deleteComment = new DeleteComment($commentId);
     });
 
-    $router->get("/user/{username}/{view}", function($username, $view) {
+    $router->get("/user/{username}", function($username) {
         require __DIR__ . "/controllers/UserProfile.php";
-        $userProfile = new UserProfile($username, $view);
+        $userProfile = new UserProfile($username);
     });
 
     $router->get("/new-friend/{toUsername}", function($toUsername) {

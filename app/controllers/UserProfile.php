@@ -4,15 +4,16 @@
         private $userId;
         private $isFriend;
         private $bio;
-        function __construct($username, $view) {
+        function __construct($username) {
             $this->username = $username;
             $this->baseConstruct();
 
             // Get username
             require_once dirname(__DIR__, 1) . "/models/Account.php";
             $account = new Account();
-            $userId = $account->findUser($this->username);
-            $this->userId = $userId;
+            $result = $account->findUser($this->username, true);
+            $this->userId = $result["id"];
+            $this->bio = $result["bio"];
 
             // If user isn't found don't continue
             if ($this->userId == "") {
@@ -23,14 +24,9 @@
             // Get properly formatted username
             $this->username = $account->findUserById($this->userId);
 
+            // Is user friends with the logged in user
             $this->isFriend = false;
 
-            // Get bio
-            $account = new Account;
-            $result = $account->findUser($username, true);
-            $this->bio = $result["bio"];
-
-            // Is user friends with the logged in user
             if (isset($_SESSION["username"])) {
                 require_once dirname(__DIR__, 1) . "/models/Friend.php";
                 $friend = new Friend;
@@ -40,49 +36,37 @@
                 }
             }
 
-            // Display content depending on view
-            switch($view) {
-                case "statements":
-                    $this->displayStatements();
-                    break;
-                case "comments":
-                    $this->displayComments();
-                    break;
-                default:
-                    $this->displayStatements();
-            }
+            // Get statements, comments
+            $statements = $this->getStatements();
+            $comments = $this->getComments();
+
+            $variables = [
+                "author" => $this->username,
+                "statements" => $statements,
+                "comments" => $comments,
+                "isFriend" => $this->isFriend,
+                "bio" => $this->bio
+            ];
+
+            $this->displayContent("user_profile.pug", "@$this->username", $variables);
         }
 
-        function displayStatements() {
+        function getStatements() {
             // Get statements
             require_once dirname(__DIR__, 1) . "/models/Statement.php";
             $statement = new Statement;
             $statements = $statement->getUserStatements($this->username);
 
-            $variables = [
-                "author" => $this->username,
-                "statements" => $statements,
-                "isFriend" => $this->isFriend,
-                "bio" => $this->bio,
-            ];
-
-            $this->displayContent("user_profile_statements.pug", $this->username, $variables);
+            return $statements;
         }
 
-        function displayComments() {            
+        function getComments() {            
             // Get comments
             require_once dirname(__DIR__, 1) . "/models/Comment.php";
             $comment = new Comment();
             $comments = $comment->getUserComments($this->userId);
 
-            $variables = [
-                "author" => $this->username,
-                "comments" => $comments,
-                "isFriend" => $this->isFriend,
-                "bio" => $this->bio,
-            ];
-
-            $this->displayContent("user_profile_comments.pug", $this->username, $variables);
+            return $comments;
         }
     }
 ?>

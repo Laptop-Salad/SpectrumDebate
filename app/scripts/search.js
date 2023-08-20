@@ -55,7 +55,7 @@ function getSearchRes() {
                     var currStmt = users[i];
     
                     $("#searchUsers").append(`
-                    <a href='${domain}/user/${currStmt.username}/statements'>${currStmt.username}</a>
+                    <a href='${domain}/user/${currStmt.username}'>${currStmt.username}</a>
                     `)
                 }
     
