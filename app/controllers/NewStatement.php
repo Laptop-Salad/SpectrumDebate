@@ -15,7 +15,7 @@ class NewStatement extends BaseController
         $text = $_POST["ns-text"];
         $username = $_SESSION["username"];
 
-        if (isset($_FILES["ns-image"])) {
+        if(file_exists($_FILES['ns-image']['tmp_name']) && is_uploaded_file($_FILES['ns-image']['tmp_name'])) {
             $image = $_FILES["ns-image"];
             require dirname(__DIR__, 1) . "/models/Upload.php";
             $upload = new Upload($username, $image);

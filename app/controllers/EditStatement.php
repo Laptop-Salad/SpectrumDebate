@@ -9,7 +9,7 @@ class EditStatement extends BaseController {
             $title = $_POST["title"];
             $text = $_POST["text"];
 
-            if (isset($_FILES["image"])) {
+            if(file_exists($_FILES['image']['tmp_name']) && is_uploaded_file($_FILES['image']['tmp_name'])) {
                 $image = $_FILES["image"];
                 require dirname(__DIR__, 1) . "/models/Upload.php";
                 $upload = new Upload($_SESSION["username"], $image);

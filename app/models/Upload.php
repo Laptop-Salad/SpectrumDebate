@@ -52,7 +52,6 @@ class Upload extends BaseModel {
 
         // Upload file
         if (move_uploaded_file($this->image["tmp_name"], $targetFile)) {
-            echo "Successfully uploaded";
             return [true, $this->username . "/" . $this->image["name"]];
         } else {
             return [False, "Error uploading file"];
