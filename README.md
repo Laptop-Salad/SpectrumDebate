@@ -23,7 +23,6 @@ Spectrum Debate is a site where users can debate various topics using three opti
 ## Future features
 - When you comment, your vote on the statement is shown above your comment
 - Getting notifications on the website when friends post a statement
-- Adding tags to posts such as "Food" "Politics", etc.
 - Filter
 - Avatar
 
