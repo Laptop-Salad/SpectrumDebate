@@ -23,13 +23,45 @@ class DeleteUser extends BaseController {
             die();
         }
 
+        // If user directory exists, delete it
+        $dirPath = dirname(__DIR__, 2) .  "/uploads/" . $this->currUsername;
+        if (file_exists($dirPath)) {
+            $files = scandir($dirPath);
+
+            // Delete files within folder
+            foreach ($files as $file) {
+                $filePath = $dirPath . "/" . $file;
+                if(is_file($filePath)) {
+                    unlink($filePath);
+                }
+            }
+
+            // Delete folder
+            if(!rmdir($dirPath)) {
+                $this->displayContent("navbar.pug", "Spectrum Debate", []);
+                echo "
+                <script type='text/javascript'>
+                Swal.fire({
+                    title: 'Error!',
+                    text: There was an error deleting your account , please try again later',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href='$this->domain/dashboard'
+                    }
+                  })
+                </script>";
+                die();
+            }
+        }
+
         // Delete user
         $account->deleteUser($userid);
         
         // Destroy session
         require_once "Logout.php";
         $logout = new Logout(True);
-        
     }
 }
 ?>

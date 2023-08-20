@@ -18,6 +18,11 @@ class Upload extends BaseModel {
         $targetFile = $targetDir . basename($this->image["name"]);
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
+        // Ensure file name doesn't have certain characters
+        if (str_contains($this->image["name"], "/") || str_contains($this->image["name"], "\\")) {
+            return [false, "Invalid file name"];
+        }
+
         // Create user directory, if it doesn't exist
         if (!file_exists($targetDir)) {
             mkdir($targetDir, 0777, false);
