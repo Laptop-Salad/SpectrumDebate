@@ -17,7 +17,11 @@ class Dashboard extends BaseController
         $follows = $this->getFollows();
         $followers = $this->getFollowers();
 
-        $this->displayViews($statements, $follows, $followers, $comments);
+        // Get bio
+        $account = new Account;
+        $result = $account->findUser($_SESSION["username"], true);
+
+        $this->displayViews($statements, $follows, $followers, $comments, $result);
     }
 
     function getFollowers() {
@@ -47,7 +51,7 @@ class Dashboard extends BaseController
         return $statements;
     }
 
-    function displayViews($statements, $follows, $followers, $comments)
+    function displayViews($statements, $follows, $followers, $comments, $userProfile)
     {
         /**
          * Prepares to display views
@@ -60,7 +64,8 @@ class Dashboard extends BaseController
             "statements" => $statements,
             "follows" => $follows,
             "followers" => $followers,
-            "comments" => $comments
+            "comments" => $comments,
+            "bio" => (isset($userProfile["bio"])) ? $userProfile["bio"] : null,
         ];
 
         // Display view

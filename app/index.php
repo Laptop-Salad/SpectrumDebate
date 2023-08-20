@@ -93,6 +93,11 @@
         $createFriend = new FriendController($toUsername);
     });
 
+    $router->post("/edit-user/{username}", function($username) {
+        require __DIR__ . "/controllers/EditUser.php";
+        $editUser = new EditUser($username);
+    });
+
     // Ajax check username available
     $router->get("/user-avail/{username}", function($username) {
         require_once __DIR__ . "/models/SignupCheck.php";

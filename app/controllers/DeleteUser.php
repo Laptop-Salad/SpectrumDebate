@@ -43,7 +43,7 @@ class DeleteUser extends BaseController {
                 <script type='text/javascript'>
                 Swal.fire({
                     title: 'Error!',
-                    text: There was an error deleting your account , please try again later',
+                    text: 'There was an error deleting your account , please try again later',
                     icon: 'error',
                     confirmButtonText: 'Ok'
                   }).then((result) => {

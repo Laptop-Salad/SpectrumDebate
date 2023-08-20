@@ -109,7 +109,8 @@ class Account extends BaseModel
                 return array(
                     "id" => $row["id"],
                     "username" => $row["username"],
-                    "password" => $row["password"]
+                    "password" => $row["password"],
+                    "bio" => $row["bio"]
                 );
             }
         }
@@ -122,6 +123,25 @@ class Account extends BaseModel
         }
     }
     
+    function updateUserVars($username, $bio) {
+        /**
+         * updates user account for details that can be changed
+         * 
+         * @param string $username username to details for
+         * @param string $bio if bio is to be updated
+         * @return bool if update was successful
+         */
+
+         $stmt = $this->conn->prepare("UPDATE users SET bio = ? WHERE username = ?;");
+         $stmt->bind_param("ss", $bio, $username);
+         
+         if ($stmt->execute()) {
+             return True;
+         } else {
+             return False;
+         }
+    }
+
     function findUserById($userid)
     {
         /**

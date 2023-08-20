@@ -2,7 +2,20 @@ extends navbar.pug
 
 block content
     main(id="dashboard")
-        h1 = "Dashboard"
+        div(id="profile")
+            h1 = $username
+
+            div(class="d-flex")
+                if $bio
+                    p(id="profileBio" class="me-2") = "{$bio}"
+                else
+                    p(id="profileBio" class="me-2") = "Write a description about yourself...   "
+
+                p(id="profileBioEdit" )
+                    i(class="fa fa-pencil" aria-hidden="true")
+
+                p(id="profileBioSave")
+                    i(class="fa fa-floppy-o" aria-hidden="true")
 
         section(class="grid-container")
             //- Account options

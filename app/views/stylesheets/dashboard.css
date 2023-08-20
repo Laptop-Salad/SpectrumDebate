@@ -7,6 +7,10 @@
     font-weight: 400;
 }
 
+#dashboard i {
+    cursor: pointer;
+}
+
 /* Grid */
 #dashboard .grid-container {
     display: grid;
@@ -117,6 +121,11 @@
     color: red;
 }
 
+/* Profile bio */
+#profileBio {
+    outline: transparent;
+}
+
 /** Media queries **/
 
 /* Mobile S */
@@ -128,8 +137,10 @@
 
 /* Tablet */
 @media only screen and (max-width: 768px) {
-    #dashboard h1 {
-        text-align: center;
+    #dashboard #profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #dashboard .grid-container {

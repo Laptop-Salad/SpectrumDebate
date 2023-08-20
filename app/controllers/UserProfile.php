@@ -3,6 +3,7 @@
         private $username;
         private $userId;
         private $isFriend;
+        private $bio;
         function __construct($username, $view) {
             $this->username = $username;
             $this->baseConstruct();
@@ -23,6 +24,11 @@
             $this->username = $account->findUserById($this->userId);
 
             $this->isFriend = false;
+
+            // Get bio
+            $account = new Account;
+            $result = $account->findUser($username, true);
+            $this->bio = $result["bio"];
 
             // Is user friends with the logged in user
             if (isset($_SESSION["username"])) {
@@ -53,11 +59,11 @@
             $statement = new Statement;
             $statements = $statement->getUserStatements($this->username);
 
-
             $variables = [
                 "author" => $this->username,
                 "statements" => $statements,
-                "isFriend" => $this->isFriend
+                "isFriend" => $this->isFriend,
+                "bio" => $this->bio,
             ];
 
             $this->displayContent("user_profile_statements.pug", $this->username, $variables);
@@ -72,7 +78,8 @@
             $variables = [
                 "author" => $this->username,
                 "comments" => $comments,
-                "isFriend" => $this->isFriend
+                "isFriend" => $this->isFriend,
+                "bio" => $this->bio,
             ];
 
             $this->displayContent("user_profile_comments.pug", $this->username, $variables);

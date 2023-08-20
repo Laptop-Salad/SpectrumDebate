@@ -43,7 +43,7 @@ statementsBtn.addEventListener('click', () => {
   $("#followingList").hide();
   $("#followersList").hide();
   $("#statementsList").show();
-});
+})
 
 commentsBtn.addEventListener('click', () => {
   $("#followingList").hide();
@@ -51,18 +51,74 @@ commentsBtn.addEventListener('click', () => {
   $("#statementsList").hide();
   $("#commentsList").show();
 
-});
+})
 
 followingBtn.addEventListener('click', () => {
   $("#commentsList").hide();
   $("#statementsList").hide();
   $("#followersList").hide();
   $("#followingList").show();
-});
+})
 
 followersBtn.addEventListener('click', () => {
   $("#commentsList").hide();
   $("#followingList").hide();
   $("#statementsList").hide();
   $("#followersList").show();
+})
+
+// User profile edit
+$("#profileBioSave").hide();
+
+$("#profileBioEdit").click(function () {
+  $("#profileBioEdit").hide();
+  $("#profileBioSave").show();
+  $("#profileBio").attr("contentEditable", true);
+})
+
+$("#profileBioSave").click(function () {
+  $("#profileBioEdit").show();
+  $("#profileBioSave").hide();
+  $("#profileBio").attr("contentEditable", false);
+
+  // Create post request
+  const formData = new FormData();
+
+  const username = $("h1").text();
+  formData.append("bio", $("#profileBio").text());
+
+  const request = new XMLHttpRequest();
+  request.open("POST", `${domain}/edit-user/${username}`, true);
+  request.send(formData);
+
+  request.onreadystatechange = function () {
+    if (request.readyState === 4) {
+      if (request.status === 200) {
+        var response = request.responseText;
+
+        if (response === "1") {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Profile updated successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })  
+        } else {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Profile was not updated, please try again later...',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+        }
+      } else {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Profile was not updated, please try again later...',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
+      }
+    }
+  }
 })
