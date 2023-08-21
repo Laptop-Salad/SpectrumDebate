@@ -41,8 +41,8 @@ class Upload extends BaseModel {
         }
 
         // Check file size
-        if ($this->image["size"] > 500000) {
-            return [false, "File is too large"];
+        if ($this->image["size"] > 5000000) {
+            return [false, $this->image["size"]];
         }
 
         // Allow certain file formats: jpg, jpeg, png and gif
