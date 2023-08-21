@@ -66,3 +66,8 @@ function getSearchRes() {
     xmlhttp.open("GET", `${domain}/search/` + currTerm, true);
     xmlhttp.send();
 }
+
+// Navbar
+document.getElementById("modalSearch").addEventListener("shown.bs.modal", function() {
+    document.getElementById("search").focus()
+})

@@ -1,15 +1,17 @@
 extends navbar.pug
 
 block content
-    main(id="dashboard")
-        div(id="profile")
+    main(id="dashboard" class="px-5")
+        div(id="profile" class="d-flex flex-column align-items-center")
             h1 = $username
 
             div(class="d-flex")
                 if $bio
                     p(id="profileBio" class="me-2") = "{$bio}"
+                    input(id="profileBioEditable" class="me-2" minlength="1" maxlength="40" value="{$bio}")
                 else
                     p(id="profileBio" class="me-2") = "Write a description about yourself...   "
+                    input(id="profileBioEditable" class="me-2" minlength="1" maxlength="40" value="Write a description about yourself...   ")
 
                 p(id="profileBioEdit" )
                     i(class="fa fa-pencil" aria-hidden="true")
@@ -17,88 +19,88 @@ block content
                 p(id="profileBioSave")
                     i(class="fa fa-floppy-o" aria-hidden="true")
 
-        section(class="grid-container")
-            //- Account options
-            aside
-                section(class="options")
+        section(class="container d-flex justify-content-center")
+            div(class="row")
+                //- Account options
+                ul(class="list-group col options h-25")
+                    li(id="nsBtn" class="list-group-item text-primary" data-bs-toggle="modal" data-bs-target="#nsModal") = "☛ Write a new statement..."
+                    li(id="followingBtn" class="list-group-item") = "☛ Following" 
+                    li(id="followersBtn" class="list-group-item") = "☛ Followers" 
+                    li(id="statementsBtn" class="list-group-item") = "☛ My Statements"
+                    li(id="commentsBtn" class="list-group-item") = "☛ My Comments"
+                    li(id="delAcc" href="{$domain}/delete-user/{$username}" class="list-group-item text-danger") = "☛ Delete this account"
+
+                //- New statement modal
+                div(id="nsModal" class="modal" tabindex="-1")
+                    div(class="modal-dialog")
+                        div(class="modal-content")
+                            div(class="modal-header")
+                                h2(class="modal-title") = "Write a new statement"
+                                button(type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close")
+
+                            div(class="modal-body")
+                                form(id="nsForm" method="POST" action="new-statement" autocomplete="off" enctype="multipart/form-data")
+                                    input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
+                                    textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
+                                    input(id="imageToUpload" type="file" name="ns-image")
+                                    input(id="nsSubmit" type="submit" class="submit")
+                
+                //- Statement
+                div(id="statementsList" class="statements col")
+                    if $statements == []
+                        p(class="no-item") = "You have no statements yet..."
+                    each $statement in $statements
+                        div(class="statement container-sm" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
+
+                            //- Votes ratio 
+                            div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
+                                div(class="disagree")
+                                div(class="neutral")
+                                div(class="agree")
+
+                            //- Statement info
+                            section(class="content")
+                                div(class="inline")
+                                    h2(class="statement-title") = $statement["title"] 
+                                    p(class="margin-right")
+                                        span = $statement["time"]
+                            
+                            //- Statement options
+                            section(class="statement-options d-flex")
+                                a(href="/edit-statement/{$statement['id']}" class="statement-edit")
+                                    i(class="fa-solid fa-pencil text-primary")
+                                        span = " Edit"
+                                br
+                                a(href="/delete-statement/{$statement['id']}" class="statement-delete")
+                                    i(class="fa-solid fa-trash text-danger")
+                                        span = " Delete"
+
+                div(id="commentsList" class="comments col") 
                     ul(class="list-group")
-                        li(id="nsBtn" class="list-group-item text-primary") = "☛ Write a new statement..."
-                        li(id="followingBtn" class="list-group-item") = "☛ Following" 
-                        li(id="followersBtn" class="list-group-item") = "☛ Followers" 
-                        li(id="statementsBtn" class="list-group-item") = "☛ My Statements"
-                        li(id="commentsBtn" class="list-group-item") = "☛ My Comments"
-                        li(id="delAcc" href="{$domain}/delete-user/{$username}" class="list-group-item text-danger") = "☛ Delete this account"
+                        if $comments == []    
+                            li(class="list-group-item") = "You have no comments..."
+                        else 
+                            each $comment in $comments
+                                li(class="list-group-item")
+                                    a(href="{$domain}/statement/{$comment['statement_id']}") = "{$comment['text']}"
 
-            //- New statement modal
-            dialog(id="nsModal")
-                div
-                    h2 = "Write a new statement"
-                    button(id="nsCloseBtn") = "x"
-
-                //- Text form
-                form(id="nsForm" method="POST" action="new-statement" autocomplete="off" enctype="multipart/form-data")
-                    input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
-                    textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
-                    input(id="imageToUpload" type="file" name="ns-image")
-                    input(id="nsSubmit" type="submit" class="submit")
-            
-            //- Statement
-            div(id="statementsList" class="statements")
-                if $statements == []
-                    p(class="no-item") = "You have no statements yet..."
-                each $statement in $statements
-                    div(class="statement container-sm" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
-
-                        //- Votes ratio 
-                        div(class="percentages" style="grid-template: 1fr / {$statement['votesCount']['disagree']}fr {$statement['votesCount']['neutral']}fr {$statement['votesCount']['agree']}fr;")
-                            div(class="disagree")
-                            div(class="neutral")
-                            div(class="agree")
-
-                        //- Statement info
-                        section(class="content")
-                            div(class="inline")
-                                h2(class="statement-title") = $statement["title"] 
-                                p(class="margin-right")
-                                    span = $statement["time"]
-                        
-                        //- Statement options
-                        section(class="statement-options")
-                            a(href="/edit-statement/{$statement['id']}" class="statement-edit")
-                                i(class="fa-solid fa-pencil")
-                                span = " Edit"
-                            br
-                            a(href="/delete-statement/{$statement['id']}" class="statement-delete")
-                                i(class="fa-solid fa-trash")
-                                span = " Delete"
-
-            div(id="commentsList" class="comments") 
-                ul(class="list-group")
-                    if $comments == []    
-                        li(class="list-group-item") = "You have no comments..."
-                    else 
-                        each $comment in $comments
-                            li(class="list-group-item")
-                                a(href="{$domain}/statement/{$comment['statement_id']}") = "{$comment['text']}"
-
-
-            div(id="followingList" class="following") 
-                ul(class="list-group")
-                    if $follows == []    
-                        li(class="list-group-item") = "You are currently not following anyone.."
-                    else 
-                        each $follow in $follows
-                            li(class="list-group-item")
-                                a(href="{$domain}/user/{$follow['username']}") = "@{$follow['username']}"
-            
-            div(id="followersList" class="following") 
-                ul(class="list-group")
-                    if $followers == []    
-                        li(class="list-group-item") = "No one is currently following you.."
-                    else 
-                        each $follower in $followers
-                            li(class="list-group-item")
-                                a(href="{$domain}/user/{$follower['username']}") = "@{$follower['username']}"
+                div(id="followingList" class="following col") 
+                    ul(class="list-group")
+                        if $follows == []    
+                            li(class="list-group-item") = "You are currently not following anyone.."
+                        else 
+                            each $follow in $follows
+                                li(class="list-group-item")
+                                    a(href="{$domain}/user/{$follow['username']}") = "@{$follow['username']}"
+                
+                div(id="followersList" class="following col") 
+                    ul(class="list-group")
+                        if $followers == []    
+                            li(class="list-group-item") = "No one is currently following you.."
+                        else 
+                            each $follower in $followers
+                                li(class="list-group-item")
+                                    a(href="{$domain}/user/{$follower['username']}") = "@{$follower['username']}"
 
 
     script(src="/app/scripts/dashboard.js");

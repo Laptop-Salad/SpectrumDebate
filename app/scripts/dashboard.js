@@ -1,16 +1,3 @@
-// New statement dialog
-const nsBtn = document.getElementById("nsBtn");
-const nsModal = document.getElementById("nsModal");
-const nsCloseBtn = document.getElementById("nsCloseBtn");
-
-nsBtn.addEventListener('click', () => {
-    nsModal.showModal();
-})
-
-nsCloseBtn.addEventListener('click', () => {
-    nsModal.close();
-})
-
 // Confirm delete account
 const delBtn = document.getElementById("delAcc");
 
@@ -69,23 +56,29 @@ followersBtn.addEventListener('click', () => {
 
 // User profile edit
 $("#profileBioSave").hide();
+$("#profileBioEditable").hide();
 
 $("#profileBioEdit").click(function () {
   $("#profileBioEdit").hide();
   $("#profileBioSave").show();
-  $("#profileBio").attr("contentEditable", true);
+
+  $("#profileBioEditable").show();
+  $("#profileBio").hide();
+  
+  $("#profileBioEditable").focus();
 })
 
 $("#profileBioSave").click(function () {
-  $("#profileBioEdit").show();
   $("#profileBioSave").hide();
-  $("#profileBio").attr("contentEditable", false);
+  $("#profileBioEditable").hide();
+  $("#profileBio").show();
+  $("#profileBioEdit").show();
 
   // Create post request
   const formData = new FormData();
 
   const username = $("h1").text();
-  formData.append("bio", $("#profileBio").text());
+  formData.append("bio", $("#profileBioEditable").val());
 
   const request = new XMLHttpRequest();
   request.open("POST", `${domain}/edit-user/${username}`, true);
@@ -102,7 +95,11 @@ $("#profileBioSave").click(function () {
             text: 'Profile updated successfully',
             icon: 'success',
             confirmButtonText: 'Ok'
-          })  
+          }).then((result) => {
+            if (result.isConfirmed) {
+              location.reload()
+            }
+          })
         } else {
           Swal.fire({
             title: 'Error!',
