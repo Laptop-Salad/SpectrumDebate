@@ -33,16 +33,17 @@ block content
                 //- New statement modal
                 div(id="nsModal" class="modal" tabindex="-1")
                     div(class="modal-dialog")
-                        div(class="modal-content")
+                        div(class="modal-content h-75")
                             div(class="modal-header")
                                 h2(class="modal-title") = "Write a new statement"
                                 button(type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close")
 
-                            div(class="modal-body")
+                            div(class="modal-body d-flex flex-column")
                                 form(id="nsForm" method="POST" action="new-statement" autocomplete="off" enctype="multipart/form-data")
                                     input(type="text" name="ns-title" id="nsTitle" placeholder="Title" minlength="1" maxlength="100" required)
                                     textarea(type="text" name="ns-text" id="nsText" placeholder="Write a description" minlength="1" maxlength="1000" required)
                                     input(id="imageToUpload" type="file" name="ns-image")
+
                                     input(id="nsSubmit" type="submit" class="submit")
                 
                 //- Statement

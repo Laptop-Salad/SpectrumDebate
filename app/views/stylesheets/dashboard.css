@@ -12,6 +12,29 @@
     cursor: pointer;
 }
 
+/* New Statement */
+#nsModal .modal-dialog {
+    width: 75vw;
+}
+
+#nsModal input,
+#nsModal textarea {
+    display: block;
+    outline: transparent;
+}
+
+#nsModal input {
+    width: 100%;
+    font-size: 1rem;
+}
+
+#nsModal textarea {
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+}
+
 /* Statements */
 .statement-options a {
     display: block;
