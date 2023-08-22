@@ -3,6 +3,7 @@ class BaseController
 {
     private $forwarding;
     public $domain = "//localhost";
+    
     function baseConstruct()
     {
         /**
