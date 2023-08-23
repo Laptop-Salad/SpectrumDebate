@@ -49,7 +49,8 @@ block content
                 //- Statement
                 div(id="statementsList" class="statements col")
                     if $statements == []
-                        p(class="no-item") = "You have no statements yet..."
+                        ul(class="list-group")
+                            li(class="list-group-item dashboard-item") = "You have no statements yet..."
                     each $statement in $statements
                         div(class="statement container-sm" role="link" tabindex="0" onclick="window.location.href='{$domain}/statement/{$statement['id']}'")
 
@@ -79,28 +80,28 @@ block content
                 div(id="commentsList" class="comments col") 
                     ul(class="list-group")
                         if $comments == []    
-                            li(class="list-group-item") = "You have no comments..."
+                            li(class="list-group-item dashboard-item") = "You have no comments..."
                         else 
                             each $comment in $comments
-                                li(class="list-group-item")
+                                li(class="list-group-item dashboard-item")
                                     a(href="{$domain}/statement/{$comment['statement_id']}") = "{$comment['text']}"
 
                 div(id="followingList" class="following col") 
                     ul(class="list-group")
                         if $follows == []    
-                            li(class="list-group-item") = "You are currently not following anyone.."
+                            li(class="list-group-item dashboard-item") = "You are currently not following anyone.."
                         else 
                             each $follow in $follows
-                                li(class="list-group-item")
+                                li(class="list-group-item dashboard-item")
                                     a(href="{$domain}/user/{$follow['username']}") = "@{$follow['username']}"
                 
                 div(id="followersList" class="following col") 
                     ul(class="list-group")
                         if $followers == []    
-                            li(class="list-group-item") = "No one is currently following you.."
+                            li(class="list-group-item dashboard-item") = "No one is currently following you.."
                         else 
                             each $follower in $followers
-                                li(class="list-group-item")
+                                li(class="list-group-item dashboard-item")
                                     a(href="{$domain}/user/{$follower['username']}") = "@{$follower['username']}"
 
 

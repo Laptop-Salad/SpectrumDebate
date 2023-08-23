@@ -47,3 +47,15 @@
     outline: transparent;
     background-color: transparent;
 }
+
+/* Dashboard Options */
+#dashboard .dashboard-item {
+    width: 40vw;
+}
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+    #dashboard .dashboard-item {
+        width: 80vw;
+    }
+}
