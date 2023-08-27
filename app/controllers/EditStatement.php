@@ -75,7 +75,8 @@ class EditStatement extends BaseController {
         }
 
         $variables = [
-            "statement" => $statement
+            "statement" => $statement,
+            "edit_statement" => true,
         ];
 
         $this->displayContent("edit_statement.pug", "Editing " . $statement["title"], $variables);

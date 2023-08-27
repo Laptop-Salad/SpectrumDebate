@@ -1,0 +1,9 @@
+{
+    "name": "Spectrum Debate",
+    "short_name": "Spectrum Debate",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#efefef",
+    "description": "A debate platform"
+  }
+  

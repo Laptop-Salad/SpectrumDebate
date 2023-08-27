@@ -1,34 +1,46 @@
-doctype html
+<!DOCTYPE HTML>
 html(lang="en")
-head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="preconnect" href="https://fonts.googleapis.com")
-    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(name="description" content="")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
 
-    //- Bootstrap
-    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous")
-    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous")
+        link(rel="shortcut icon" type="image/x-icon" sizes="16x16" href="{$domain}/app/assets/icons/favicon-16x16.png")
+        link(rel="shortcut icon" type="image/x-icon" sizes="32x32" href="{$domain}/app/assets/icons/favicon-32x32.ico")
+        link(rel="apple-touch-icon" type="image/x-icon" sizes="180x180" href="{$domain}/app/assets/icons/apple-touch-icon.png")
+        link(rel="manifest" href="{$domain}/manifest.json")
 
-    //- Google fonts
-    link(href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet")
-    script(src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous")
-    script(src="https://kit.fontawesome.com/8737e79ded.js" crossorigin="anonymous")
-    script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11")
-    title = "{$title}"
-    style
-        include stylesheets/base.css
-        include stylesheets/accounts.css
+        //- Bootstrap
+        link(href="{$domain}/app/views/bootstrap/css/bootstrap.min.css" rel="stylesheet")
 
-        include stylesheets/statements.css
-        
-        include stylesheets/full_statement.css
-        include stylesheets/dashboard.css
-        include stylesheets/edit_comment.css
-        include stylesheets/edit_statement.css
-body 
-    script(src="{$domain}/app/scripts/base.js")
-    block head
+        //- Google fonts
+        link(href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet")
+        script(src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous")
+        script(src="https://kit.fontawesome.com/8737e79ded.js" crossorigin="anonymous")
+        script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11")
+        title = "{$title}"
+        style
+            include stylesheets/base.css
+            include stylesheets/accounts.css
+            include stylesheets/statements.css
 
-    block content
+            if $full_statement
+                include stylesheets/full_statement.css
+            
+            if $dashboard
+                include stylesheets/dashboard.css
+
+            if $edit_comment
+            include stylesheets/edit_comment.css
+
+            if $edit_statement
+                include stylesheets/edit_statement.css
+    body 
+        script(src="{$domain}/app/scripts/base.js")
+        script(src="{$domain}/app/views/bootstrap/js/bootstrap.bundle.min.js")
+        block head
+
+        block content

@@ -19,6 +19,7 @@ class EditComment extends BaseController {
             $variables = [
                 "commentId" => $commentId,
                 "text" => $text,
+                "edit_comment" => true,
             ];
 
             $this->displayContent("edit_comment.pug", "Editing Comment", $variables);

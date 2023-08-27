@@ -66,6 +66,7 @@ class Dashboard extends BaseController
             "followers" => $followers,
             "comments" => $comments,
             "bio" => (isset($userProfile["bio"])) ? $userProfile["bio"] : null,
+            "dashboard" => true,
         ];
 
         // Display view

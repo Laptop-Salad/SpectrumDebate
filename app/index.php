@@ -115,6 +115,10 @@
         return json_encode([]);
     });
 
+    // robots.txt
+    $router->get("/robots.txt", function() {
+        require_once __DIR__ . "/robots.txt";
+    });
 
     $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 

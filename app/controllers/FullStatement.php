@@ -27,6 +27,7 @@
                 "statement" => $data,
                 "votesCount" => $votesCount,
                 "comments" => $comments,
+                "full_statement" => true,
             ];
             
             $this->displayContent("full_statement.pug", $data["title"], $contentVariables);
