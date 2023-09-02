@@ -1,5 +1,20 @@
 # Changelog
 
+## 21/08/2023
+
+### Changed
+- Increase file upload size limit -> [c5ff10c](https://github.com/Laptop-Salad/SpectrumDebate/commit/c5ff10ccdabdc67df40c2634ed8ccdf731261a4c)
+
+## 20/08/2023
+
+### Added
+- User bio ->[58156e4](https://github.com/Laptop-Salad/SpectrumDebate/commit/58156e425ab7683e0c35b31238b4c163a9d1ca98)
+
+- Upload files ->[c22b738](https://github.com/Laptop-Salad/SpectrumDebate/commit/c22b738ec2d95bfc15fea6daac6c0977da11ada7)
+
+### Changed
+- User profile preloads data ->[d7cf754](https://github.com/Laptop-Salad/SpectrumDebate/commit/d7cf7543899b2cee4458b002c621410a6a1e8611)
+
 ## 17/08/2023
 
 ### Fixed
