@@ -5,7 +5,7 @@
 ![image](https://github.com/Laptop-Salad/SpectrumDebate/assets/80591698/a516b113-a189-4e0c-a519-40a1b93ab5c5)
 ![image](https://github.com/Laptop-Salad/SpectrumDebate/assets/80591698/586aa86c-01a3-4efd-9e28-8e611936985b)
 
-Spectrum Debate is a site where users can debate various topics using three options: Disagree, Neutral and Agree. Built with PHP, SQL, Phug, HTML, CSS and JS. Frontend testing is done with Cypress. [View the docs](https://github.com/Laptop-Salad/SpectrumDebate/tree/master/docs).
+Spectrum Debate is a site where users can debate various topics using three options: Disagree, Neutral and Agree. Built with PHP, SQL, Phug, HTML, CSS and JS. [View the docs](https://github.com/Laptop-Salad/SpectrumDebate/tree/master/docs).
 
 ## Current Features
 - Sign up / Log in
